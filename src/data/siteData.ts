@@ -50,16 +50,20 @@ export interface Passion {
 }
 
 export interface BookChapter {
+  part?: string;
+  partTitle?: string;
   number: string;
   title: string;
   subtitle: string;
-  summary: string;
-  keyTakeaway: string;
+  summary?: string;
+  keyTakeaway?: string;
 }
 
 export interface ResearchProject {
   id: string;
   title: string;
+  disciplineTag?: string;
+  synopsis?: string;
   status: 'Riset Aktif' | 'Fase Verifikasi' | 'Penyusunan Monograf';
   leadThesis: string;
   background: string;
@@ -79,10 +83,91 @@ export interface ResearchProject {
   }[];
 }
 
+export const ABOUT_LINKS = {
+  writing: '/ideas',
+  research: '/research',
+  business: '#business-placeholder', // Tautan dapat diedit nanti
+  travel: '#travel-placeholder',     // Tautan dapat diedit nanti
+  creativeProjects: '#creative-placeholder', // Tautan dapat diedit nanti
+};
+
+export const ABOUT_MANIFESTO = {
+  credo: "Bukan ustaz. Bukan akademisi. Bukan selebritas.",
+  lead: "Hanya seseorang yang suka bertanya—tentang agama, Al-Qur'an, sejarah, sains, filsafat, dan berbagai hal yang sering kita terima begitu saja sebagai sesuatu yang sudah pasti. Bukan untuk mencari-cari kesalahan, apalagi merasa paling tahu, melainkan untuk mencoba kembali melihat sumbernya, memahami konteksnya, membandingkan argumennya, dan menilai sejauh mana sebuah kesimpulan benar-benar bisa dipertanggungjawabkan. Kadang jawabannya jelas, kadang masih berupa kemungkinan, dan kadang memang belum tahu.",
+  secondary: "Di sini, fakta, interpretasi, hipotesis, dan spekulasi tidak diperlakukan sebagai hal yang sama. Tidak perlu setuju—baca sumbernya, pahami argumennya, dan kalau perlu, bantah. Sebab yang lebih penting bukan siapa yang paling yakin, tetapi apakah kita masih bersedia menguji apa yang kita yakini. Satu-satunya loyalitas di sini adalah pada pertanyaan yang jujur."
+};
+
+export interface WhatIDoItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  linkKey: keyof typeof ABOUT_LINKS;
+  badge: string;
+  iconName: 'PenTool' | 'Search' | 'Briefcase' | 'Compass' | 'Sparkles';
+  isExternalPlaceholder?: boolean;
+}
+
+export const WHAT_I_DO_DATA: WhatIDoItem[] = [
+  {
+    id: 'writing',
+    title: 'Writing',
+    subtitle: 'Esai dan Buku',
+    description: 'Pemikiran panjang yang ditulis untuk diuji, bukan untuk dipatuhi secara buta.',
+    linkKey: 'writing',
+    badge: 'Aktif & Terpublikasi',
+    iconName: 'PenTool',
+  },
+  {
+    id: 'research',
+    title: 'Research',
+    subtitle: 'Riset Terbuka & Catatan Lapangan',
+    description: 'Arsip hidup penyelidikan bahasa kuno dan sejarah yang terus diperbarui seiring ditemukannya bukti baru.',
+    linkKey: 'research',
+    badge: 'Laboratorium Terbuka',
+    iconName: 'Search',
+  },
+  {
+    id: 'business',
+    title: 'Business',
+    subtitle: 'Proyek dan Usaha',
+    description: 'Eksplorasi kewirausahaan dan inisiatif profesional di luar ruang riset naskah.',
+    linkKey: 'business',
+    badge: 'Placeholder / Dapat Diedit',
+    iconName: 'Briefcase',
+    isExternalPlaceholder: true,
+  },
+  {
+    id: 'travel',
+    title: 'Travel',
+    subtitle: 'Perjalanan & Dokumentasi',
+    description: 'Ekspedisi lapangan melintasi pulau terpencil, pegunungan vulkanik, dan tapak peradaban Nusantara.',
+    linkKey: 'travel',
+    badge: 'Placeholder / Dapat Diedit',
+    iconName: 'Compass',
+    isExternalPlaceholder: true,
+  },
+  {
+    id: 'creativeProjects',
+    title: 'Creative Projects',
+    subtitle: 'Karya Kreatif & Eksperimen Visual',
+    description: 'Eksperimen estetika, instalasi visual, dan media ekspresi alternatif.',
+    linkKey: 'creativeProjects',
+    badge: 'Placeholder / Dapat Diedit',
+    iconName: 'Sparkles',
+    isExternalPlaceholder: true,
+  },
+];
+
 export const SITE_CONFIG = {
   name: "UNCLE ZEIN",
+  brand: "Uncle Zein.",
+  journalType: "Digital Journal",
+  triadTagline: "Think. Question. Test.",
+  opennessQuote: "You don't have to agree with me. Just don't stop thinking.",
   tagline: "Question everything. Especially the things you're told not to question.",
-  subtitle: "Ruang Eksplorasi Pemikiran Independen, Riset Historis-Kritis & Catatan Lapangan",
+  topicsSubtitle: "Religion. History. Science. Philosophy. And the uncomfortable questions in between.",
+  subtitle: "Digital Journal — Ruang Eksplorasi Pemikiran Independen, Riset Historis-Kritis & Catatan Lapangan",
   author: "Uncle Zein",
   credo: "Bukan Ustaz. Bukan Akademisi. Bukan Selebritas.",
   location: "Nusantara & Global Frontier",
@@ -777,9 +862,49 @@ Sebagian besar kecemasan eksistensial manusia di daratan memiliki mekanisme yang
 
 export const DAILY_NOTES_DATA: DailyNote[] = [
   {
+    id: "note-warisan-ribuan-tahun",
+    title: "Lama Bukan Bukti",
+    date: "03 Okt 2026",
+    location: "Meja Kerja Terbuka",
+    category: "Renungan",
+    mood: "Kritis",
+    snippet: "Sebuah keyakinan tidak menjadi benar hanya karena sudah diwariskan ribuan tahun. Lama bukan bukti. Banyak hal yang lama justru karena tidak pernah diuji.",
+    fullNote: "Sebuah keyakinan tidak menjadi benar hanya karena sudah diwariskan ribuan tahun. Lama bukan bukti. Banyak hal yang lama justru karena tidak pernah diuji. Menghormati tradisi bukan berarti mematikan daya kritis, melainkan berani menimbang ulang apakah fondasi yang diletakkan nenek moyang masih kokoh saat disinari cahaya fakta baru."
+  },
+  {
+    id: "note-membaca-ulang-kejujuran",
+    title: "Membaca Terlalu Cepat",
+    date: "02 Okt 2026",
+    location: "Perpustakaan Naskah",
+    category: "Observasi",
+    mood: "Jernih",
+    snippet: "Membaca ulang bukan mencari kesalahan. Ia mencari pemahaman yang lebih jujur — yang mungkin berarti menemukan bahwa selama ini kita membaca terlalu cepat.",
+    fullNote: "Membaca ulang bukan mencari kesalahan. Ia mencari pemahaman yang lebih jujur — yang mungkin berarti menemukan bahwa selama ini kita membaca terlalu cepat. Kita sering melompati kata-kata yang sulit atau memaksakan makna doktrin modern ke dalam teks kuno berumur dua ribu tahun."
+  },
+  {
+    id: "note-pertanyaan-jujur",
+    title: "Nilai Pertanyaan yang Jujur",
+    date: "28 Sep 2026",
+    location: "Tebing Pantai Selatan",
+    category: "Renungan",
+    mood: "Reflektif",
+    snippet: "Pertanyaan yang jujur lebih berharga daripada jawaban yang dipaksakan. Yang pertama membuka jalan; yang kedua menutupnya.",
+    fullNote: "Pertanyaan yang jujur lebih berharga daripada jawaban yang dipaksakan. Yang pertama membuka jalan; yang kedua menutupnya. Menyadari bahwa kita 'belum tahu' adalah pintu masuk kebijaksanaan, sementara merasa 'sudah pasti tahu' adalah akhir dari proses belajar."
+  },
+  {
+    id: "note-akal-dan-dogma",
+    title: "Akal dan Dogma",
+    date: "20 Sep 2026",
+    location: "Kabin Baca, Lereng Gunung",
+    category: "Catatan Lapangan",
+    mood: "Eksploratif",
+    snippet: "Kalau Tuhan menciptakan manusia dengan akal, kenapa akal harus dimatikan ketika membahas dogma?",
+    fullNote: "Kalau Tuhan menciptakan manusia dengan akal, kenapa akal harus dimatikan ketika membahas dogma? Mengapa perangkat terbaik yang diberikan untuk membedakan racun dari obat justru diperintahkan untuk dimatikan saat kita melangkah masuk ke ranah yang paling mendasar dalam hidup?"
+  },
+  {
     id: "note-1",
     title: "Tentang Pertanyaan yang Dilarang",
-    date: "01 Okt 2026",
+    date: "15 Sep 2026",
     location: "Kabin Baca, Lereng Gunung",
     category: "Renungan",
     mood: "Reflektif",
@@ -789,7 +914,7 @@ export const DAILY_NOTES_DATA: DailyNote[] = [
   {
     id: "note-2",
     title: "Seni Menunggu di Atas Karang Hitam",
-    date: "24 Sep 2026",
+    date: "04 Sep 2026",
     location: "Pesisir Selatan, Tebing Karang",
     category: "Catatan Lapangan",
     mood: "Sunyi",
@@ -799,7 +924,7 @@ export const DAILY_NOTES_DATA: DailyNote[] = [
   {
     id: "note-3",
     title: "Membaca di Bawah Cahaya Lampu Badai",
-    date: "12 Sep 2026",
+    date: "25 Agu 2026",
     location: "Camp Eksplorasi Lembah Rimba",
     category: "Alam Liar",
     mood: "Fokus",
@@ -809,7 +934,7 @@ export const DAILY_NOTES_DATA: DailyNote[] = [
   {
     id: "note-4",
     title: "Kuda, Napas, dan Ego Manusia",
-    date: "29 Agu 2026",
+    date: "10 Agu 2026",
     location: "Savana Timur",
     category: "Observasi",
     mood: "Bertenaga",
@@ -820,10 +945,12 @@ export const DAILY_NOTES_DATA: DailyNote[] = [
 
 export const RESEARCH_DATA: ResearchProject = {
   id: "res-isa-ayah-kandung",
-  title: "Yesus / Isa Al Masih Punya Ayah Kandung? — Analisis Komparatif Manuskrip Kuno & Rekonstruksi Sosio-Historis Abad ke-1",
+  title: "Yesus / Isa Al Masih Punya Ayah Kandung?",
+  disciplineTag: "Biology × Qur’an × History",
+  synopsis: "Sebuah penelitian lintas disiplin yang menguji kembali narasi kelahiran Yesus/Isa melalui tiga medan sekaligus: biologi reproduksi, teks Al-Qur’an, dan sumber-sumber sejarah kuno.",
   status: "Riset Aktif",
-  leadThesis: "Menguji hipotesis historis-kritis mengenai genealogis historis, tradisi lisan awal pra-kanonisasi, dan pengaruh teologi Helenistik terhadap doktrin kelahiran tanpa ayah biologis.",
-  background: "Proyek riset independen ini membedah lapisan naskah tertua (Injil Markus, surat-surat autentik Paulus, naskah Q, fragmen gulungan Laut Mati / DSS, dan literatur rabinik awal) untuk melacak transformasi narasi kelahiran dari perspektif sejarah murni.",
+  leadThesis: "Menguji kembali narasi kelahiran Yesus/Isa melalui tiga medan keilmuan secara terpadu: biologi reproduksi (partenogenesis vs reproduksi generatif mamalia), filologi dan hermeneutika teks Al-Qur'an (ayat-ayat mutasyabihat & kata kalimah/ruh), serta rekonstruksi manuskrip sejarah kuno abad pertama.",
+  background: "Penelitian ini membongkar asumsi dogmatis dengan mengadu data material: bagaimana sains biologi memandang pewarisan kromosom XY, bagaimana teks Al-Qur'an membaca silsilah Maryam tanpa distorsi tafsir abad pertengahan, dan bagaimana manuskrip Kristen perdana serta literatur Yudaisme merekam figur historis Yesus.",
   fiveLayers: [
     {
       layer: 1,
@@ -875,79 +1002,171 @@ export const RESEARCH_DATA: ResearchProject = {
 };
 
 export const BOOKS_DATA = {
-  title: "MENDOBRAK KEPALSUAN",
-  subtitle: "Risalah Kritis Logika, Arkeologi Teks, & Pembebasan Pikiran",
-  edition: "Ultimate Hardcover Collector Edition",
+  id: "book-01",
+  bookNumber: "Book 01",
+  title: "Yesus Punya Ayah Kandung?",
+  subtitle: "Mengurai Biologi, Al-Qur’an, Sejarah, dan Narasi Kelahiran Yesus",
+  edition: "Research Monograph",
   year: "2026",
-  pages: "468 Halaman",
+  progress: 80,
+  status: "In Progress Research",
+  statusBadge: "In Progress · 80%",
+  classification: "Hypothesis under examination",
+  researchType: "Biology × Qur’an × History",
   author: "Uncle Zein",
-  publisher: "Frontier Mind Press",
-  synopsis: "Sebuah karya monografis yang membongkar mitos-mitos kuno dengan pisau bedah filologi, arkeologi teks, dan rasionalisme murni. Ditulis dengan gaya lugas, tajam, dan tanpa kompromi teologis untuk pembaca yang haus akan kebenaran tanpa filter.",
-  chapters: [
+  publisher: "Frontier Mind Research",
+  synopsisParagraphs: [
+    "Selama berabad-abad, kelahiran Yesus dari Maryam tanpa ayah biologis telah menjadi salah satu bagian paling dikenal dalam tradisi keagamaan.",
+    "Tetapi ada pertanyaan yang lebih mendasar: «Apakah ketiadaan ayah biologis benar-benar dinyatakan secara eksplisit oleh sumber primer, atau merupakan kesimpulan yang terbentuk melalui interpretasi dan tradisi yang berkembang kemudian?»",
+    "Buku ini mencoba membuka kembali pertanyaan tersebut melalui tiga lensa sekaligus: biologi reproduksi, teks Al-Qur’an, dan sejarah dunia kuno.",
+    "Penelitian ini tidak dimulai dengan kesimpulan bahwa tradisi pasti salah. Sebaliknya, ia mencoba kembali ke sumber-sumber primer dan memisahkan apa yang benar-benar dikatakan teks dari apa yang selama ini dianggap sebagai konsekuensinya.",
+    "Di dalamnya, pembaca akan menemukan pertemuan antara genetika, bahasa Arab Qur’ani, Injil, hukum perkawinan Yahudi, genealogi, sejarah Palestina abad pertama, serta perkembangan tradisi keagamaan.",
+    "Buku ini bukan sekadar mencari jawaban atas pertanyaan “siapa ayah Yesus?” Ia mempertanyakan sesuatu yang lebih besar: «Bagaimana sebuah kesimpulan keagamaan terbentuk ketika teks, tradisi, sejarah, dan asumsi manusia dibaca sebagai satu kesatuan?»"
+  ],
+  methodologyLevels: [
     {
-      number: "Bab I",
-      title: "Pondasi Berpikir: Mengapa Sebagian Besar Manusia Takut Berpikir Merdeka",
-      subtitle: "Psikologi kepatuhan kelompok dan kenyamanan delusi massal.",
-      summary: "Mengapa manusia lebih memilih kebohongan yang menenangkan daripada kebenaran yang menampar? Bab ini membedah evolusi rasa takut sosial.",
-      keyTakeaway: "Kemerdekaan berpikir selalu dibayar mahal dengan keterasingan sementara dari kerumunan."
+      level: "Established",
+      color: "blue",
+      dot: "🔵",
+      description: "Fakta yang memiliki dasar kuat dari sumber primer, data empiris, atau konsensus ilmiah yang relevan."
     },
     {
-      number: "Bab II",
-      title: "Anatomi Teks Kuno: Bagaimana Sejarah Ditulis oleh Para Pemenang",
-      subtitle: "Rekonstruksi manuskrip, interpolasi, dan sensor institusional.",
-      summary: "Memeriksa bagaimana naskah kuno disalin, disunting, dan diubah sepanjang ratusan tahun oleh otoritas keagamaan demi hegemoni politik.",
-      keyTakeaway: "Naskah suci tidak jatuh dari langit dalam bentuk buku bersampul kulit emas; naskah diproduksi oleh tangan manusia dengan tinta dan kepentingan."
+      level: "Probable",
+      color: "emerald",
+      dot: "🟢",
+      description: "Inferensi atau kesimpulan yang didukung oleh beberapa bukti, tetapi masih dapat diperdebatkan."
     },
     {
-      number: "Bab III",
-      title: "Misteri Kelahiran & Genealogi Abad Pertama",
-      subtitle: "Kritik historis terhadap narasi keperawanan biologis dan silsilah Daud.",
-      summary: "Bedah tuntas data naskah tertua perihal keluarga Isa / Yesus Al-Masih, dokumen Paulin, dan tradisi Yahudi pra-Helenisasi.",
-      keyTakeaway: "Membedakan klaim teologis Yunani-Romawi dari realitas historis bangsa Semitik abad ke-1."
+      level: "Hypothesis",
+      color: "amber",
+      dot: "🟡",
+      description: "Kemungkinan yang dapat diuji, tetapi belum memiliki bukti langsung yang cukup untuk dianggap sebagai fakta."
     },
     {
-      number: "Bab IV",
-      title: "Filologi Bahasa Semitik: Bahasa Mengubah Makna",
-      subtitle: "Bagaimana kesalahan terjemahan menjadi dogma abadi.",
-      summary: "Analisis perubahan makna radikal saat teks beralih dari Ibrani/Aram ke Yunani, Latin, dan bahasa modern.",
-      keyTakeaway: "Satu kata yang salah dipahami pada abad ke-2 SM menjadi doktrin absolut yang menumpahkan darah berabad-abad kemudian."
-    },
-    {
-      number: "Bab V",
-      title: "Arkeologi vs Narasi Kitab: Fakta Lapangan yang Berbicara",
-      subtitle: "Temuan ekskavasi Timur Tengah yang menggugat kronologi populer.",
-      summary: "Melihat langsung data lapisan tanah, pecahan tembikar, dan prasasti yang seringkali bertolak belakang dengan legenda populer.",
-      keyTakeaway: "Sekop arkeolog tidak memiliki bias denominasi; batu dan tanah merekam apa adanya."
-    },
-    {
-      number: "Bab VI",
-      title: "Evolusi Konsep Ketuhanan: Dari Monolatri Menuju Monoteisme Absolut",
-      subtitle: "Perjalanan sejarah dewa-dewa Kanaan hingga transformasi konsep monoteistik.",
-      summary: "Melacak jejak El, Elohim, Yahweh, dan dewa-dewa semitik kuno dalam catatan arkeologi Ugarit dan Sinai.",
-      keyTakeaway: "Konsep tentang Tuhan berevolusi seiring dengan evolusi kecerdasan dan kebutuhan sosio-politik manusia."
-    },
-    {
-      number: "Bab VII",
-      title: "Filsafat Alam Liar: Apa yang Diajarkan Laut dan Rimba",
-      subtitle: "Sintesis personal dari spearfishing, perburuan, dan petualangan batas terluar.",
-      summary: "Bagaimana hukum alam yang keras melucuti semua kesombongan filosofis di atas meja kerja dan mengembalikan manusia ke posisi aslinya.",
-      keyTakeaway: "Hukum alam tidak pernah bernegosiasi dengan doa kosong; hukum alam menuntut pemahaman dan ketepatan tindakan."
-    },
-    {
-      number: "Bab VIII",
-      title: "Menghadapi Kematian Tanpa Ketakutan Dogmatis",
-      subtitle: "Etika eksistensial, integritas batin, dan keabadian melalui jejak pemikiran.",
-      summary: "Membangun ketenangan batin dalam menghadapi batas akhir kehidupan tanpa perlu disuapi janji surga dongeng atau diancam siksa neraka.",
-      keyTakeaway: "Kematian bukan hal yang menakutkan bagi mereka yang telah hidup secara utuh, jujur, dan berani."
-    },
-    {
-      number: "Bab IX",
-      title: "Manifesto Akal Merdeka: Panduan Praktis Menjadi Pengamat Independen",
-      subtitle: "Protokol harian menyaring informasi, membaca data, dan menjaga integritas intelek.",
-      summary: "Rangkuman metode operasional bagi setiap individu untuk membangun benteng logika sendiri di tengah era banjir disinformasi.",
-      keyTakeaway: "Jangan biarkan orang lain memikirkan hidupmu untukmu. Ambil alih kemudi pikiranmu sekarang juga."
+      level: "Speculation",
+      color: "slate",
+      dot: "⚪",
+      description: "Kemungkinan terbuka yang belum mempunyai dasar evidensial memadai dan tidak digunakan sebagai fondasi utama."
     }
-  ]
+  ],
+  mainPrinciple: "«Hipotesis tidak boleh menyamar sebagai fakta.»",
+  methodologyNote: "Sumber primer dibaca terlebih dahulu, kemudian dibandingkan dengan literatur akademik, sejarah, linguistik, biologi, dan tradisi penafsiran. Hadis dan tafsir, ketika digunakan, diperlakukan secara kritis sebagai data sejarah penafsiran, bukan otomatis sebagai bukti primer mengenai suatu peristiwa biologis.",
+  prologue: {
+    number: "Prologue",
+    title: "Satu Pertanyaan di Surabaya",
+    subtitle: "Mengapa pertanyaan sederhana mengenai kelahiran Yesus membawa kita kepada persoalan teks, biologi, sejarah, dan cara manusia membangun keyakinan."
+  },
+  parts: [
+    {
+      partName: "Part I — The Question",
+      chapters: [
+        { number: "01", title: "Mengapa Membaca Ulang?", subtitle: "Pertemuan antara narasi Kristen, Islam, dan pertanyaan ilmiah modern." },
+        { number: "02", title: "Teks, Tradisi, dan Dogma", subtitle: "Membedakan apa yang tertulis, apa yang ditafsirkan, dan apa yang kemudian menjadi keyakinan." },
+        { number: "03", title: "Bagaimana Menentukan Kepastian?", subtitle: "Tentang fakta, inferensi, probabilitas, hipotesis, dan batas pengetahuan." }
+      ]
+    },
+    {
+      partName: "Part II — Biology",
+      chapters: [
+        { number: "04", title: "Bagaimana Manusia Lahir?", subtitle: "Dasar-dasar reproduksi manusia dan konsekuensi biologis dari kelahiran seorang laki-laki." },
+        { number: "05", title: "Gen, Kromosom, dan Garis Ayah", subtitle: "Menguji pewarisan genetik dan pertanyaan mengenai kontribusi biologis paternal." },
+        { number: "06", title: "Apakah Ada Pengecualian?", subtitle: "Partenogenesis, variasi kromosom, perkembangan seks, dan batas analogi biologis." },
+        { number: "07", title: "Mukjizat dan Hukum Alam", subtitle: "Apakah penjelasan ilmiah dapat digunakan untuk menguji sebuah klaim mukjizat?" }
+      ]
+    },
+    {
+      partName: "Part III — Qur’an",
+      chapters: [
+        { number: "08", title: "Maryam dan Kelahiran Isa", subtitle: "Membaca kembali narasi QS. Maryam secara tekstual dan kontekstual." },
+        { number: "09", title: "“Lam Yamsasnī Bashar”", subtitle: "Apa yang sebenarnya dinyatakan oleh kalimat Maryam—dan apa yang tidak dinyatakannya?" },
+        { number: "10", title: "Rūḥ, Rasūl, dan Bahasa Wahyu", subtitle: "Menguji istilah-istilah kunci tanpa langsung memasukkan definisi tradisional ke dalam teks." },
+        { number: "11", title: "Isa sebagai Ibnu Maryam", subtitle: "Apakah penyebutan maternal otomatis berarti ketiadaan ayah?" },
+        { number: "12", title: "Ali ‘Imran dan Perbandingan dengan Adam", subtitle: "Menguji bagaimana Al-Qur’an menggunakan analogi penciptaan dan apa yang dapat disimpulkan darinya." }
+      ]
+    },
+    {
+      partName: "Part IV — Historical Jesus",
+      chapters: [
+        { number: "13", title: "Yusuf dalam Narasi Injil", subtitle: "Posisi Yusuf dalam kisah kelahiran dan keluarga Yesus." },
+        { number: "14", title: "Genealogi dan Keturunan", subtitle: "Apa yang sebenarnya ingin dijelaskan oleh silsilah dalam Matius dan Lukas?" },
+        { number: "15", title: "Son of Joseph", subtitle: "Menelusuri bagaimana Yesus disebut dan dikenali dalam berbagai sumber." },
+        { number: "16", title: "Mary, Joseph, dan Struktur Keluarga", subtitle: "Membaca narasi keluarga melalui konteks sosial abad pertama." },
+        { number: "17", title: "Dua Tradisi Kelahiran", subtitle: "Persamaan, perbedaan, dan persoalan historis dalam narasi Matius dan Lukas." }
+      ]
+    },
+    {
+      partName: "Part V — Marriage, Law & Society",
+      chapters: [
+        { number: "18", title: "Perkawinan Yahudi Abad Pertama", subtitle: "Mengenal struktur perkawinan, pertunangan, dan status keluarga dalam masyarakat Yahudi." },
+        { number: "19", title: "Nasab dan Status Anak", subtitle: "Bagaimana masyarakat kuno memahami hubungan biologis, legal, dan sosial." },
+        { number: "20", title: "Keluarga, Nama, dan Legitimasi", subtitle: "Mengapa identitas keluarga dapat menjadi persoalan penting dalam masyarakat kuno." },
+        { number: "21", title: "Ibnu Maryam dalam Perspektif Komparatif", subtitle: "Membandingkan pola penamaan maternal dan patrilineal dalam berbagai masyarakat." }
+      ]
+    },
+    {
+      partName: "Part VI — History & Reconstruction",
+      chapters: [
+        { number: "22", title: "Apa yang Bisa Direkonstruksi?", subtitle: "Membedakan data sejarah dari rekonstruksi yang masih bersifat spekulatif." },
+        { number: "23", title: "Ketika Teks Tidak Mengatakan Semuanya", subtitle: "Masalah silence of the text, informasi yang hilang, dan bahaya argument from silence." },
+        { number: "24", title: "Tradisi yang Berkembang", subtitle: "Bagaimana sebuah narasi dapat memperoleh detail baru melalui proses transmisi dan interpretasi." }
+      ]
+    },
+    {
+      partName: "Part VII — Testing the Hypothesis",
+      chapters: [
+        { number: "25", title: "Menguji Narasi Tanpa Ayah", subtitle: "Menempatkan klaim tradisional berhadapan dengan data biologis dan tekstual." },
+        { number: "26", title: "Menguji Kemungkinan Ayah Biologis", subtitle: "Menguji apakah sumber-sumber primer membuka ruang bagi rekonstruksi alternatif." },
+        { number: "27", title: "Yusuf sebagai Kandidat", subtitle: "Menguji posisi Yusuf berdasarkan bukti yang tersedia—tanpa mengubah hipotesis menjadi fakta." },
+        { number: "28", title: "Keberatan-Keberatan Utama", subtitle: "Menghadapkan hipotesis penelitian dengan keberatan biologis, linguistik, historis, dan teologis." }
+      ]
+    },
+    {
+      partName: "Part VIII — Synthesis",
+      chapters: [
+        { number: "29", title: "Ketika Tiga Lensa Bertemu", subtitle: "Apa yang terjadi ketika biologi, Al-Qur’an, dan sejarah dibaca secara bersamaan?" },
+        { number: "30", title: "Apa yang Benar-Benar Kita Ketahui?", subtitle: "Memisahkan temuan yang relatif kuat dari kesimpulan yang masih terbuka." },
+        { number: "31", title: "Apa yang Masih Menjadi Hipotesis?", subtitle: "Menunjukkan batas penelitian dan bagian-bagian yang belum dapat dipastikan." },
+        { number: "32", title: "Dua Narasi, Satu Pertanyaan", subtitle: "Membandingkan rekonstruksi tradisional dengan kemungkinan pembacaan alternatif." }
+      ]
+    }
+  ],
+  // Flattened array for quick compatibility
+  chapters: [
+    { number: "Prologue", title: "Satu Pertanyaan di Surabaya", subtitle: "Mengapa pertanyaan sederhana mengenai kelahiran Yesus membawa kita kepada persoalan teks, biologi, sejarah, dan cara manusia membangun keyakinan.", summary: "Titik tolak penyelidikan berawal dari dialog di Surabaya, membuka pertanyaan fundamental mengenai ketiadaan ayah biologis versus transmisi tradisi keagamaan.", keyTakeaway: "Pertanyaan yang jujur membuka jalan penyelidikan kritis." },
+    { number: "Bab 01", title: "Mengapa Membaca Ulang?", subtitle: "Pertemuan antara narasi Kristen, Islam, dan pertanyaan ilmiah modern." },
+    { number: "Bab 02", title: "Teks, Tradisi, dan Dogma", subtitle: "Membedakan apa yang tertulis, apa yang ditafsirkan, dan apa yang kemudian menjadi keyakinan." },
+    { number: "Bab 03", title: "Bagaimana Menentukan Kepastian?", subtitle: "Tentang fakta, inferensi, probabilitas, hipotesis, dan batas pengetahuan." },
+    { number: "Bab 04", title: "Bagaimana Manusia Lahir?", subtitle: "Dasar-dasar reproduksi manusia dan konsekuensi biologis dari kelahiran seorang laki-laki." },
+    { number: "Bab 05", title: "Gen, Kromosom, dan Garis Ayah", subtitle: "Menguji pewarisan genetik dan pertanyaan mengenai kontribusi biologis paternal." },
+    { number: "Bab 06", title: "Apakah Ada Pengecualian?", subtitle: "Partenogenesis, variasi kromosom, perkembangan seks, dan batas analogi biologis." },
+    { number: "Bab 07", title: "Mukjizat dan Hukum Alam", subtitle: "Apakah penjelasan ilmiah dapat digunakan untuk menguji sebuah klaim mukjizat?" },
+    { number: "Bab 08", title: "Maryam dan Kelahiran Isa", subtitle: "Membaca kembali narasi QS. Maryam secara tekstual dan kontekstual." },
+    { number: "Bab 09", title: "“Lam Yamsasnī Bashar”", subtitle: "Apa yang sebenarnya dinyatakan oleh kalimat Maryam—dan apa yang tidak dinyatakannya?" },
+    { number: "Bab 10", title: "Rūḥ, Rasūl, dan Bahasa Wahyu", subtitle: "Menguji istilah-istilah kunci tanpa langsung memasukkan definisi tradisional ke dalam teks." },
+    { number: "Bab 11", title: "Isa sebagai Ibnu Maryam", subtitle: "Apakah penyebutan maternal otomatis berarti ketiadaan ayah?" },
+    { number: "Bab 12", title: "Ali ‘Imran dan Perbandingan dengan Adam", subtitle: "Menguji bagaimana Al-Qur’an menggunakan analogi penciptaan dan apa yang dapat disimpulkan darinya." },
+    { number: "Bab 13", title: "Yusuf dalam Narasi Injil", subtitle: "Posisi Yusuf dalam kisah kelahiran dan keluarga Yesus." },
+    { number: "Bab 14", title: "Genealogi dan Keturunan", subtitle: "Apa yang sebenarnya ingin dijelaskan oleh silsilah dalam Matius dan Lukas?" },
+    { number: "Bab 15", title: "Son of Joseph", subtitle: "Menelusuri bagaimana Yesus disebut dan dikenali dalam berbagai sumber." },
+    { number: "Bab 16", title: "Mary, Joseph, dan Struktur Keluarga", subtitle: "Membaca narasi keluarga melalui konteks sosial abad pertama." },
+    { number: "Bab 17", title: "Dua Tradisi Kelahiran", subtitle: "Persamaan, perbedaan, dan persoalan historis dalam narasi Matius dan Lukas." },
+    { number: "Bab 18", title: "Perkawinan Yahudi Abad Pertama", subtitle: "Mengenal struktur perkawinan, pertunangan, dan status keluarga dalam masyarakat Yahudi." },
+    { number: "Bab 19", title: "Nasab dan Status Anak", subtitle: "Bagaimana masyarakat kuno memahami hubungan biologis, legal, dan sosial." },
+    { number: "Bab 20", title: "Keluarga, Nama, dan Legitimasi", subtitle: "Mengapa identitas keluarga dapat menjadi persoalan penting dalam masyarakat kuno." },
+    { number: "Bab 21", title: "Ibnu Maryam dalam Perspektif Komparatif", subtitle: "Membandingkan pola penamaan maternal dan patrilineal dalam berbagai masyarakat." },
+    { number: "Bab 22", title: "Apa yang Bisa Direkonstruksi?", subtitle: "Membedakan data sejarah dari rekonstruksi yang masih bersifat spekulatif." },
+    { number: "Bab 23", title: "Ketika Teks Tidak Mengatakan Semuanya", subtitle: "Masalah silence of the text, informasi yang hilang, dan bahaya argument from silence." },
+    { number: "Bab 24", title: "Tradisi yang Berkembang", subtitle: "Bagaimana sebuah narasi dapat memperoleh detail baru melalui proses transmisi dan interpretasi." },
+    { number: "Bab 25", title: "Menguji Narasi Tanpa Ayah", subtitle: "Menempatkan klaim tradisional berhadapan dengan data biologis dan tekstual." },
+    { number: "Bab 26", title: "Menguji Kemungkinan Ayah Biologis", subtitle: "Menguji apakah sumber-sumber primer membuka ruang bagi rekonstruksi alternatif." },
+    { number: "Bab 27", title: "Yusuf sebagai Kandidat", subtitle: "Menguji posisi Yusuf berdasarkan bukti yang tersedia—tanpa mengubah hipotesis menjadi fakta." },
+    { number: "Bab 28", title: "Keberatan-Keberatan Utama", subtitle: "Menghadapkan hipotesis penelitian dengan keberatan biologis, linguistik, historis, dan teologis." },
+    { number: "Bab 29", title: "Ketika Tiga Lensa Bertemu", subtitle: "Apa yang terjadi ketika biologi, Al-Qur’an, dan sejarah dibaca secara bersamaan?" },
+    { number: "Bab 30", title: "Apa yang Benar-Benar Kita Ketahui?", subtitle: "Memisahkan temuan yang relatif kuat dari kesimpulan yang masih terbuka." },
+    { number: "Bab 31", title: "Apa yang Masih Menjadi Hipotesis?", subtitle: "Menunjukkan batas penelitian dan bagian-bagian yang belum dapat dipastikan." },
+    { number: "Bab 32", title: "Dua Narasi, Satu Pertanyaan", subtitle: "Membandingkan rekonstruksi tradisional dengan kemungkinan pembacaan alternatif." }
+  ],
+  disclaimer: "«Catatan: Daftar isi publik ini sengaja tidak menampilkan seluruh struktur argumentasi, tabel evidensi, rangkaian deduksi, maupun hipotesis kerja yang terdapat dalam manuskrip penelitian.»"
 };
 
 export const MEDIA_CHANNELS = [

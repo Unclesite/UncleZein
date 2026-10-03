@@ -39,7 +39,7 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-12">
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">
-          <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest">
+          <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
             <span>02</span>
             <span aria-hidden="true">/</span>
             <span>IDEAS & CRITICAL ESSAYS</span>
@@ -49,6 +49,14 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
           </h2>
           <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
             Menembus kabut dogma dengan penalaran logis, kritik historiografi, dan pembacaan naskah primer tanpa bias denominasi.
+          </p>
+        </div>
+
+        {/* Guiding Principle Banner */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-blue-950/20 border border-blue-500/30 flex items-start gap-3.5">
+          <div className="w-2 h-2 rounded-full bg-blue-400 mt-2 shrink-0 animate-pulse" />
+          <p className="text-sm sm:text-base text-slate-200 font-serif-title italic leading-relaxed">
+            “Jangan mencari pembenaran atas apa yang sudah kamu percaya. Cari tahu apakah keyakinanmu sanggup bertahan ketika diuji.”
           </p>
         </div>
 

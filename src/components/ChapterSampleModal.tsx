@@ -1,6 +1,6 @@
 import React from 'react';
-import { X, BookOpen, ArrowRight, ShieldCheck } from 'lucide-react';
-import { BookChapter } from '../data/siteData';
+import { X, BookOpen, ArrowRight, ShieldCheck, ExternalLink } from 'lucide-react';
+import { BookChapter, BOOKS_DATA } from '../data/siteData';
 
 interface ChapterSampleModalProps {
   chapter: BookChapter | null;
@@ -22,12 +22,12 @@ export const ChapterSampleModal: React.FC<ChapterSampleModalProps> = ({
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#07090e]/80 backdrop-blur-md shrink-0">
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400">
             <BookOpen className="w-4 h-4" />
-            <span>PRATINJAU BAB MONOGRAF</span>
+            <span>PRATINJAU BAB // {BOOKS_DATA.bookNumber}</span>
           </div>
 
           <button
             onClick={onClose}
-            className="p-1.5 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5"
+            className="p-1.5 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -37,39 +37,36 @@ export const ChapterSampleModal: React.FC<ChapterSampleModalProps> = ({
         <div className="p-6 sm:p-10 overflow-y-auto space-y-6">
           <div className="space-y-2">
             <span className="text-xs font-mono-code text-blue-400 font-bold uppercase">
-              {chapter.number} · MENDOBRAK KEPALSUAN
+              {chapter.number} · {BOOKS_DATA.title}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display">
+            <h3 className="text-2xl sm:text-3xl font-black text-white font-display">
               {chapter.title}
             </h3>
-            <p className="text-sm text-slate-400 font-serif-title italic">
+            <p className="text-sm text-slate-300 font-serif-title italic">
               {chapter.subtitle}
             </p>
           </div>
 
           <div className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3">
-            <span className="text-xs font-mono-code text-blue-400 uppercase">Sinopsis Tesis:</span>
+            <span className="text-xs font-mono-code text-blue-400 uppercase font-bold">Ringkasan Topik Bab:</span>
             <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-light">
-              {chapter.summary}
+              {chapter.summary || `Pembahasan mendalam pada ${chapter.number} mengenai "${chapter.title}" yang menelaah bukti-bukti primer dari biologi reproduksi, dialektika teks Al-Qur'an, dan historiografi Palestina abad pertama.`}
             </p>
           </div>
 
-          <div className="p-6 rounded-2xl bg-blue-950/20 border border-blue-500/20 space-y-2">
-            <span className="text-xs font-mono-code text-emerald-400 uppercase font-semibold">
-              Kesimpulan Inti (Core Takeaway):
+          <div className="p-5 rounded-2xl bg-blue-950/20 border border-blue-500/30 space-y-2">
+            <span className="text-xs font-mono-code text-blue-400 uppercase font-bold">
+              Prinsip Metodologis:
             </span>
-            <p className="text-base text-slate-100 font-serif-title italic leading-relaxed">
-              "{chapter.keyTakeaway}"
+            <p className="text-sm text-slate-200 font-serif-title italic leading-relaxed">
+              «Hipotesis tidak boleh menyamar sebagai fakta. Sumber primer dibaca terlebih dahulu, kemudian dibandingkan dengan literatur akademik, sejarah, linguistik, biologi, dan tradisi penafsiran.»
             </p>
           </div>
 
-          {/* Excerpt simulation */}
-          <div className="space-y-4 text-slate-300 text-sm leading-relaxed border-t border-white/10 pt-6">
-            <p>
-              <em>Kutipan Pembuka:</em> "Bila sebuah keyakinan runtuh hanya karena kamu bertanya 'mengapa', maka keyakinan itu sejak awal dibangun di atas pasir hisap ketidaktahuan. Jangan pernah berterima kasih pada dogma yang menuntutmu mematikan akal budi."
-            </p>
-            <p>
-              Untuk membaca ulasan lengkap dan bedah manuskrip pada bab ini (termasuk referensi filologi bahasa Semitik dan catatan kaki kritis), Anda dapat memesan edisi buku fisik lengkap.
+          {/* Excerpt note */}
+          <div className="space-y-3 text-slate-400 text-xs sm:text-sm leading-relaxed border-t border-white/10 pt-4">
+            <p className="italic">
+              {BOOKS_DATA.disclaimer}
             </p>
           </div>
 
@@ -77,21 +74,20 @@ export const ChapterSampleModal: React.FC<ChapterSampleModalProps> = ({
           <div className="pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
             <button
               onClick={onClose}
-              className="px-4 py-2 text-xs text-slate-400 hover:text-white"
+              className="px-4 py-2 text-xs text-slate-400 hover:text-white cursor-pointer font-mono-code"
             >
               Tutup Pratinjau
             </button>
 
-            <button
-              onClick={() => {
-                onClose();
-                onOrder();
-              }}
-              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold flex items-center gap-2 shadow-sm"
+            <a
+              href="https://unclezein.com/books"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono-code font-bold uppercase flex items-center gap-2 shadow-sm transition-all cursor-pointer"
             >
-              <span>Pesan Buku Lengkap (468 Hal)</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+              <span>Kunjungi unclezein.com/books</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>

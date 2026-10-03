@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Compass, MapPin, Target, Zap, Anchor, ArrowRight, ShieldCheck, BookOpen, Volume2, Sparkles, Camera } from 'lucide-react';
-import { PASSIONS_DATA, Passion } from '../data/siteData';
+import { Compass, MapPin, Target, Zap, Anchor, ArrowRight, ShieldCheck, BookOpen, Volume2, Sparkles, Camera, PenTool, Search, Briefcase, ExternalLink, Code2, HelpCircle } from 'lucide-react';
+import { PASSIONS_DATA, Passion, ABOUT_MANIFESTO, ABOUT_LINKS, WHAT_I_DO_DATA, WhatIDoItem } from '../data/siteData';
 
 interface AboutSectionProps {
   onSelectPassion: (passion: Passion) => void;
@@ -11,7 +11,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
   const [guitarError, setGuitarError] = useState(false);
   const [horseError, setHorseError] = useState(false);
 
-  const getIcon = (iconName: string) => {
+  const getPassionIcon = (iconName: string) => {
     switch (iconName) {
       case 'Compass':
         return <Compass className="w-5 h-5" />;
@@ -28,26 +28,142 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
     }
   };
 
+  const getWhatIDoIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'PenTool':
+        return <PenTool className="w-5 h-5" />;
+      case 'Search':
+        return <Search className="w-5 h-5" />;
+      case 'Briefcase':
+        return <Briefcase className="w-5 h-5" />;
+      case 'Compass':
+        return <Compass className="w-5 h-5" />;
+      case 'Sparkles':
+        return <Sparkles className="w-5 h-5" />;
+      default:
+        return <Compass className="w-5 h-5" />;
+    }
+  };
+
+  const handleWhatIDoClick = (item: WhatIDoItem) => {
+    if (item.linkKey === 'writing') {
+      onNavigate('ideas', '/ideas');
+    } else if (item.linkKey === 'research') {
+      onNavigate('research', '/research');
+    } else {
+      const link = ABOUT_LINKS[item.linkKey];
+      if (link && !link.startsWith('#')) {
+        window.open(link, '_blank');
+      }
+    }
+  };
+
   return (
     <section id="about" className="py-16 relative">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-20">
-        {/* Section Header */}
-        <div className="space-y-4 max-w-3xl">
+      <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-24">
+        {/* 1. SECTION HEADER & HUMBLE REFLECTIVE MANIFESTO */}
+        <div className="space-y-6 max-w-4xl">
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
-            <span>01 // THE MAN BEHIND THE MIND</span>
+            <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <span>ABOUT // RUANG PERENUNGAN BERSAMA</span>
           </div>
-          <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-display text-balance">
-            Bukan Ustaz. Bukan Akademisi. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-slate-200">
-              Bukan Selebritas.
-            </span>
-          </h2>
-          <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            Uncle Zein adalah seorang penyelidik independen, praktisi survival alam liar, dan pemikir non-partisan yang menolak terjebak dalam sekat-sekat dogmatisme institusional.
-          </p>
+
+          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-display text-balance leading-[1.1]">
+            {ABOUT_MANIFESTO.credo}
+          </h1>
+
+          <div className="space-y-4 text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+            <p className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 text-slate-200">
+              {ABOUT_MANIFESTO.lead}
+            </p>
+            <p className="text-slate-300 border-l-2 border-blue-500/60 pl-5 italic text-sm sm:text-base">
+              "{ABOUT_MANIFESTO.secondary}"
+            </p>
+          </div>
         </div>
 
-        {/* Narrative Split: Philosophy & Credo + Authentic Guitar Portrait Photo */}
+        {/* 2. WHAT I DO SECTION (Pillars & Editable Placeholders) */}
+        <div className="space-y-8">
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+            <div className="space-y-1">
+              <div className="text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
+                02 // WHAT I DO
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
+                What I Do
+              </h2>
+              <p className="text-sm text-slate-400">
+                Empat hal yang dikerjakan, masing-masing dengan jalurnya sendiri.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 text-xs font-mono-code text-slate-400">
+              <Code2 className="w-3.5 h-3.5 text-blue-400" />
+              <span>ABOUT_LINKS Configuration Active</span>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {WHAT_I_DO_DATA.map((item) => (
+              <div
+                key={item.id}
+                onClick={() => handleWhatIDoClick(item)}
+                className="glass-card rounded-2xl p-6 sm:p-7 border border-white/10 hover:border-blue-500/50 hover:bg-white/[0.03] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="w-10 h-10 rounded-xl bg-blue-600/15 border border-blue-500/30 text-blue-400 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
+                      {getWhatIDoIcon(item.iconName)}
+                    </div>
+                    <span className={`text-[11px] font-mono-code px-2.5 py-0.5 rounded-full border ${
+                      item.isExternalPlaceholder
+                        ? 'text-slate-400 border-white/10 bg-white/[0.02]'
+                        : 'text-blue-300 border-blue-500/30 bg-blue-950/30'
+                    }`}>
+                      {item.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl font-bold text-white group-hover:text-blue-300 transition-colors font-display">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-blue-400 font-mono-code mt-0.5">
+                      {item.subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+
+                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                  <span className="text-slate-400 font-mono-code">
+                    {item.isExternalPlaceholder ? 'Tautan dapat diedit' : 'Buka Halaman'}
+                  </span>
+                  <span className="text-blue-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                    {item.isExternalPlaceholder ? (
+                      <>Tautan Eksternal <ExternalLink className="w-3.5 h-3.5" /></>
+                    ) : (
+                      <>Jelajahi <ArrowRight className="w-3.5 h-3.5" /></>
+                    )}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Editable Placeholders Guide Banner */}
+          <div className="p-4 rounded-xl bg-blue-950/20 border border-blue-500/30 flex items-center gap-3 text-xs text-slate-300 font-mono-code">
+            <HelpCircle className="w-4 h-4 text-blue-400 shrink-0" />
+            <span>
+              <strong>Editable placeholders:</strong> Tautan <em>Business</em>, <em>Travel</em>, dan <em>Creative Projects</em> saat ini berupa placeholder. Ganti nilai pada <code className="text-blue-300 bg-black/40 px-1.5 py-0.5 rounded border border-white/10">ABOUT_LINKS</code> di <code className="text-blue-300 bg-black/40 px-1.5 py-0.5 rounded border border-white/10">src/data/siteData.ts</code> untuk mengarahkannya.
+            </span>
+          </div>
+        </div>
+
+        {/* 3. NARRATIVE REFLECTION & AUTHENTIC PORTRAIT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Story Narrative */}
           <div className="lg:col-span-7 glass-card p-8 sm:p-10 rounded-2xl border border-white/10 space-y-6">
@@ -64,49 +180,62 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
             </p>
 
             {/* Authentic Guitar Contemplative Portrait with Fallback */}
-            <div className="rounded-xl overflow-hidden border border-white/15 relative aspect-[16/9] bg-slate-950 my-4 shadow-lg">
-              {!guitarError ? (
-                <img
-                  src="1001627970-82AvF.jpg"
-                  alt="Uncle Zein Contemplative Portrait with Guitar"
-                  className="w-full h-full object-cover object-center filter contrast-105"
-                  onError={() => setGuitarError(true)}
-                  referrerPolicy="no-referrer"
-                />
-              ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
-                  <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
-                    <span className="text-xl font-bold text-white">UZ</span>
+            <div className="space-y-3 my-4">
+              <div className="rounded-xl overflow-hidden border border-white/15 relative aspect-[16/9] bg-slate-950 shadow-lg">
+                {!guitarError ? (
+                  <img
+                    src="1001627970-82AvF.jpg"
+                    alt="Uncle Zein Contemplative Portrait with Guitar"
+                    className="w-full h-full object-cover object-center filter contrast-105"
+                    onError={() => setGuitarError(true)}
+                    referrerPolicy="no-referrer"
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
+                    <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
+                      <span className="text-xl font-bold text-white">UZ</span>
+                    </div>
+                    <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
                   </div>
-                  <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                )}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono-code text-slate-200">
+                  <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
+                    <Camera className="w-3.5 h-3.5 text-blue-400" />
+                    <span>REFLEKSI & KONTEMPLASI // UNCLE ZEIN</span>
+                  </span>
                 </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
-              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono-code text-slate-200">
-                <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
-                  <Camera className="w-3.5 h-3.5 text-blue-400" />
-                  <span>REFLEKSI & KONTEMPLASI // UNCLE ZEIN</span>
-                </span>
+              </div>
+
+              {/* Photo Caption Requested by User */}
+              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between">
+                <div>
+                  <div className="text-white font-bold text-xs tracking-wide">Independent thinker</div>
+                  <div className="text-blue-400 font-mono-code text-[11px] font-medium">Est. pertanyaan tanpa akhir</div>
+                </div>
+                <div className="text-[10px] font-mono-code text-slate-400 uppercase tracking-wider">
+                  Uncle Zein Journal
+                </div>
               </div>
             </div>
 
             <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">01. INDEPENDENSI</div>
-                <div className="text-xs text-slate-300">Bebas dari kepentingan donor, ormas, dan partai politik.</div>
+                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">01. KEJUJURAN</div>
+                <div className="text-xs text-slate-300">Setia pada pertanyaan yang jujur, bukan klaim kesimpulan absolut.</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
                 <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">02. METODOLOGI</div>
-                <div className="text-xs text-slate-300">Kritik historis-tekstual ketat & verifikasi empiris.</div>
+                <div className="text-xs text-slate-300">Membedakan fakta, interpretasi, hipotesis, dan spekulasi.</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">03. INTEGRITAS</div>
-                <div className="text-xs text-slate-300">Menyampaikan kebenaran data tanpa kompromi popularitas.</div>
+                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">03. KETERBUKAAN</div>
+                <div className="text-xs text-slate-300">Siap dikritik dan dibantah jika ada data primer yang lebih valid.</div>
               </div>
             </div>
           </div>
 
-          {/* Quick Framework / How I Read */}
+          {/* Protocol card */}
           <div className="lg:col-span-5 space-y-6">
             <div className="glass-card p-8 rounded-2xl border border-white/10 space-y-4 glow-blue">
               <div className="flex items-center justify-between">
@@ -148,7 +277,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           </div>
         </div>
 
-        {/* PERSONAL PASSIONS GRID (Enhanced Bento Box with Horseback Riding Photo) */}
+        {/* 4. PERSONAL PASSIONS GRID (Enhanced Bento Box with Horseback Riding Photo) */}
         <div className="space-y-8 pt-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
@@ -214,7 +343,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                         <div className="space-y-3">
                           <div className="flex items-center justify-between">
                             <div className="w-10 h-10 rounded-xl bg-blue-600/20 border border-blue-500/40 text-blue-400 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
-                              {getIcon(passion.iconName)}
+                              {getPassionIcon(passion.iconName)}
                             </div>
                             <span className="text-xs font-mono-code text-blue-400 font-bold">
                               DISIPLIN 04
@@ -252,14 +381,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                     <>
                       {/* Subtle Vector Backdrop Graphics */}
                       <div className="absolute top-0 right-0 p-6 text-white/5 group-hover:text-blue-500/10 transition-colors pointer-events-none">
-                        {getIcon(passion.iconName)}
+                        {getPassionIcon(passion.iconName)}
                       </div>
 
                       <div className="space-y-4">
                         {/* Top Header */}
                         <div className="flex items-center justify-between">
                           <div className="w-10 h-10 rounded-xl bg-blue-600/15 border border-blue-500/30 text-blue-400 flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-all">
-                            {getIcon(passion.iconName)}
+                            {getPassionIcon(passion.iconName)}
                           </div>
                           <span className="text-[11px] font-mono-code text-slate-400 group-hover:text-blue-300 transition-colors">
                             0{index + 1}

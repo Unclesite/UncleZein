@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, BookOpen, Compass, ShieldAlert, Sparkles, Layers, Quote, Clock, MapPin, ChevronRight, Zap } from 'lucide-react';
-import { ARTICLES_DATA, DAILY_NOTES_DATA, RESEARCH_DATA, PASSIONS_DATA, SITE_CONFIG, Article, DailyNote } from '../data/siteData';
+import { ArrowRight, BookOpen, Compass, ShieldAlert, Sparkles, Layers, Quote, Clock, MapPin, ChevronRight, Zap, PenTool, Search, Briefcase, HelpCircle } from 'lucide-react';
+import { ARTICLES_DATA, DAILY_NOTES_DATA, RESEARCH_DATA, PASSIONS_DATA, SITE_CONFIG, ABOUT_MANIFESTO, WHAT_I_DO_DATA, Article, DailyNote } from '../data/siteData';
 
 interface HomeViewProps {
   onNavigate: (tab: string, path?: string) => void;
@@ -40,11 +40,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
         <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left: Typography & Slogan */}
+            {/* Left: Typography, Identity & Signature Taglines */}
             <div className="lg:col-span-7 space-y-8">
-              <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 tracking-wider">
-                <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                <span>INDEPENDENT SCHOLARSHIP & CRITICAL RESEARCH</span>
+              {/* Header Badges: Digital Journal + Think. Question. Test. */}
+              <div className="flex flex-wrap items-center gap-3 text-xs font-mono-code">
+                <div className="flex items-center gap-2 text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">
+                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="font-bold tracking-wider uppercase">DIGITAL JOURNAL // UNCLE ZEIN.</span>
+                </div>
+                <div className="text-slate-400 font-semibold tracking-wider">
+                  "THINK. QUESTION. TEST."
+                </div>
               </div>
 
               {/* Giant Title */}
@@ -53,16 +59,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </h1>
 
               {/* Slogan */}
-              <p className="text-xl sm:text-3xl font-bold text-slate-200 leading-tight font-display text-balance">
-                "Question everything. <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
-                  Especially the things
-                </span>{' '}
-                you're told not to question."
-              </p>
+              <div className="space-y-3">
+                <p className="text-xl sm:text-3xl font-bold text-slate-200 leading-tight font-display text-balance">
+                  "Question everything. <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-200 to-white">
+                    Especially the things
+                  </span>{' '}
+                  you're told not to question."
+                </p>
+                
+                <p className="text-xs sm:text-sm font-mono-code text-blue-300/90 font-medium">
+                  Religion. History. Science. Philosophy. And the uncomfortable questions in between.
+                </p>
+              </div>
 
-              <p className="text-base text-slate-400 font-light leading-relaxed max-w-xl">
-                Sebuah ruang eksperimentasi gagasan tanpa jerat dogmatisme. Membedah teks kuno, sejarah peradaban, dan prinsip rasionalitas melalui sains, logika murni, dan pengalaman lapangan.
+              <p className="text-base text-slate-300 font-light leading-relaxed max-w-xl">
+                Bukan untuk mencari-cari kesalahan apalagi merasa paling tahu. Hanya sebuah ruang perenungan bersama untuk mencoba kembali melihat sumbernya, memahami konteksnya, membandingkan argumennya, dan menguji kesimpulan secara jujur.
               </p>
 
               {/* Action Buttons */}
@@ -139,14 +151,19 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     </div>
 
                     {/* Bottom Metadata Lockup */}
-                    <div className="relative z-10 p-5 mt-auto bg-gradient-to-t from-black via-black/80 to-transparent">
-                      <h3 className="text-2xl font-bold text-white font-display tracking-tight">
-                        Uncle Zein
-                      </h3>
-                      <p className="text-xs font-mono-code text-blue-400 uppercase tracking-wider mt-0.5">
-                        Independent Thinker & Field Explorer
-                      </p>
-                      <div className="border-t border-white/15 pt-2.5 mt-2 flex items-center justify-between text-[11px] font-mono-code text-slate-300">
+                    <div className="relative z-10 p-5 mt-auto bg-gradient-to-t from-black via-black/80 to-transparent space-y-2">
+                      <div>
+                        <h3 className="text-2xl font-bold text-white font-display tracking-tight">
+                          Uncle Zein
+                        </h3>
+                        <p className="text-xs font-semibold text-slate-200 mt-0.5">
+                          Independent thinker
+                        </p>
+                        <p className="text-[11px] font-mono-code text-blue-400">
+                          Est. pertanyaan tanpa akhir
+                        </p>
+                      </div>
+                      <div className="border-t border-white/15 pt-2 flex items-center justify-between text-[11px] font-mono-code text-slate-300">
                         <span>Credo</span>
                         <span className="text-blue-300 italic">"Bukan Ustaz. Bukan Akademisi."</span>
                       </div>
@@ -159,29 +176,91 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 2. MANIFESTO BANNER */}
+      {/* 2. MANIFESTO BANNER: Open Inquiry & Workbench */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="rounded-2xl glass-card border border-blue-500/30 p-8 sm:p-12 glow-blue text-center relative overflow-hidden bg-gradient-to-b from-blue-950/20 via-black to-slate-950">
-          <div className="max-w-4xl mx-auto space-y-4">
-            <span className="text-xs font-mono-code text-blue-400 font-bold uppercase tracking-widest block">
-              THE CORE MANIFESTO
-            </span>
-            <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-display uppercase tracking-tight leading-snug">
-              "THIS IS NOT A WEBSITE ABOUT HAVING ALL THE ANSWERS. IT IS A PLACE TO QUESTION THE ANSWERS WE THINK WE ALREADY HAVE."
-            </p>
-            <div className="pt-2 flex justify-center">
-              <span className="w-16 h-0.5 bg-blue-500 rounded-full" />
+        <div className="rounded-2xl glass-card border border-blue-500/30 p-8 sm:p-14 glow-blue relative overflow-hidden bg-gradient-to-b from-blue-950/20 via-black to-slate-950">
+          <div className="max-w-4xl mx-auto space-y-6 text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-mono-code text-blue-400 font-bold uppercase tracking-widest">
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+              <span>THE CORE MANIFESTO // MEJA KERJA TERBUKA</span>
             </div>
+
+            <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-display uppercase tracking-tight leading-snug text-balance">
+              "This is not a website about having all the answers. It is a place to question the answers we think we already have."
+            </p>
+
+            <div className="w-16 h-0.5 bg-blue-500 mx-auto rounded-full" />
+
+            <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
+              Website ini bukan mimbar dan bukan ruang gema. Ini meja kerja yang terbuka — tempat pertanyaan diajukan dengan serius, sumber dibaca sampai ke akarnya, dan kesimpulan ditulis dengan berani, meski tidak nyaman.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* 3. LATEST THINKING SECTION */}
+      {/* 3. WHAT I DO SECTION (Pillars on Home) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
           <div className="space-y-1">
             <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-              01 // LATEST THINKING
+              01 // WHAT I DO
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
+              Empat Hal yang Dikerjakan
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Masing-masing dengan jalurnya sendiri—dari penulisan esai hingga eksplorasi alam terbuka.
+            </p>
+          </div>
+
+          <button
+            onClick={() => onNavigate('about', '/about')}
+            className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer"
+          >
+            <span>Selengkapnya di About</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {WHAT_I_DO_DATA.slice(0, 4).map((item) => (
+            <div
+              key={item.id}
+              onClick={() => {
+                if (item.linkKey === 'writing') onNavigate('ideas', '/ideas');
+                else if (item.linkKey === 'research') onNavigate('research', '/research');
+                else onNavigate('about', '/about');
+              }}
+              className="p-5 rounded-2xl glass-card border border-white/10 hover:border-blue-500/40 hover:bg-white/[0.03] transition-all flex flex-col justify-between space-y-4 group cursor-pointer"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-mono-code text-blue-400 font-bold uppercase">
+                    {item.title}
+                  </span>
+                  <span className="text-[10px] font-mono-code text-slate-400">
+                    {item.subtitle}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                  {item.description}
+                </p>
+              </div>
+
+              <div className="text-[11px] font-semibold text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform pt-2 border-t border-white/5">
+                <span>Eksplorasi</span> <ArrowRight className="w-3 h-3" />
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. LATEST THINKING SECTION */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+          <div className="space-y-1">
+            <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
+              02 // LATEST THINKING
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
               Pemikiran & Risalah Terbaru
@@ -230,7 +309,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 4. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Fallback) */}
+      {/* 5. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Fallback) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="rounded-2xl glass-card border border-white/10 overflow-hidden glow-blue">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
@@ -298,7 +377,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 5. HOW I READ & CURRENT RESEARCH SECTION (2-Column Grid) */}
+      {/* 6. HOW I READ & CURRENT RESEARCH SECTION (2-Column Grid) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           {/* How I Read Section */}
@@ -306,7 +385,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 font-bold uppercase tracking-wider">
                 <BookOpen className="w-4 h-4" />
-                <span>02 // HOW I READ</span>
+                <span>03 // HOW I READ</span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
@@ -345,13 +424,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
           {/* Current Research Section */}
           <div className="lg:col-span-6 glass-card rounded-2xl p-8 sm:p-10 border border-blue-500/30 glow-blue space-y-6 flex flex-col justify-between bg-gradient-to-br from-[#0c1324] via-slate-950 to-black">
             <div className="space-y-4">
-              <div className="flex items-center justify-between text-xs font-mono-code text-blue-400">
+              <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono-code text-blue-400">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-                  <span className="font-bold">03 // CURRENT RESEARCH</span>
+                  <span className="font-bold">04 // CURRENT RESEARCH</span>
                 </div>
-                <span className="text-emerald-400 border border-emerald-500/30 px-2 py-0.5 rounded bg-emerald-950/30">
-                  Riset Aktif
+                <span className="text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded bg-blue-950/40 font-semibold">
+                  {RESEARCH_DATA.disciplineTag}
                 </span>
               </div>
 
@@ -359,8 +438,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 {RESEARCH_DATA.title}
               </h3>
 
-              <p className="text-sm text-slate-300 leading-relaxed">
-                {RESEARCH_DATA.leadThesis}
+              <p className="text-sm text-slate-300 leading-relaxed italic">
+                "{RESEARCH_DATA.synopsis}"
               </p>
 
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
@@ -389,11 +468,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 6. CONCEPT MAP / TAGS GRID */}
+      {/* 7. CONCEPT MAP / TAGS GRID */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-6">
         <div className="space-y-1 border-b border-white/10 pb-4">
           <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-            04 // CONCEPT MAP
+            05 // CONCEPT MAP
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white font-display">
             Peta Konsep & Klaster Penyelidikan
@@ -418,17 +497,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 7. QUOTES & DAILY NOTES SECTION */}
+      {/* 8. QUOTES & DAILY NOTES SECTION */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Quote */}
-          <div className="lg:col-span-7 glass-card rounded-2xl p-8 sm:p-12 border border-white/10 space-y-4">
+          <div className="lg:col-span-7 glass-card rounded-2xl p-8 sm:p-12 border border-white/10 space-y-4 glow-blue">
             <Quote className="w-10 h-10 text-blue-500/30" />
             <p className="text-xl sm:text-2xl font-bold text-white font-display italic leading-relaxed text-balance">
-              "Jangan mencari pembenaran atas apa yang sudah kamu percaya. Carilah kebenaran, bahkan jika itu meruntuhkan seluruh gedung keyakinan yang kamu bangun selama ini."
+              "Jangan mencari pembenaran atas apa yang sudah kamu percaya. Cari tahu apakah keyakinanmu sanggup bertahan ketika diuji."
             </p>
             <div className="pt-2 text-xs font-mono-code text-blue-400">
-              — UNCLE ZEIN // FIELD NOTES 2026
+              — UNCLE ZEIN // FIELD NOTES & DIGITAL JOURNAL
             </div>
           </div>
 

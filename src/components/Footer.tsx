@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUp, Compass, Heart } from 'lucide-react';
+import { ArrowUp, Compass, Sparkles } from 'lucide-react';
 import { SITE_CONFIG } from '../data/siteData';
 
 interface FooterProps {
@@ -17,16 +17,26 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Brand & Manifesto */}
           <div className="md:col-span-5 space-y-4">
-            <div className="text-lg font-bold text-white font-display tracking-tight uppercase">
-              UNCLE ZEIN
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-[11px] font-mono-code text-blue-400 font-bold uppercase tracking-widest">
+                <span>DIGITAL JOURNAL</span>
+              </div>
+              <div className="text-2xl font-black text-white font-display tracking-tight uppercase flex items-center gap-0.5">
+                <span>UNCLE ZEIN</span>
+                <span className="text-blue-500">.</span>
+              </div>
             </div>
-            <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
-              Ruang penyelidikan mandiri di luar doktrin institusi. Menguji narasi kuno dengan sains naskah, logika dingin, dan eksplorasi alam liar.
+
+            <p className="text-slate-300 text-xs leading-relaxed max-w-sm">
+              {SITE_CONFIG.topicsSubtitle}
             </p>
-            <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 max-w-sm">
-              <span className="text-[11px] font-mono-code text-blue-400 block mb-1">CREDO</span>
+
+            <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 max-w-sm space-y-1.5">
+              <span className="text-[11px] font-mono-code text-blue-400 font-bold block">
+                {SITE_CONFIG.triadTagline}
+              </span>
               <p className="text-slate-300 font-serif-title italic text-xs">
-                "{SITE_CONFIG.credo}"
+                "{SITE_CONFIG.opennessQuote}"
               </p>
             </div>
           </div>
@@ -42,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('about')}
                   className="hover:text-blue-400 transition-colors"
                 >
-                  The Man Behind The Mind
+                  About & Personal Passions
                 </button>
               </li>
               <li>
@@ -58,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('research')}
                   className="hover:text-blue-400 transition-colors"
                 >
-                  Laboratorium Riset (5 Layers)
+                  Laboratorium Riset Terbuka
                 </button>
               </li>
               <li>
@@ -66,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('books')}
                   className="hover:text-blue-400 transition-colors"
                 >
-                  Buku Mendobrak Kepalsuan
+                  Katalog Buku Monograf
                 </button>
               </li>
               <li>
@@ -74,47 +84,48 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => onNavigate('media')}
                   className="hover:text-blue-400 transition-colors"
                 >
-                  Arsip Media & Video Esai
+                  Direktori Media Digital
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Passions Index */}
+          {/* Topics Pillar */}
           <div className="md:col-span-4 space-y-3">
             <div className="text-xs font-mono-code text-white uppercase tracking-wider font-semibold">
-              Wilderness Craft
+              Klaster Penyelidikan
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Spearfishing Laut Dalam · Traveling & Eksplorasi Batas Terluar · Berburu & Pelacakan Rimba · Berkuda Savana · Memancing Kontemplatif.
+              Mengkaji teks-teks kuno, sejarah kritis, dan rasionalitas tanpa kompromi dogmatis.
             </p>
-            <div className="pt-2">
-              <button
-                onClick={() => onNavigate('contact')}
-                className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 font-semibold"
-              >
-                <span>Kirim Pertanyaan / Undangan Riset</span>
-                <span>→</span>
-              </button>
+            <div className="flex flex-wrap gap-1.5 pt-1">
+              {['Religion', 'History', 'Science', 'Philosophy', 'Hermeneutics', 'Epistemology'].map((t) => (
+                <span
+                  key={t}
+                  className="px-2 py-0.5 rounded-md bg-white/[0.03] border border-white/5 text-[10px] font-mono-code text-blue-300"
+                >
+                  {t}
+                </span>
+              ))}
             </div>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400">
+        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono-code text-slate-500">
           <div>
-            © {new Date().getFullYear()} Uncle Zein · Ultimate Edition. Hak Cipta Gagasan Bebas Berpikir.
+            © {new Date().getFullYear()} UNCLE ZEIN. All thoughts open for peer review.
           </div>
 
           <div className="flex items-center gap-6">
-            <span className="font-mono-code text-[11px] text-slate-400">
-              Nusantara & Global Frontier
+            <span className="text-blue-400/80 font-bold tracking-wider uppercase">
+              {SITE_CONFIG.triadTagline}
             </span>
             <button
               onClick={scrollToTop}
-              className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="flex items-center gap-1 text-slate-400 hover:text-white transition-colors"
             >
-              <span>Kembali ke Atas</span>
+              <span>Back to Top</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>

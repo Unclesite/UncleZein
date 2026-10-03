@@ -61,7 +61,8 @@ export const SearchModal: React.FC<SearchModalProps> = ({
   const matchedChapters = BOOKS_DATA.chapters.filter(
     (c) =>
       c.title.toLowerCase().includes(query.toLowerCase()) ||
-      c.summary.toLowerCase().includes(query.toLowerCase())
+      c.subtitle.toLowerCase().includes(query.toLowerCase()) ||
+      (c.summary && c.summary.toLowerCase().includes(query.toLowerCase()))
   );
 
   const totalResults =
