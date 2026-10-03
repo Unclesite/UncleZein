@@ -121,12 +121,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-2 border-l-2 border-blue-400 z-20" />
 
                 <div className="relative rounded-xl overflow-hidden glass-card p-2 bg-[#0a0d14] border border-white/10 glow-blue shadow-2xl">
-                  <div className="aspect-[4/5] rounded-lg overflow-hidden relative flex flex-col justify-between bg-gradient-to-b from-[#111624] via-[#090d18] to-black">
+                  <div className="aspect-[3/4] sm:aspect-[4/5] rounded-lg overflow-hidden relative flex flex-col justify-between bg-gradient-to-b from-[#111624] via-[#090d18] to-black">
                     {!imageError ? (
                       <img
                         src="1001610070-ttH5C.jpg"
                         alt="Uncle Zein Berkuda"
-                        className="absolute inset-0 w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                        className="absolute inset-0 w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                        style={{ objectPosition: 'center 58%' }}
                         onError={() => setImageError(true)}
                         referrerPolicy="no-referrer"
                       />
@@ -140,7 +141,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     )}
 
                     {/* Gradient Contrast Scrim */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30 pointer-events-none" />
 
                     {/* Top Badge */}
                     <div className="relative z-10 flex justify-between items-center text-[11px] font-mono-code text-blue-300 p-4">
@@ -151,7 +152,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     </div>
 
                     {/* Bottom Metadata Lockup */}
-                    <div className="relative z-10 p-5 mt-auto bg-gradient-to-t from-black via-black/80 to-transparent space-y-2">
+                    <div className="relative z-10 p-4 mt-auto bg-gradient-to-t from-black/90 via-black/50 to-transparent space-y-1.5 backdrop-blur-[2px] rounded-b-lg">
                       <div>
                         <h3 className="text-2xl font-bold text-white font-display tracking-tight">
                           Uncle Zein
@@ -309,17 +310,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 5. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Fallback) */}
+      {/* 5. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Aesthetic Card Frame) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
-        <div className="rounded-2xl glass-card border border-white/10 overflow-hidden glow-blue">
+        <div className="rounded-3xl glass-card border border-white/10 overflow-hidden glow-blue bg-gradient-to-br from-[#0b101d] via-[#060911] to-black">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-            {/* Left: Contemplative Guitar Portrait Photo with Fallback */}
-            <div className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full min-h-[320px] overflow-hidden bg-slate-950">
+            {/* Left: Contemplative Guitar Portrait Photo with Aesthetic Framing */}
+            <div className="lg:col-span-6 relative aspect-[16/11] sm:aspect-[16/10] lg:aspect-auto lg:h-[420px] overflow-hidden bg-slate-950 group">
               {!guitarImageError ? (
                 <img
                   src="1001627970-82AvF.jpg"
-                  alt="Uncle Zein Contemplative Portrait"
-                  className="w-full h-full object-cover object-center filter contrast-105 hover:scale-105 transition-transform duration-700"
+                  alt="Uncle Zein Contemplative Portrait with Guitar"
+                  className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700"
                   onError={() => setGuitarImageError(true)}
                   referrerPolicy="no-referrer"
                 />
@@ -331,11 +332,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
                 </div>
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:to-[#07090e] pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:via-black/20 lg:to-[#07090e] pointer-events-none" />
+              
+              {/* Top Category Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="text-[11px] font-mono-code font-bold bg-black/70 text-blue-400 px-3 py-1 rounded-md border border-blue-500/30 backdrop-blur-sm">
                   REFLECTION & FIELD NOTES
                 </span>
+              </div>
+
+              {/* Bottom Caption Lockup */}
+              <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between p-3 rounded-xl bg-black/70 border border-white/10 backdrop-blur-md">
+                <div>
+                  <div className="text-white font-bold text-xs tracking-wide">Independent thinker</div>
+                  <div className="text-blue-400 font-mono-code text-[11px] font-medium">Est. pertanyaan tanpa akhir</div>
+                </div>
+                <div className="text-[10px] font-mono-code text-slate-400 uppercase tracking-wider hidden sm:block">
+                  Uncle Zein Journal
+                </div>
               </div>
             </div>
 
@@ -349,17 +363,17 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display leading-tight">
                   Koneksi Jiwa, Tenaga, & Kendali Diri di Alam Bebas
                 </h3>
-                <p className="text-sm text-slate-300 leading-relaxed">
+                <p className="text-sm text-slate-300 leading-relaxed font-light">
                   "Menunggu di atas air atau melintasi savana bukan berarti membuang waktu; itu adalah saat di mana pikiranmu berhenti berbicara dan mulai menyimak alam."
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
                   <strong className="text-white block font-mono-code text-blue-400 mb-0.5">5 DISIPLIN:</strong>
                   Spearfishing, Eksplorasi, Berburu, Berkuda, Memancing.
                 </div>
-                <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
+                <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
                   <strong className="text-white block font-mono-code text-blue-400 mb-0.5">PRINSIP:</strong>
                   Ketepatan, kesabaran, & kerendahan hati di hadapan semesta.
                 </div>

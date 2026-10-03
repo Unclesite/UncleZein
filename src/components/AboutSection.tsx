@@ -10,6 +10,7 @@ interface AboutSectionProps {
 export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onNavigate }) => {
   const [guitarError, setGuitarError] = useState(false);
   const [horseError, setHorseError] = useState(false);
+  const [activePhoto, setActivePhoto] = useState<'horse' | 'guitar'>('horse');
 
   const getPassionIcon = (iconName: string) => {
     switch (iconName) {
@@ -179,36 +180,94 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
               Saya memilih jalur ketiga: <strong>Jalur Penyelidik Lapangan Merdeka</strong>. Membaca naskah kuno dalam bahasa aslinya, memeriksa lapisan arkeologi, dan sekaligus menguji ketajaman insting di alam liar—melalui menyelam di palung laut, menunggang kuda di savana terbuka, dan melacak jejak di rimba sunyi.
             </p>
 
-            {/* Authentic Guitar Contemplative Portrait with Fallback */}
-            <div className="space-y-3 my-4">
-              <div className="rounded-xl overflow-hidden border border-white/15 relative aspect-[16/9] bg-slate-950 shadow-lg">
-                {!guitarError ? (
-                  <img
-                    src="1001627970-82AvF.jpg"
-                    alt="Uncle Zein Contemplative Portrait with Guitar"
-                    className="w-full h-full object-cover object-center filter contrast-105"
-                    onError={() => setGuitarError(true)}
-                    referrerPolicy="no-referrer"
-                  />
-                ) : (
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
-                    <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
-                      <span className="text-xl font-bold text-white">UZ</span>
+            {/* Authentic Photographic Documentation (Dual Mode Showcase) */}
+            <div className="space-y-3 my-5">
+              {/* Photo Selector Switcher */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-xs font-mono-code">
+                  <button
+                    type="button"
+                    onClick={() => setActivePhoto('horse')}
+                    className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-bold ${
+                      activePhoto === 'horse'
+                        ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                        : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
+                    }`}
+                  >
+                    01. Berkuda & Lapangan
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setActivePhoto('guitar')}
+                    className={`px-3 py-1.5 rounded-lg border transition-all cursor-pointer font-bold ${
+                      activePhoto === 'guitar'
+                        ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                        : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
+                    }`}
+                  >
+                    02. Refleksi & Kontemplasi
+                  </button>
+                </div>
+                <span className="text-[10px] font-mono-code text-slate-400 hidden sm:inline">
+                  DOKUMENTASI ASLI
+                </span>
+              </div>
+
+              {/* Photo Container */}
+              <div className="rounded-2xl overflow-hidden border border-white/15 relative aspect-[16/11] sm:aspect-[16/10] bg-slate-950 shadow-2xl">
+                {activePhoto === 'horse' ? (
+                  !horseError ? (
+                    <img
+                      src="1001610070-ttH5C.jpg"
+                      alt="Uncle Zein Berkuda di Arena Equestrian"
+                      className="w-full h-full object-cover filter contrast-105 transition-all duration-500"
+                      style={{ objectPosition: 'center 38%' }}
+                      onError={() => setHorseError(true)}
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
+                      <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
+                        <span className="text-xl font-bold text-white">UZ</span>
+                      </div>
+                      <span className="text-xs font-mono-code text-blue-400">Equestrian Field Photo</span>
                     </div>
-                    <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
-                  </div>
+                  )
+                ) : (
+                  !guitarError ? (
+                    <img
+                      src="1001627970-82AvF.jpg"
+                      alt="Uncle Zein Contemplative Portrait with Guitar"
+                      className="w-full h-full object-cover object-center filter contrast-105 transition-all duration-500"
+                      onError={() => setGuitarError(true)}
+                      referrerPolicy="no-referrer"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
+                      <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
+                        <span className="text-xl font-bold text-white">UZ</span>
+                      </div>
+                      <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                    </div>
+                  )
                 )}
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono-code text-slate-200">
                   <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
                     <Camera className="w-3.5 h-3.5 text-blue-400" />
-                    <span>REFLEKSI & KONTEMPLASI // UNCLE ZEIN</span>
+                    <span>
+                      {activePhoto === 'horse' ? 'EQUESTRIAN ARENA // UNCLE ZEIN' : 'REFLEKSI & KONTEMPLASI // UNCLE ZEIN'}
+                    </span>
+                  </span>
+                  <span className="bg-blue-600/80 text-white px-2 py-0.5 rounded text-[10px] font-bold">
+                    {activePhoto === 'horse' ? 'OUTDOOR FIELD' : 'PRIVATE JOURNAL'}
                   </span>
                 </div>
               </div>
 
               {/* Photo Caption Requested by User */}
-              <div className="p-3 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between">
+              <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between">
                 <div>
                   <div className="text-white font-bold text-xs tracking-wide">Independent thinker</div>
                   <div className="text-blue-400 font-mono-code text-[11px] font-medium">Est. pertanyaan tanpa akhir</div>
@@ -319,7 +378,8 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                           <img
                             src="1001610070-ttH5C.jpg"
                             alt="Uncle Zein Berkuda / Equestrian"
-                            className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                            className="w-full h-full object-cover filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                            style={{ objectPosition: 'center 38%' }}
                             onError={() => setHorseError(true)}
                             referrerPolicy="no-referrer"
                           />
