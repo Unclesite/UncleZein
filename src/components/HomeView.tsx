@@ -46,7 +46,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="flex flex-wrap items-center gap-3 text-xs font-mono-code">
                 <div className="flex items-center gap-2 text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">
                   <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="font-bold tracking-wider uppercase">DIGITAL JOURNAL // UNCLE ZEIN.</span>
+                  <span className="font-bold tracking-wider uppercase">PERSONAL JOURNAL // UNCLE ZEIN.</span>
                 </div>
                 <div className="text-slate-400 font-semibold tracking-wider">
                   "THINK. QUESTION. TEST."
@@ -69,12 +69,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </p>
                 
                 <p className="text-xs sm:text-sm font-mono-code text-blue-300/90 font-medium">
-                  Religion. History. Science. Philosophy. And the uncomfortable questions in between.
+                  Religion. History. Science. Philosophy. And the questions in between.
                 </p>
               </div>
 
               <p className="text-base text-slate-300 font-light leading-relaxed max-w-xl">
-                Bukan untuk mencari-cari kesalahan apalagi merasa paling tahu. Hanya sebuah ruang perenungan bersama untuk mencoba kembali melihat sumbernya, memahami konteksnya, membandingkan argumennya, dan menguji kesimpulan secara jujur.
+                Ini tempat saya menulis, mencari tahu hal-hal yang menarik, jalan-jalan, dan mencatat apa yang ditemukan—dari sejarah, teks keagamaan, sains, hingga keseharian di alam terbuka.
               </p>
 
               {/* Action Buttons */}
@@ -99,15 +99,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* Meta stats */}
               <div className="pt-4 flex flex-wrap items-center gap-6 text-xs text-slate-400 font-mono-code border-t border-white/5">
                 <div>
-                  <strong className="text-white font-bold tabular-nums">468 Hal</strong> Monograf
+                  <strong className="text-white font-bold tabular-nums">400+ Hal</strong> Catatan
                 </div>
                 <span aria-hidden="true" className="text-slate-700">·</span>
                 <div>
-                  <strong className="text-white font-bold tabular-nums">5 Layer</strong> Bukti Ilmiah
+                  <strong className="text-white font-bold tabular-nums">5 Tingkat</strong> Bukti
                 </div>
                 <span aria-hidden="true" className="text-slate-700">·</span>
                 <div>
-                  <strong className="text-white font-bold tabular-nums">100%</strong> Non-Partisan
+                  <strong className="text-white font-bold tabular-nums">Catatan</strong> Pribadi
                 </div>
               </div>
             </div>
@@ -136,7 +136,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                         <div className="w-24 h-24 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-4 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                           <span className="text-3xl font-black font-display text-white">UZ</span>
                         </div>
-                        <span className="text-xs font-mono-code text-blue-400 uppercase tracking-widest">Equestrian Discipline</span>
+                        <span className="text-xs font-mono-code text-blue-400 uppercase tracking-widest">Outdoor Photo</span>
                       </div>
                     )}
 
@@ -146,7 +146,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     {/* Top Badge */}
                     <div className="relative z-10 flex justify-between items-center text-[11px] font-mono-code text-blue-300 p-4">
                       <span className="bg-black/60 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm">
-                        UNCLE ZEIN // EQUESTRIAN & FIELD
+                        UNCLE ZEIN // BERKUDA
                       </span>
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping" />
                     </div>
@@ -183,7 +183,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="max-w-4xl mx-auto space-y-6 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/30 text-xs font-mono-code text-blue-400 font-bold uppercase tracking-widest">
               <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-              <span>THE CORE MANIFESTO // MEJA KERJA TERBUKA</span>
+              <span>CATATAN UNCLE ZEIN // RUANG TERBUKA</span>
             </div>
 
             <p className="text-2xl sm:text-3xl lg:text-4xl font-black text-white font-display uppercase tracking-tight leading-snug text-balance">
@@ -193,7 +193,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="w-16 h-0.5 bg-blue-500 mx-auto rounded-full" />
 
             <p className="text-base sm:text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed font-light">
-              Website ini bukan mimbar dan bukan ruang gema. Ini meja kerja yang terbuka — tempat pertanyaan diajukan dengan serius, sumber dibaca sampai ke akarnya, dan kesimpulan ditulis dengan berani, meski tidak nyaman.
+              Website ini adalah tempat mencatat dan berbagi—pertanyaan diajukan dengan santai tapi jujur, sumber dibaca dengan tenang, dan apa yang ditemukan ditulis apa adanya.
             </p>
           </div>
         </div>
@@ -207,10 +207,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               01 // WHAT I DO
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
-              Empat Hal yang Dikerjakan
+              Beberapa Hal yang Dikerjakan
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
-              Masing-masing dengan jalurnya sendiri—dari penulisan esai hingga eksplorasi alam terbuka.
+              Dari menulis esai, membaca riset sejarah, mengurus usaha, hingga jalan-jalan ke laut dan gunung.
             </p>
           </div>
 
@@ -249,7 +249,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
 
               <div className="text-[11px] font-semibold text-blue-400 flex items-center gap-1 group-hover:translate-x-1 transition-transform pt-2 border-t border-white/5">
-                <span>Eksplorasi</span> <ArrowRight className="w-3 h-3" />
+                <span>Lihat</span> <ArrowRight className="w-3 h-3" />
               </div>
             </div>
           ))}
@@ -261,10 +261,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
           <div className="space-y-1">
             <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-              02 // LATEST THINKING
+              02 // TULISAN TERBARU
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
-              Pemikiran & Risalah Terbaru
+              Tulisan dan Esai Terbaru
             </h2>
           </div>
 
@@ -310,7 +310,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 5. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Aesthetic Card Frame) */}
+      {/* 5. PERSONAL PASSIONS & FIELD SPOTLIGHT */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="rounded-3xl glass-card border border-white/10 overflow-hidden glow-blue bg-gradient-to-br from-[#0b101d] via-[#060911] to-black">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
@@ -319,7 +319,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {!guitarImageError ? (
                 <img
                   src="1001627970-82AvF.jpg"
-                  alt="Uncle Zein Contemplative Portrait with Guitar"
+                  alt="Uncle Zein Santai"
                   className="w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700"
                   onError={() => setGuitarImageError(true)}
                   referrerPolicy="no-referrer"
@@ -329,7 +329,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <div className="w-20 h-20 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-3">
                     <span className="text-2xl font-bold text-white">UZ</span>
                   </div>
-                  <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                  <span className="text-xs font-mono-code text-blue-400">Personal Photo</span>
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:via-black/20 lg:to-[#07090e] pointer-events-none" />
@@ -337,7 +337,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* Top Category Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <span className="text-[11px] font-mono-code font-bold bg-black/70 text-blue-400 px-3 py-1 rounded-md border border-blue-500/30 backdrop-blur-sm">
-                  REFLECTION & FIELD NOTES
+                  JALAN-JALAN & ALAM TERBUKA
                 </span>
               </div>
 
@@ -358,24 +358,24 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="space-y-3">
                 <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
                   <Zap className="w-4 h-4" />
-                  <span>WILDERNESS CRAFT & PASSIONS</span>
+                  <span>KEGIATAN & PERJALANAN</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display leading-tight">
-                  Catatan Perjalanan dan Ruang Sunyi
+                  Menikmati Waktu di Alam Bebas
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed font-light">
-                  "Menunggu di atas air atau melintasi savana bukan berarti membuang waktu; itu adalah saat di mana pikiranmu berhenti berbicara dan mulai menyimak alam."
+                  "Duduk santai di tepi air atau jalan di alam terbuka bukan buang-buang waktu; itu cara paling enak untuk mengistirahatkan pikiran dan melihat hal baru."
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
-                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">5 DISIPLIN:</strong>
-                  Spearfishing, Eksplorasi, Berburu, Berkuda, Memancing.
+                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">KEGIATAN:</strong>
+                  Spearfishing, Jalan-jalan, Berburu, Berkuda, Memancing.
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
-                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">PRINSIP:</strong>
-                  Ketepatan, kesabaran, & kerendahan hati di hadapan semesta.
+                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">NILAI:</strong>
+                  Ketenangan, rasa ingin tahu, & menikmati hidup.
                 </div>
               </div>
 
@@ -383,7 +383,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 onClick={() => onNavigate('about', '/about')}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono-code font-bold uppercase transition-all shadow-md cursor-pointer"
               >
-                <span>Lihat Jurnal Lapangan & 5 Passions</span>
+                <span>Lihat Cerita & Foto Kegiatan</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
@@ -399,29 +399,29 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <div className="space-y-4">
               <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 font-bold uppercase tracking-wider">
                 <BookOpen className="w-4 h-4" />
-                <span>03 // HOW I READ</span>
+                <span>03 // CARA SAYA MEMBACA</span>
               </div>
 
               <h3 className="text-2xl sm:text-3xl font-bold text-white font-display">
-                Metodologi Membaca & Kritik Hermeneutika
+                Cara Membaca dan Memahami Catatan Lama
               </h3>
 
               <p className="text-sm text-slate-300 leading-relaxed">
-                "Membaca bukan untuk mencari pembenaran atas apa yang sudah kita yakini, melainkan untuk membongkar fondasi rapuh yang kita sebut kenyamanan intelektual."
+                "Membaca bukan untuk mencari pembenaran atas apa yang sudah kita percaya, melainkan untuk melihat berbagai hal dengan lebih jernih dan terbuka."
               </p>
 
               <div className="space-y-2.5 pt-2">
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center font-mono-code font-bold shrink-0">1</span>
-                  <span><strong>Audit Naskah Primer:</strong> Telusuri manuskrip tertua dalam bahasa aslinya (Aram, Ibrani, Koine Greek, Arab).</span>
+                  <span><strong>Periksa Teks Aslinya:</strong> Melihat langsung bahasa dan naskah awalnya untuk memahami konteks aslinya.</span>
                 </div>
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center font-mono-code font-bold shrink-0">2</span>
-                  <span><strong>Pisahkan Teologi dari Bahasa:</strong> Jangan memasukkan doktrin ke dalam leksikon kata.</span>
+                  <span><strong>Pisahkan Fakta dari Tafsir:</strong> Membedakan apa yang tertulis jelas dari apa yang baru berupa interpretasi.</span>
                 </div>
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center font-mono-code font-bold shrink-0">3</span>
-                  <span><strong>Uji Non-Kontradiksi Logika:</strong> Tolak argumen yang cacat logika formal.</span>
+                  <span><strong>Gunakan Nalar yang Masuk Akal:</strong> Mencari penjelasan yang runtut dan tidak bertentangan dengan akal sehat.</span>
                 </div>
               </div>
             </div>
@@ -441,7 +441,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="flex flex-wrap items-center justify-between gap-2 text-xs font-mono-code text-blue-400">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-blue-400 animate-ping" />
-                  <span className="font-bold">04 // CURRENT RESEARCH</span>
+                  <span className="font-bold">04 // RISET & CATATAN</span>
                 </div>
                 <span className="text-blue-300 border border-blue-500/30 px-2 py-0.5 rounded bg-blue-950/40 font-semibold">
                   {RESEARCH_DATA.disciplineTag}
@@ -459,7 +459,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 space-y-2">
                 <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
                   <span>Five Layers of Evidence:</span>
-                  <span className="text-blue-400 font-bold">Layer 1 - 5 Terverifikasi</span>
+                  <span className="text-blue-400 font-bold">5 Tingkat Bukti</span>
                 </div>
                 <div className="grid grid-cols-5 gap-1.5 pt-1">
                   {[96, 84, 72, 55, 18].map((score, i) => (
@@ -475,7 +475,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onClick={() => onNavigate('research', '/research')}
               className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono-code font-bold uppercase transition-all shadow-md cursor-pointer self-start"
             >
-              <span>Buka Laboratorium Riset Penuh</span>
+              <span>Buka Catatan Riset Lengkap</span>
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
@@ -489,7 +489,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             05 // CONCEPT MAP
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white font-display">
-            Peta Konsep & Klaster Penyelidikan
+            Topik dan Hal yang Sering Dipikirkan
           </h2>
         </div>
 
@@ -518,10 +518,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="lg:col-span-7 glass-card rounded-2xl p-8 sm:p-12 border border-white/10 space-y-4 glow-blue">
             <Quote className="w-10 h-10 text-blue-500/30" />
             <p className="text-xl sm:text-2xl font-bold text-white font-display italic leading-relaxed text-balance">
-              "Jangan mencari pembenaran atas apa yang sudah kamu percaya. Cari tahu apakah keyakinanmu sanggup bertahan ketika diuji."
+              "Jangan mencari pembenaran atas apa yang sudah kamu percaya. Cari tahu apakah hal itu masih masuk akal ketika diuji."
             </p>
             <div className="pt-2 text-xs font-mono-code text-blue-400">
-              — UNCLE ZEIN // FIELD NOTES & DIGITAL JOURNAL
+              — UNCLE ZEIN // CATATAN HARIAN
             </div>
           </div>
 
@@ -529,7 +529,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           <div className="lg:col-span-5 glass-card rounded-2xl p-8 border border-white/10 space-y-5 flex flex-col justify-between">
             <div className="space-y-3">
               <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
-                <span className="text-blue-400 font-bold">NOTES & FIELD JOURNAL</span>
+                <span className="text-blue-400 font-bold">NOTES & CATATAN</span>
                 <span>{featuredNote.date}</span>
               </div>
 
@@ -546,7 +546,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               onClick={() => onOpenNote(featuredNote)}
               className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer pt-2"
             >
-              <span>Baca Catatan Harian Lengkap</span>
+              <span>Baca Catatan Selengkapnya</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>

@@ -15,10 +15,10 @@ export const ContactSection: React.FC = () => {
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const topics: { id: TopicType; label: string; desc: string }[] = [
-    { id: 'Research', label: 'Research', desc: 'Diskusi naskah kuno, biologi, filologi, & historiografi' },
-    { id: 'Business', label: 'Business', desc: 'Penerbitan, kemitraan strategis, & proyek profesional' },
-    { id: 'Speaking', label: 'Speaking', desc: 'Keynote dialog kritis, seminar, & lokakarya rasionalisme' },
-    { id: 'Collaboration', label: 'Collaboration', desc: 'Ekspedisi alam liar, video esai, & proyek bersama' },
+    { id: 'Research', label: 'Research', desc: 'Diskusi naskah, sejarah, dan topik yang sedang dipelajari' },
+    { id: 'Business', label: 'Business', desc: 'Proyek, usaha, dan kerja sama' },
+    { id: 'Speaking', label: 'Speaking', desc: 'Diskusi santai, sharing session, atau ngobrol bareng' },
+    { id: 'Collaboration', label: 'Collaboration', desc: 'Jalan bareng, bikin konten, atau proyek kreatif' },
   ];
 
   const handleCopyEmail = () => {
@@ -61,10 +61,10 @@ export const ContactSection: React.FC = () => {
           </h2>
           <div className="space-y-1">
             <p className="text-2xl sm:text-3xl font-bold text-white font-display">
-              Want to talk?
+              Mau ngobrol atau diskusi?
             </p>
             <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-              Research, business, speaking, collaboration, or simply a good conversation.
+              Soal riset, proyek usaha, berbagi cerita perjalanan, atau sekadar bertukar pikiran.
             </p>
           </div>
         </div>
@@ -79,10 +79,10 @@ export const ContactSection: React.FC = () => {
                   <MessageSquare className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
-                  Pintu Terbuka untuk Percakapan yang Jujur
+                  Selalu Terbuka untuk Ngobrol Santai
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed font-light">
-                  Entah kamu ingin mendiskusikan temuan riset, mengajukan koreksi atas naskah, menjajaki kemitraan bisnis, mengundang bicara, atau sekadar berbagi perspektif kritis — setiap pesan dibaca secara personal.
+                  Kalau kamu punya tanggapan soal tulisan, ingin berbagi informasi sejarah, mengajak kerja sama proyek, atau sekadar mau bertukar pikiran—silakan kirim pesan. Setiap pesan dibaca secara personal.
                 </p>
               </div>
 

@@ -33,13 +33,13 @@ export const ResearchLabSection: React.FC = () => {
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
             <span>03</span>
             <span aria-hidden="true">/</span>
-            <span>OPEN RESEARCH LABORATORY</span>
+            <span>RISET & CATATAN</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-display text-balance">
-            Laboratorium Riset Terbuka
+            Riset dan Catatan Temuan
           </h2>
           <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            Metodologi ketat pembedahan data sejarah tanpa sensor. Mengklasifikasikan setiap argumen ke dalam <strong>Five Layers of Evidence</strong> untuk mencegah bias konfirmasi dan delusi doktrin.
+            Catatan riset, sumber, dan temuan yang masih terus dipelajari. Mengelompokkan setiap data ke dalam <strong>5 Tingkat Bukti</strong> agar memudahkan membedakan fakta yang jelas dari dugaan yang masih perlu diuji.
           </p>
         </div>
 
@@ -49,7 +49,7 @@ export const ResearchLabSection: React.FC = () => {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono-code">
               <span className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
-              <span className="text-blue-400 font-bold uppercase tracking-wider">PROYEK RISET AKTIF</span>
+              <span className="text-blue-400 font-bold uppercase tracking-wider">CATATAN RISET AKTIF</span>
               <span aria-hidden="true" className="text-slate-600">·</span>
               <span className="px-3 py-1 rounded-full bg-blue-500/20 text-blue-300 border border-blue-400/40 font-bold text-xs tracking-wider uppercase">
                 {RESEARCH_DATA.disciplineTag || 'Biology × Qur’an × History'}
@@ -79,7 +79,7 @@ export const ResearchLabSection: React.FC = () => {
                   <span>01. BIOLOGI REPRODUKSI</span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Analisis genetika kromosom XY, hukum pewarisan biologis mamalia, serta batas-batas partenogenesis alami.
+                  Melihat pola genetika, pewarisan kromosom, dan bagaimana sains reproduksi menjelaskannya.
                 </p>
               </div>
 
@@ -89,7 +89,7 @@ export const ResearchLabSection: React.FC = () => {
                   <span>02. TEKS AL-QUR'AN</span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Pembedahan leksikografi ayat mutasyabihat, konsep *kalimah*, *ruh*, dan dialektika genealogis Maryam tanpa bias tafsir abad pertengahan.
+                  Membaca teks secara langsung dan memisahkan makna kata dari tafsir-tafsir tambahan.
                 </p>
               </div>
 
@@ -99,7 +99,7 @@ export const ResearchLabSection: React.FC = () => {
                   <span>03. SEJARAH KUNO</span>
                 </div>
                 <p className="text-xs text-slate-300 leading-relaxed">
-                  Audit manuskrip Kristen awal (Surat Paulus ~50 M), tradisi silsilah Daud melalui Yusuf, gulungan Qumran, dan kronologi Helenistik.
+                  Melihat catatan dan kondisi sosial masyarakat pada masa itu melalui sumber-sumber tertua.
                 </p>
               </div>
             </div>

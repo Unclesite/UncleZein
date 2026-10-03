@@ -66,7 +66,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
         <div className="space-y-6 max-w-4xl">
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
             <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <span>ABOUT // RUANG PERENUNGAN BERSAMA</span>
+            <span>ABOUT // CATATAN & PERJALANAN</span>
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight font-display text-balance leading-[1.1]">
@@ -94,7 +94,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                 What I Do
               </h2>
               <p className="text-sm text-slate-400">
-                Empat hal yang dikerjakan, masing-masing dengan jalurnya sendiri.
+                Empat hal yang sering dikerjakan, masing-masing dengan jalurnya sendiri.
               </p>
             </div>
 
@@ -147,7 +147,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                     {item.isExternalPlaceholder ? (
                       <>Tautan Eksternal <ExternalLink className="w-3.5 h-3.5" /></>
                     ) : (
-                      <>Jelajahi <ArrowRight className="w-3.5 h-3.5" /></>
+                      <>Lihat <ArrowRight className="w-3.5 h-3.5" /></>
                     )}
                   </span>
                 </div>
@@ -161,15 +161,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           {/* Main Story Narrative */}
           <div className="lg:col-span-7 glass-card p-8 sm:p-10 rounded-2xl border border-white/10 space-y-6">
             <h3 className="text-2xl font-bold text-white font-display">
-              Menemukan Kejernihan di Luar Ruang Kuliah & Mimbar Tradisional
+              Membaca, Menulis, dan Melihat Tempatnya Langsung
             </h3>
             
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Dunia saat ini dipenuhi oleh dua kutub ekstrem: mereka yang menelan dogma tanpa saringan akal sehat karena takut dikutuk, dan akademisi menara gading yang berteori rumit namun terputus total dari realitas keras kehidupan nyata.
+              Banyak hal di sekitar kita yang sering diterima begitu saja tanpa sempat ditanyakan kembali. Di sisi lain, pembahasannya kadang terasa terlalu berjarak atau rumit.
             </p>
 
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-              Saya memilih jalur ketiga: <strong>Jalur Penyelidik Lapangan Merdeka</strong>. Membaca naskah kuno dalam bahasa aslinya, memeriksa lapisan arkeologi, dan sekaligus menguji ketajaman insting di alam liar—melalui menyelam di palung laut, menunggang kuda di savana terbuka, dan melacak jejak di rimba sunyi.
+              Saya lebih suka cara yang sederhana: membaca sumbernya sendiri, mencari tahu konteks sejarahnya, dan kalau memungkinkan, datang melihat tempatnya langsung. Sambil jalan-jalan, naik gunung, main ke laut, atau berkuda, ada banyak hal menarik yang bisa dipelajari dan dicatat.
             </p>
 
             {/* Authentic Photographic Documentation (Dual Mode Showcase) */}
@@ -186,7 +186,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                         : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    01. Berkuda & Lapangan
+                    01. Berkuda
                   </button>
                   <button
                     type="button"
@@ -197,7 +197,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                         : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    02. Refleksi & Kontemplasi
+                    02. Santai & Membaca
                   </button>
                 </div>
                 <span className="text-[10px] font-mono-code text-slate-400 hidden sm:inline">
@@ -211,7 +211,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                   !horseError ? (
                     <img
                       src="1001610070-ttH5C.jpg"
-                      alt="Uncle Zein Berkuda di Arena Equestrian"
+                      alt="Uncle Zein Berkuda"
                       className="w-full h-full object-cover filter contrast-105 transition-all duration-500"
                       style={{ objectPosition: 'center 38%' }}
                       onError={() => setHorseError(true)}
@@ -222,14 +222,14 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                       <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
                         <span className="text-xl font-bold text-white">UZ</span>
                       </div>
-                      <span className="text-xs font-mono-code text-blue-400">Equestrian Field Photo</span>
+                      <span className="text-xs font-mono-code text-blue-400">Outdoor Photo</span>
                     </div>
                   )
                 ) : (
                   !guitarError ? (
                     <img
                       src="1001627970-82AvF.jpg"
-                      alt="Uncle Zein Contemplative Portrait with Guitar"
+                      alt="Uncle Zein Santai"
                       className="w-full h-full object-cover object-center filter contrast-105 transition-all duration-500"
                       onError={() => setGuitarError(true)}
                       referrerPolicy="no-referrer"
@@ -239,7 +239,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                       <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
                         <span className="text-xl font-bold text-white">UZ</span>
                       </div>
-                      <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                      <span className="text-xs font-mono-code text-blue-400">Personal Photo</span>
                     </div>
                   )
                 )}
@@ -249,11 +249,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                   <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
                     <Camera className="w-3.5 h-3.5 text-blue-400" />
                     <span>
-                      {activePhoto === 'horse' ? 'EQUESTRIAN ARENA // UNCLE ZEIN' : 'REFLEKSI & KONTEMPLASI // UNCLE ZEIN'}
+                      {activePhoto === 'horse' ? 'UNCLE ZEIN // BERKUDA' : 'UNCLE ZEIN // CATATAN HARIAN'}
                     </span>
                   </span>
                   <span className="bg-blue-600/80 text-white px-2 py-0.5 rounded text-[10px] font-bold">
-                    {activePhoto === 'horse' ? 'OUTDOOR FIELD' : 'PRIVATE JOURNAL'}
+                    {activePhoto === 'horse' ? 'OUTDOOR' : 'JOURNAL'}
                   </span>
                 </div>
               </div>
@@ -273,15 +273,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
             <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
                 <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">01. KEJUJURAN</div>
-                <div className="text-xs text-slate-300">Setia pada pertanyaan yang jujur, bukan klaim kesimpulan absolut.</div>
+                <div className="text-xs text-slate-300">Fokus pada pertanyaan yang jujur, tanpa perlu merasa harus punya semua jawaban.</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
-                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">02. METODOLOGI</div>
-                <div className="text-xs text-slate-300">Membedakan fakta, interpretasi, hipotesis, dan spekulasi.</div>
+                <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">02. KEJELASAN</div>
+                <div className="text-xs text-slate-300">Memisahkan apa yang memang ada di sumbernya dari apa yang baru sebatas dugaan.</div>
               </div>
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
                 <div className="text-xs text-blue-400 font-mono-code mb-1 font-bold">03. KETERBUKAAN</div>
-                <div className="text-xs text-slate-300">Siap dikritik dan dibantah jika ada data primer yang lebih valid.</div>
+                <div className="text-xs text-slate-300">Terbuka untuk membaca sudut pandang lain dan memperbaiki catatan jika ada data baru.</div>
               </div>
             </div>
           </div>
@@ -290,30 +290,30 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           <div className="lg:col-span-5 space-y-6">
             <div className="glass-card p-8 rounded-2xl border border-white/10 space-y-4 glow-blue">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-mono-code text-blue-400 uppercase font-bold">Framework Penyelidikan</span>
-                <span className="text-xs text-slate-400 font-mono-code">Prinsip 4 Langkah</span>
+                <span className="text-xs font-mono-code text-blue-400 uppercase font-bold">Cara Membaca</span>
+                <span className="text-xs text-slate-400 font-mono-code">4 Langkah Sederhana</span>
               </div>
 
               <h4 className="text-lg font-bold text-white font-display">
-                Protokol Uji Klaim Intelektual
+                Cara Saya Membaca & Memeriksa Hal yang Menarik
               </h4>
 
               <div className="space-y-3 pt-2">
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 font-mono-code font-bold">1</span>
-                  <span><strong>Tolak Asumsi Awal:</strong> Anggap semua klaim teologis atau historis belum terbukti sampai data primer dihadirkan.</span>
+                  <span><strong>Mulai dari Rasa Ingin Tahu:</strong> Melihat sebuah topik dari awal tanpa terburu-buru menyimpulkan.</span>
                 </div>
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 font-mono-code font-bold">2</span>
-                  <span><strong>Audit Naskah Tertua:</strong> Periksa manuskrip fisik terawal, varian bacaan (*textual variants*), dan bahasa aslinya.</span>
+                  <span><strong>Lihat Sumber Aslinya:</strong> Memeriksa teks asli dan bahasa yang digunakan agar tidak salah paham.</span>
                 </div>
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 font-mono-code font-bold">3</span>
-                  <span><strong>Uji Silang Lapangan:</strong> Validasi dengan catatan geologi, arkeologi, dan teks pihak ketiga yang netral.</span>
+                  <span><strong>Bandingkan dengan Sejarah:</strong> Mencari tahu konteks waktu, tempat, dan catatan sejarah pendukung.</span>
                 </div>
                 <div className="flex items-start gap-3 text-xs text-slate-300">
                   <span className="w-5 h-5 rounded-md bg-blue-600/20 text-blue-400 flex items-center justify-center shrink-0 font-mono-code font-bold">4</span>
-                  <span><strong>Uji Logika Non-Kontradiksi:</strong> Singkirkan spekulasi yang memuat cacat nalar formal (*fallacy*).</span>
+                  <span><strong>Gunakan Akal Sehat:</strong> Menguji apakah penjelasannya runtut, masuk akal, dan tidak saling bertabrakan.</span>
                 </div>
               </div>
 
@@ -321,7 +321,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                 onClick={() => onNavigate('research', '/research')}
                 className="w-full mt-4 py-2.5 px-4 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-400 border border-blue-500/30 text-xs font-mono-code font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
-                <span>Lihat Implementasi di Lab Riset</span>
+                <span>Lihat Catatan Riset Lengkap</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
@@ -333,18 +333,18 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
               <div className="text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
-                PERSONAL PASSIONS & WILDERNESS CRAFT
+                KEGIATAN DI LUAR RUANG
               </div>
               <h3 className="text-3xl sm:text-5xl font-extrabold text-white font-display">
-                Disiplin Mental di Alam Liar
+                Menikmati Alam dan Melatih Ketenangan
               </h3>
               <p className="text-sm text-slate-400 max-w-2xl leading-relaxed">
-                Bagi Uncle Zein, hobi bukan sekadar rekreasi pelarian, melainkan laboratorium fisik untuk melatih ketajaman batin, kesabaran primal, dan kerendahan hati di hadapan hukum semesta.
+                Beberapa hal yang suka dilakukan saat di luar rumah—dari menyelam di laut, jalan-jalan ke tempat baru, berkuda, sampai memancing santai.
               </p>
             </div>
 
             <div className="text-xs text-slate-400 font-mono-code">
-              Pilih kartu untuk membuka catatan lapangan & audio ambiance
+              Pilih kartu untuk membaca cerita singkatnya
             </div>
           </div>
 

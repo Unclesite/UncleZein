@@ -19,7 +19,7 @@ export const ManifestoBanner: React.FC = () => {
 
             <div className="lg:col-span-7 space-y-3">
               <span className="text-xs font-mono-code text-blue-400 uppercase tracking-widest block">
-                Manifesto Intelektual Uncle Zein
+                Catatan & Sudut Pandang
               </span>
               <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug font-display text-balance">
                 "{SITE_CONFIG.readingPhilosophy}"
@@ -27,10 +27,10 @@ export const ManifestoBanner: React.FC = () => {
             </div>
 
             <div className="lg:col-span-3 border-t lg:border-t-0 lg:border-l border-white/10 pt-6 lg:pt-0 lg:pl-8 space-y-2">
-              <div className="text-xs font-mono-code text-slate-400 uppercase">Core Standard</div>
-              <div className="text-sm font-semibold text-white">Rasionalitas & Bukti Material</div>
+              <div className="text-xs font-mono-code text-slate-400 uppercase">Prinsip Sederhana</div>
+              <div className="text-sm font-semibold text-white">Rasionalitas & Kejujuran</div>
               <p className="text-xs text-slate-400 leading-relaxed">
-                Menolak argumentum ad baculum (ancaman) dan argumentum ad verecundiam (pemujaan otoritas).
+                Menghargai penjelasan yang runtut dan bukti yang jelas, tanpa perlu merasa paling benar.
               </p>
             </div>
           </div>

@@ -44,47 +44,47 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Quick Navigations */}
           <div className="md:col-span-3 space-y-3">
             <div className="text-xs font-mono-code text-white uppercase tracking-wider font-semibold">
-              Eksplorasi Ruang
+              Halaman
             </div>
             <ul className="space-y-2 text-xs">
               <li>
                 <button
                   onClick={() => onNavigate('about')}
-                  className="hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-400 transition-colors cursor-pointer"
                 >
-                  About & Personal Passions
+                  About & Catatan Pribadi
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('ideas')}
-                  className="hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-400 transition-colors cursor-pointer"
                 >
-                  Esai Kritis & Epistemologi
+                  Tulisan & Esai
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('research')}
-                  className="hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-400 transition-colors cursor-pointer"
                 >
-                  Laboratorium Riset Terbuka
+                  Riset & Catatan
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('books')}
-                  className="hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-400 transition-colors cursor-pointer"
                 >
-                  Katalog Buku Monograf
+                  Buku & Catatan Panjang
                 </button>
               </li>
               <li>
                 <button
                   onClick={() => onNavigate('media')}
-                  className="hover:text-blue-400 transition-colors"
+                  className="hover:text-blue-400 transition-colors cursor-pointer"
                 >
-                  Direktori Media Digital
+                  Video & Media Sosial
                 </button>
               </li>
             </ul>
@@ -93,10 +93,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Topics Pillar */}
           <div className="md:col-span-4 space-y-3">
             <div className="text-xs font-mono-code text-white uppercase tracking-wider font-semibold">
-              Klaster Penyelidikan
+              Topik Pembahasan
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Mengkaji teks-teks kuno, sejarah kritis, dan rasionalitas tanpa kompromi dogmatis.
+              Membaca kembali teks, sejarah lokal dan dunia, serta berbagai pertanyaan menarik lainnya.
             </p>
             <div className="flex flex-wrap gap-1.5 pt-1">
               {['Religion', 'History', 'Science', 'Philosophy', 'Hermeneutics', 'Epistemology'].map((t) => (

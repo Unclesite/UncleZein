@@ -11,13 +11,13 @@ export const MediaSection: React.FC = () => {
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
             <span>05</span>
             <span aria-hidden="true">/</span>
-            <span>DIGITAL CHANNELS & BROADCASTS</span>
+            <span>KANAL MEDIA</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight font-display text-balance">
-            Kanal Media & Arsip Audio-Visual
+            Video & Media Sosial
           </h2>
           <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            Eksplorasi gagasan dalam format video esai, bedah logika, naskah kuno, dan dokumentasi visual ekspedisi lapangan.
+            Berbagi cerita lewat video santai, pembahasan naskah, sejarah lokal, dan dokumentasi jalan-jalan di alam terbuka.
           </p>
         </div>
 

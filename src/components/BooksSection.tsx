@@ -17,7 +17,7 @@ export const BooksSection: React.FC<BooksSectionProps> = ({ onOpenSampleModal, o
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">
           <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-widest font-bold">
-            <span>PUBLICATIONS & MONOGRAPHS</span>
+            <span>BUKU & TULISAN PANJANG</span>
             <span aria-hidden="true">/</span>
             <span>UNCLE ZEIN</span>
           </div>
@@ -25,7 +25,7 @@ export const BooksSection: React.FC<BooksSectionProps> = ({ onOpenSampleModal, o
             Books<span className="text-blue-500">.</span>
           </h2>
           <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed">
-            Buku-buku yang sedang ditulis maupun telah selesai. Setiap proyek memisahkan fakta, interpretasi, inferensi, hipotesis, dan spekulasi secara eksplisit.
+            Kumpulan catatan panjang dan buku yang sedang ditulis. Membaca kembali pertanyaan-pertanyaan lama tentang teks, sejarah, dan sains dengan lebih terbuka.
           </p>
         </div>
 

@@ -26,11 +26,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
             {/* Live Indicator Meta */}
             <div className="flex items-center gap-2 text-xs text-slate-400 font-mono-code tracking-wide">
               <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-              <span>LABORATORIUM RISET AKTIF</span>
+              <span>CATATAN PERSONAL</span>
               <span aria-hidden="true">·</span>
-              <span>HISTORIOGRAFI & KRITIK TEKS</span>
+              <span>TULISAN & RISET</span>
               <span aria-hidden="true">·</span>
-              <span className="text-slate-300">2026 EDITION</span>
+              <span className="text-slate-300">UNCLE ZEIN</span>
             </div>
 
             {/* Main Headline */}
@@ -44,12 +44,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
 
             {/* Credo & Subtitle */}
             <p className="text-lg sm:text-xl text-slate-300 font-light leading-relaxed max-w-2xl">
-              Ruang penyelidikan mandiri di luar doktrin institusi. Menguji narasi kuno dengan sains naskah, logika dingin, eksplorasi alam bebas, dan keterusterangan intelektual.
+              Ini tempat saya menulis, mencari tahu hal-hal yang menarik, jalan-jalan, dan mencatat apa yang ditemukan—dari sejarah, teks keagamaan, sains, hingga keseharian di alam terbuka.
             </p>
 
             {/* Credo Statement */}
             <div className="p-4 rounded-xl border border-white/10 bg-white/[0.02] max-w-xl">
-              <p className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-1">Prinsip Eksistensial</p>
+              <p className="text-xs uppercase tracking-widest text-blue-400 font-semibold mb-1">Prinsip Sederhana</p>
               <p className="text-sm font-medium text-slate-200 italic font-serif-title">
                 "{SITE_CONFIG.credo}"
               </p>
@@ -61,7 +61,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                 onClick={() => onOpenArticle('art-wahyu-makna-kata')}
                 className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-white bg-blue-600 hover:bg-blue-500 rounded-xl transition-all shadow-[0_0_25px_rgba(37,99,235,0.35)] hover:shadow-[0_0_35px_rgba(37,99,235,0.5)] active:scale-98 cursor-pointer"
               >
-                <span>Baca Essay 01: Makna Waḥy</span>
+                <span>Baca Esai 01: Makna Waḥy</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
 
@@ -70,25 +70,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                 className="inline-flex items-center gap-2 px-6 py-3.5 text-sm font-semibold text-slate-200 hover:text-white bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 rounded-xl transition-all cursor-pointer"
               >
                 <BookOpen className="w-4 h-4 text-blue-400" />
-                <span>Laboratorium Riset</span>
+                <span>Riset & Catatan</span>
               </button>
             </div>
 
             {/* Proof Badges / Meta Strip */}
             <div className="pt-4 flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-slate-400 font-mono-code border-t border-white/5">
               <div className="flex items-center gap-1.5">
-                <span className="text-white font-semibold tabular-nums">468+</span>
-                <span>Halaman Monograf</span>
+                <span className="text-white font-semibold tabular-nums">400+</span>
+                <span>Halaman Catatan</span>
               </div>
               <span aria-hidden="true" className="text-slate-700">|</span>
               <div className="flex items-center gap-1.5">
                 <span className="text-white font-semibold tabular-nums">5</span>
-                <span>Lapisan Bukti Ilmiah</span>
+                <span>Tingkat Kejelasan Bukti</span>
               </div>
               <span aria-hidden="true" className="text-slate-700">|</span>
               <div className="flex items-center gap-1.5">
-                <span className="text-white font-semibold tabular-nums">100%</span>
-                <span>Riset Independen</span>
+                <span className="text-white font-semibold tabular-nums">Catatan</span>
+                <span>Pribadi</span>
               </div>
             </div>
           </div>
@@ -125,7 +125,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                     
                     <h3 className="text-2xl font-bold text-white font-display tracking-tight">Uncle Zein</h3>
                     <p className="text-xs text-blue-400 font-mono-code mt-1 tracking-wider uppercase">
-                      Independent Researcher & Field Explorer
+                      Personal Notes, Reading & Travel
                     </p>
                   </div>
                 </div>
@@ -133,8 +133,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                 {/* Scrim Overlay */}
                 <div className="relative z-20 mt-auto pt-6 border-t border-white/10 bg-black/40 backdrop-blur-md rounded-lg p-4 -mx-2 -mb-2">
                   <div className="flex items-center justify-between text-xs text-slate-400 mb-2">
-                    <span className="font-mono-code text-blue-400">Riset Terkini</span>
-                    <span className="text-slate-400">Status: Verifikasi Naskah</span>
+                    <span className="font-mono-code text-blue-400">Catatan Riset</span>
+                    <span className="text-slate-400">Status: Masih Dipelajari</span>
                   </div>
                   <h4 className="text-sm font-semibold text-white leading-snug line-clamp-2">
                     Yesus / Isa Al Masih Punya Ayah Kandung?
@@ -144,9 +144,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                       onClick={() => onNavigate('research')}
                       className="text-xs font-semibold text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors"
                     >
-                      Buka Lembar Bukti <ArrowRight className="w-3 h-3" />
+                      Buka Catatan <ArrowRight className="w-3 h-3" />
                     </button>
-                    <span className="text-[11px] text-slate-400 font-mono-code">Layer 1-5 Ready</span>
+                    <span className="text-[11px] text-slate-400 font-mono-code">5 Lapisan Bukti</span>
                   </div>
                 </div>
               </div>
@@ -158,7 +158,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
                 <Compass className="w-4 h-4" />
               </div>
               <p className="text-xs text-slate-300 leading-snug">
-                "Di laut dalam atau rimba liar, alam tidak pernah berbohong untuk menyenangkan egomu."
+                "Di laut atau di alam terbuka, yang penting adalah ketenangan dan rasa ingin tahu."
               </p>
             </div>
           </div>
@@ -168,29 +168,29 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onNavigate, onOpenArti
         <div className="mt-16 pt-8 border-t border-white/10 grid grid-cols-1 md:grid-cols-3 gap-4">
           <button
             onClick={() => onNavigate('about')}
-            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group"
+            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group cursor-pointer"
           >
-            <div className="text-xs font-mono-code text-blue-400 mb-1">01. THE PHILOSOPHY</div>
-            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">How I Read & Think</div>
-            <p className="text-xs text-slate-400 mt-1">Membongkar bias kognitif dan membaca naskah dengan prinsip hermeneutika kritis.</p>
+            <div className="text-xs font-mono-code text-blue-400 mb-1">01. CARA MEMBACA</div>
+            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">Membaca & Memeriksa</div>
+            <p className="text-xs text-slate-400 mt-1">Melihat teks asli secara langsung dan memisahkannya dari tafsir tambahan.</p>
           </button>
 
           <button
             onClick={() => onNavigate('research')}
-            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group"
+            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group cursor-pointer"
           >
-            <div className="text-xs font-mono-code text-blue-400 mb-1">02. OPEN LABORATORY</div>
-            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">5 Layers of Evidence</div>
-            <p className="text-xs text-slate-400 mt-1">Metodologi ketat membedakan Hard Fact dari Spekulasi tak berdasar.</p>
+            <div className="text-xs font-mono-code text-blue-400 mb-1">02. RISET & TEMUAN</div>
+            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">5 Tingkat Bukti</div>
+            <p className="text-xs text-slate-400 mt-1">Membedakan fakta yang jelas dari dugaan yang masih perlu diuji.</p>
           </button>
 
           <button
             onClick={() => onNavigate('books')}
-            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group"
+            className="text-left p-4 rounded-xl glass-card transition-all hover:border-blue-500/40 group cursor-pointer"
           >
-            <div className="text-xs font-mono-code text-blue-400 mb-1">03. MAGNUM OPUS</div>
-            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">Mendobrak Kepalsuan (Bab I-IX)</div>
-            <p className="text-xs text-slate-400 mt-1">Buku monograf 468 halaman membedah sejarah, mitos, dan kebebasan rasional.</p>
+            <div className="text-xs font-mono-code text-blue-400 mb-1">03. BUKU & TULISAN</div>
+            <div className="text-sm font-bold text-white group-hover:text-blue-300 transition-colors">Daftar Buku & Bab</div>
+            <p className="text-xs text-slate-400 mt-1">Catatan panjang tentang sejarah, teks kuno, dan cara manusia berpikir.</p>
           </button>
         </div>
       </div>
