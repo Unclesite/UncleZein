@@ -46,6 +46,7 @@ export interface Passion {
   gearList: string[];
   ambientType: 'ocean' | 'wind' | 'fire';
   gradient: string;
+  imageSrc?: string;
 }
 
 export interface BookChapter {
@@ -113,7 +114,8 @@ export const PASSIONS_DATA: Passion[] = [
     fieldJournal: "Tiga hari tanpa sinyal seluler di pedalaman pulau karang. Malam diisi dengungan angin pasat dan langit berbintang yang begitu pekat tanpa polusi cahaya. Kesadaran kita tentang betapa kerdilnya masalah manusiawi muncul saat menatap galaksi Bima Sakti di batas cakrawala laut.",
     gearList: ["Rugged satellite messenger", "Topo-map compass", "All-weather titanium field knife", "Solar charging kit"],
     ambientType: "wind",
-    gradient: "from-slate-900 via-sky-950/60 to-black"
+    gradient: "from-slate-900 via-sky-950/60 to-black",
+    imageSrc: "1001627970-82AvF.jpg"
   },
   {
     id: "hunting",
@@ -139,7 +141,8 @@ export const PASSIONS_DATA: Passion[] = [
     fieldJournal: "Melesat di padang savana saat matahari baru terbit di ufuk timur. Suara gemuruh derap kuku di tanah kering berpadu dengan hembusan napas hangat kuda. Saat ritme tubuh dan derap kaki kuda selaras, kendali terasa lenyap menjadi satu tarikan gerak alami.",
     gearList: ["Handcrafted leather endurance saddle", "Protective equestrian helmet", "Reinforced stirrups", "Reinforced riding boots"],
     ambientType: "fire",
-    gradient: "from-amber-950/50 via-slate-900 to-black"
+    gradient: "from-amber-950/50 via-slate-900 to-black",
+    imageSrc: "1001610070-ttH5C.jpg"
   },
   {
     id: "fishing",

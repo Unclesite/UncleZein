@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Search, Menu, X } from 'lucide-react';
+import { Volume2, VolumeX, Search, Menu, X, UserCheck, Lock } from 'lucide-react';
 import { soundscape } from '../utils/audioSynth';
 
 interface NavbarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   onOpenSearch: () => void;
+  onOpenLogin: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenSearch }) => {
+export const Navbar: React.FC<NavbarProps> = ({
+  activeTab,
+  setActiveTab,
+  onOpenSearch,
+  onOpenLogin,
+}) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAudioPlaying, setIsAudioPlaying] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,93 +38,96 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
   };
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About & Passions' },
-    { id: 'ideas', label: 'Ideas' },
-    { id: 'research', label: 'Research Lab' },
-    { id: 'books', label: 'Books' },
-    { id: 'media', label: 'Media' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: 'HOME', path: '/' },
+    { id: 'ideas', label: 'IDEAS', path: '/ideas' },
+    { id: 'research', label: 'RESEARCH', path: '/research' },
+    { id: 'books', label: 'BOOKS', path: '/books' },
+    { id: 'media', label: 'MEDIA', path: '/media' },
+    { id: 'about', label: 'ABOUT', path: '/about' },
+    { id: 'contact', label: 'CONTACT', path: '/contact' },
   ];
 
-  const handleNavClick = (id: string) => {
+  const handleNavClick = (id: string, path: string) => {
     setActiveTab(id);
     setMobileMenuOpen(false);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    } else {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    try {
+      window.history.pushState({}, '', path);
+    } catch {
+      // ignore
     }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3' : 'bg-transparent py-5'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'glass-nav py-3.5 shadow-xl' : 'bg-[#07090e]/90 backdrop-blur-md py-4 border-b border-white/5'}`}>
       <div className="max-w-7xl mx-auto px-6 sm:px-8 flex items-center justify-between">
-        {/* Zone 1: Single text element wordmark */}
+        {/* Zone 1: Single text element wordmark with dot */}
         <button
-          onClick={() => handleNavClick('home')}
-          className="text-xl font-bold tracking-tight text-white hover:text-blue-400 transition-colors uppercase font-display cursor-pointer"
+          onClick={() => handleNavClick('home', '/')}
+          className="text-xl sm:text-2xl font-black tracking-tighter text-white hover:text-blue-400 transition-colors uppercase font-display cursor-pointer flex items-center gap-0.5 group"
         >
-          UNCLE ZEIN
+          <span>UNCLE ZEIN</span>
+          <span className="text-blue-500 group-hover:scale-125 transition-transform">.</span>
         </button>
 
-        {/* Zone 2: 4-6 clean text navigation links */}
-        <nav className="hidden lg:flex items-center gap-7 text-sm font-medium">
+        {/* Zone 2: 4-7 clean text navigation links */}
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8 text-xs font-mono-code tracking-wider uppercase">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`transition-colors relative py-1 cursor-pointer ${
-                activeTab === item.id ? 'text-blue-400 font-semibold' : 'text-slate-400 hover:text-white'
+              onClick={() => handleNavClick(item.id, item.path)}
+              className={`transition-all py-1 cursor-pointer font-semibold ${
+                activeTab === item.id
+                  ? 'text-blue-400 border-b-2 border-blue-500'
+                  : 'text-slate-400 hover:text-white'
               }`}
             >
               {item.label}
-              {activeTab === item.id && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
-              )}
             </button>
           ))}
         </nav>
 
-        {/* Zone 3: Primary Actions */}
+        {/* Zone 3: Primary Actions + MASUK Button */}
         <div className="flex items-center gap-3">
+          {/* Quick Search */}
           <button
             onClick={onOpenSearch}
             className="p-2 text-slate-400 hover:text-white transition-colors rounded-lg hover:bg-white/5 cursor-pointer"
-            title="Cari Pemikiran & Arsip (Ctrl+K)"
+            title="Search Archives (Ctrl+K)"
             aria-label="Search"
           >
             <Search className="w-4 h-4" />
           </button>
 
+          {/* Ambient Audio Soundscape */}
           <button
             onClick={toggleSound}
-            className={`flex items-center gap-2 px-3 py-1.5 text-xs font-medium rounded-lg border transition-all cursor-pointer ${
+            className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 text-xs font-mono-code rounded-lg border transition-all cursor-pointer ${
               isAudioPlaying
                 ? 'bg-blue-600/20 text-blue-300 border-blue-500/40 shadow-[0_0_15px_rgba(59,130,246,0.3)]'
-                : 'text-slate-400 border-slate-800 hover:text-white hover:border-slate-700 bg-black/40'
+                : 'text-slate-400 border-white/10 hover:text-white hover:border-slate-700 bg-black/40'
             }`}
             title="Toggle Ambient Audio Soundscape"
           >
             {isAudioPlaying ? (
               <>
                 <Volume2 className="w-3.5 h-3.5 text-blue-400 animate-pulse" />
-                <span className="hidden sm:inline">Ocean Ambiance</span>
+                <span>SOUND ON</span>
               </>
             ) : (
               <>
                 <VolumeX className="w-3.5 h-3.5" />
-                <span className="hidden sm:inline">Soundscape</span>
+                <span>SOUND</span>
               </>
             )}
           </button>
 
+          {/* MASUK / Member Button */}
           <button
-            onClick={() => handleNavClick('research')}
-            className="hidden sm:inline-flex items-center justify-center px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all rounded-lg shadow-sm cursor-pointer"
+            onClick={onOpenLogin}
+            className="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold text-white bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all rounded-lg shadow-sm cursor-pointer font-mono-code tracking-wider"
           >
-            Open Lab
+            <span>MASUK</span>
           </button>
 
           {/* Mobile Menu Toggle */}
@@ -134,33 +143,36 @@ export const Navbar: React.FC<NavbarProps> = ({ activeTab, setActiveTab, onOpenS
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden glass-nav border-b border-white/10 px-6 py-5 space-y-3 bg-[#07090e]/95 animate-fadeIn">
+        <div className="lg:hidden glass-nav border-b border-white/10 px-6 py-5 space-y-3 bg-[#07090e]/98 animate-fadeIn">
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => handleNavClick(item.id)}
-              className={`block w-full text-left py-2 text-base font-medium transition-colors ${
-                activeTab === item.id ? 'text-blue-400' : 'text-slate-300 hover:text-white'
+              onClick={() => handleNavClick(item.id, item.path)}
+              className={`block w-full text-left py-2 text-sm font-mono-code tracking-wider uppercase transition-colors ${
+                activeTab === item.id ? 'text-blue-400 font-bold' : 'text-slate-300 hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="pt-3 border-t border-white/10 flex items-center justify-between">
+          <div className="pt-4 border-t border-white/10 flex items-center justify-between">
             <button
               onClick={() => {
                 onOpenSearch();
                 setMobileMenuOpen(false);
               }}
-              className="flex items-center gap-2 text-sm text-slate-300"
+              className="flex items-center gap-2 text-xs font-mono-code text-slate-300"
             >
-              <Search className="w-4 h-4" /> Cari Pemikiran
+              <Search className="w-4 h-4" /> SEARCH (CTRL+K)
             </button>
             <button
-              onClick={() => handleNavClick('contact')}
-              className="px-4 py-1.5 text-xs font-semibold text-white bg-blue-600 rounded-lg"
+              onClick={() => {
+                onOpenLogin();
+                setMobileMenuOpen(false);
+              }}
+              className="px-4 py-1.5 text-xs font-mono-code font-bold text-white bg-blue-600 rounded-lg"
             >
-              Hubungi
+              MASUK
             </button>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Compass, MapPin, Target, Zap, Anchor, Volume2, VolumeX, Shield, Sparkles, Check } from 'lucide-react';
+import { X, Compass, MapPin, Target, Zap, Anchor, Volume2, VolumeX, Shield, Sparkles, Check, Camera } from 'lucide-react';
 import { Passion } from '../data/siteData';
 import { soundscape } from '../utils/audioSynth';
 
@@ -93,6 +93,26 @@ export const PassionDetailModal: React.FC<PassionDetailModalProps> = ({ passion,
 
         {/* Modal Body */}
         <div className="p-6 sm:p-10 overflow-y-auto space-y-8">
+          {/* Authentic Photograph if available */}
+          {passion.imageSrc && (
+            <div className="rounded-2xl overflow-hidden border border-white/15 relative aspect-[16/10] sm:aspect-[21/9] bg-slate-950 shadow-2xl">
+              <img
+                src={passion.imageSrc}
+                alt={passion.title}
+                className="w-full h-full object-cover object-top filter contrast-105"
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
+              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono-code text-slate-200">
+                <span className="bg-black/60 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
+                  <Camera className="w-3.5 h-3.5 text-blue-400" />
+                  <span>DOKUMENTASI LAPANGAN // UNCLE ZEIN</span>
+                </span>
+                <span className="text-blue-300 font-semibold">{passion.title}</span>
+              </div>
+            </div>
+          )}
+
           {/* Header */}
           <div className="space-y-3">
             <span className="text-xs font-mono-code text-blue-400 uppercase tracking-widest">

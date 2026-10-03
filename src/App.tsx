@@ -5,8 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
-import { HeroSection } from './components/HeroSection';
-import { ManifestoBanner } from './components/ManifestoBanner';
+import { HomeView } from './components/HomeView';
 import { AboutSection } from './components/AboutSection';
 import { DailyNotesSection } from './components/DailyNotesSection';
 import { IdeasSection } from './components/IdeasSection';
@@ -20,25 +19,38 @@ import { DailyNoteModal } from './components/DailyNoteModal';
 import { PassionDetailModal } from './components/PassionDetailModal';
 import { ChapterSampleModal } from './components/ChapterSampleModal';
 import { SearchModal } from './components/SearchModal';
+import { LoginModal } from './components/LoginModal';
 import { Article, DailyNote, Passion, BookChapter, ARTICLES_DATA, BOOKS_DATA } from './data/siteData';
-import { CheckCircle2, ShoppingBag } from 'lucide-react';
+import { ShoppingBag } from 'lucide-react';
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<string>('home');
+  const [activeTab, setActiveTab] = useState<string>(() => {
+    try {
+      const path = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
+      if (['ideas', 'research', 'books', 'media', 'about', 'contact'].includes(path)) {
+        return path;
+      }
+    } catch {
+      // ignore
+    }
+    return 'home';
+  });
+
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [selectedNote, setSelectedNote] = useState<DailyNote | null>(null);
   const [selectedPassion, setSelectedPassion] = useState<Passion | null>(null);
   const [selectedChapterSample, setSelectedChapterSample] = useState<BookChapter | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const [showOrderToast, setShowOrderToast] = useState<boolean>(false);
 
   // Saved Articles bookmark state with local storage
   const [savedArticleIds, setSavedArticleIds] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('uz_saved_articles');
-      return saved ? JSON.parse(saved) : ['art-1'];
+      return saved ? JSON.parse(saved) : ['art-malaikat-akar-bahasa-narasi', 'art-wahyu-makna-kata'];
     } catch {
-      return ['art-1'];
+      return ['art-malaikat-akar-bahasa-narasi', 'art-wahyu-makna-kata'];
     }
   });
 
@@ -49,6 +61,30 @@ export default function App() {
       // ignore
     }
   }, [savedArticleIds]);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
+      if (['ideas', 'research', 'books', 'media', 'about', 'contact'].includes(path)) {
+        setActiveTab(path);
+      } else {
+        setActiveTab('home');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const handleNavigate = (tab: string, path?: string) => {
+    setActiveTab(tab);
+    try {
+      window.history.pushState({}, '', path || `/${tab === 'home' ? '' : tab}`);
+    } catch {
+      // ignore
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const toggleSaveArticle = (id: string) => {
     setSavedArticleIds((prev) =>
@@ -69,10 +105,7 @@ export default function App() {
       setShowOrderToast(false);
     }, 4000);
 
-    const contactEl = document.getElementById('contact');
-    if (contactEl) {
-      contactEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    handleNavigate('contact', '/contact');
   };
 
   // Keyboard shortcut Ctrl/Cmd + K
@@ -89,60 +122,66 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#07090e] text-[#e2e8f0] selection:bg-blue-600/30 selection:text-blue-200">
-      {/* Navigation */}
+      {/* Universal Top Navigation */}
       <Navbar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={(tab) => handleNavigate(tab, `/${tab === 'home' ? '' : tab}`)}
         onOpenSearch={() => setIsSearchOpen(true)}
+        onOpenLogin={() => setIsLoginOpen(true)}
       />
 
-      {/* Main Content Area */}
-      <main>
-        {/* Hero Section */}
-        <HeroSection
-          onNavigate={setActiveTab}
-          onOpenArticle={handleOpenArticleById}
-        />
+      {/* Main Dynamic View Area */}
+      <main className="pt-20">
+        {activeTab === 'home' && (
+          <HomeView
+            onNavigate={handleNavigate}
+            onOpenArticle={setSelectedArticle}
+            onOpenNote={setSelectedNote}
+          />
+        )}
 
-        {/* Manifesto Banner */}
-        <ManifestoBanner />
+        {activeTab === 'ideas' && (
+          <IdeasSection
+            onSelectArticle={setSelectedArticle}
+            savedArticleIds={savedArticleIds}
+            onToggleSaveArticle={toggleSaveArticle}
+          />
+        )}
 
-        {/* About & Personal Passions Section */}
-        <AboutSection
-          onSelectPassion={setSelectedPassion}
-          onNavigate={setActiveTab}
-        />
+        {activeTab === 'research' && (
+          <ResearchLabSection />
+        )}
 
-        {/* Daily Notes & Field Journal Section */}
-        <DailyNotesSection
-          onSelectNote={setSelectedNote}
-        />
+        {activeTab === 'books' && (
+          <BooksSection
+            onOpenSampleModal={setSelectedChapterSample}
+            onOrderBook={handleOrderBook}
+          />
+        )}
 
-        {/* Ideas & Critical Essays Section */}
-        <IdeasSection
-          onSelectArticle={setSelectedArticle}
-          savedArticleIds={savedArticleIds}
-          onToggleSaveArticle={toggleSaveArticle}
-        />
+        {activeTab === 'about' && (
+          <div className="space-y-12">
+            <AboutSection
+              onSelectPassion={setSelectedPassion}
+              onNavigate={handleNavigate}
+            />
+            <DailyNotesSection
+              onSelectNote={setSelectedNote}
+            />
+          </div>
+        )}
 
-        {/* Open Research Laboratory Section */}
-        <ResearchLabSection />
+        {activeTab === 'media' && (
+          <MediaSection />
+        )}
 
-        {/* Books & Monographs Section */}
-        <BooksSection
-          onOpenSampleModal={setSelectedChapterSample}
-          onOrderBook={handleOrderBook}
-        />
-
-        {/* Media Channels Section */}
-        <MediaSection />
-
-        {/* Contact & Dispatch Desk */}
-        <ContactSection />
+        {activeTab === 'contact' && (
+          <ContactSection />
+        )}
       </main>
 
-      {/* Footer */}
-      <Footer onNavigate={setActiveTab} />
+      {/* Universal Footer */}
+      <Footer onNavigate={handleNavigate} />
 
       {/* Modals */}
       <ArticleModal
@@ -174,7 +213,12 @@ export default function App() {
         onSelectArticle={setSelectedArticle}
         onSelectNote={setSelectedNote}
         onSelectPassion={setSelectedPassion}
-        onNavigate={setActiveTab}
+        onNavigate={handleNavigate}
+      />
+
+      <LoginModal
+        isOpen={isLoginOpen}
+        onClose={() => setIsLoginOpen(false)}
       />
 
       {/* Toast Feedback */}
