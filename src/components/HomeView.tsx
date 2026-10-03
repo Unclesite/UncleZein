@@ -13,6 +13,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onOpenArticle,
   onOpenNote,
 }) => {
+  const [imageError, setImageError] = React.useState(false);
+  const [guitarImageError, setGuitarImageError] = React.useState(false);
+
   const conceptTags = [
     { name: 'QURAN', count: '14 Esai' },
     { name: 'HISTORY', count: '28 Risalah' },
@@ -26,7 +29,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   const latestArticles = ARTICLES_DATA.slice(0, 3);
   const featuredNote = DAILY_NOTES_DATA[0];
-  const horsebackPassion = PASSIONS_DATA.find((p) => p.id === 'horseback');
 
   return (
     <div className="space-y-24 pb-20">
@@ -98,7 +100,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
               </div>
             </div>
 
-            {/* Right: Authentic Portrait Card with Electric Blue Box Accent (Photo 1: Contemplative Portrait) */}
+            {/* Right: Authentic Horseback Riding Photo in Hero with Fallback */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative w-full max-w-sm sm:max-w-md group">
                 {/* Electric Blue Accent Framing Box */}
@@ -107,22 +109,31 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 <div className="absolute -bottom-3 -left-3 w-8 h-8 border-b-2 border-l-2 border-blue-400 z-20" />
 
                 <div className="relative rounded-xl overflow-hidden glass-card p-2 bg-[#0a0d14] border border-white/10 glow-blue shadow-2xl">
-                  <div className="aspect-[4/5] rounded-lg overflow-hidden relative flex flex-col justify-between">
-                    {/* User Uploaded Contemplative Photo (1001627970-82AvF.jpg) */}
-                    <img
-                      src="1001627970-82AvF.jpg"
-                      alt="Uncle Zein Contemplative Portrait"
-                      className="absolute inset-0 w-full h-full object-cover object-center filter contrast-105 group-hover:scale-105 transition-transform duration-700"
-                      referrerPolicy="no-referrer"
-                    />
+                  <div className="aspect-[4/5] rounded-lg overflow-hidden relative flex flex-col justify-between bg-gradient-to-b from-[#111624] via-[#090d18] to-black">
+                    {!imageError ? (
+                      <img
+                        src="1001610070-ttH5C.jpg"
+                        alt="Uncle Zein Berkuda"
+                        className="absolute inset-0 w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                        onError={() => setImageError(true)}
+                        referrerPolicy="no-referrer"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-b from-blue-950/40 via-slate-900 to-black">
+                        <div className="w-24 h-24 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-4 shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                          <span className="text-3xl font-black font-display text-white">UZ</span>
+                        </div>
+                        <span className="text-xs font-mono-code text-blue-400 uppercase tracking-widest">Equestrian Discipline</span>
+                      </div>
+                    )}
 
                     {/* Gradient Contrast Scrim */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/30 pointer-events-none" />
 
                     {/* Top Badge */}
                     <div className="relative z-10 flex justify-between items-center text-[11px] font-mono-code text-blue-300 p-4">
                       <span className="bg-black/60 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm">
-                        UNCLE ZEIN // THINKER
+                        UNCLE ZEIN // EQUESTRIAN & FIELD
                       </span>
                       <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping" />
                     </div>
@@ -219,22 +230,32 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 4. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Photo 2: Horseback Riding) */}
+      {/* 4. PERSONAL PASSIONS & FIELD EXPEDITIONS SPOTLIGHT (Guitar Portrait with Fallback) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="rounded-2xl glass-card border border-white/10 overflow-hidden glow-blue">
           <div className="grid grid-cols-1 lg:grid-cols-12 items-center">
-            {/* Left: Horseback Riding Action Photo */}
+            {/* Left: Contemplative Guitar Portrait Photo with Fallback */}
             <div className="lg:col-span-6 relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full min-h-[320px] overflow-hidden bg-slate-950">
-              <img
-                src="1001610070-ttH5C.jpg"
-                alt="Uncle Zein Berkuda / Equestrian Discipline"
-                className="w-full h-full object-cover object-top filter contrast-105 hover:scale-105 transition-transform duration-700"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:to-[#07090e]" />
+              {!guitarImageError ? (
+                <img
+                  src="1001627970-82AvF.jpg"
+                  alt="Uncle Zein Contemplative Portrait"
+                  className="w-full h-full object-cover object-center filter contrast-105 hover:scale-105 transition-transform duration-700"
+                  onError={() => setGuitarImageError(true)}
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-indigo-950 via-slate-900 to-black">
+                  <div className="w-20 h-20 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-3">
+                    <span className="text-2xl font-bold text-white">UZ</span>
+                  </div>
+                  <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:to-[#07090e] pointer-events-none" />
               <div className="absolute top-4 left-4 z-10">
                 <span className="text-[11px] font-mono-code font-bold bg-black/70 text-blue-400 px-3 py-1 rounded-md border border-blue-500/30 backdrop-blur-sm">
-                  FIELD DISCIPLINE // EQUESTRIAN
+                  REFLECTION & FIELD NOTES
                 </span>
               </div>
             </div>
@@ -250,7 +271,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   Koneksi Jiwa, Tenaga, & Kendali Diri di Alam Bebas
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed">
-                  "Kuda adalah cermin sempurna batin penunggangnya. Anda tidak bisa mendominasi kuda dengan amarah; Anda memimpinnya dengan ketenangan batin, postur tegas, dan ritme detak jantung yang stabil."
+                  "Menunggu di atas air atau melintasi savana bukan berarti membuang waktu; itu adalah saat di mana pikiranmu berhenti berbicara dan mulai menyimak alam."
                 </p>
               </div>
 

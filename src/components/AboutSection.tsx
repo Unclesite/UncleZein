@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Compass, MapPin, Target, Zap, Anchor, ArrowRight, ShieldCheck, BookOpen, Volume2, Sparkles, Camera } from 'lucide-react';
 import { PASSIONS_DATA, Passion } from '../data/siteData';
 
@@ -8,6 +8,9 @@ interface AboutSectionProps {
 }
 
 export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onNavigate }) => {
+  const [guitarError, setGuitarError] = useState(false);
+  const [horseError, setHorseError] = useState(false);
+
   const getIcon = (iconName: string) => {
     switch (iconName) {
       case 'Compass':
@@ -44,7 +47,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           </p>
         </div>
 
-        {/* Narrative Split: Philosophy & Credo */}
+        {/* Narrative Split: Philosophy & Credo + Authentic Guitar Portrait Photo */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           {/* Main Story Narrative */}
           <div className="lg:col-span-7 glass-card p-8 sm:p-10 rounded-2xl border border-white/10 space-y-6">
@@ -59,6 +62,33 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
             <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
               Saya memilih jalur ketiga: <strong>Jalur Penyelidik Lapangan Merdeka</strong>. Membaca naskah kuno dalam bahasa aslinya, memeriksa lapisan arkeologi, dan sekaligus menguji ketajaman insting di alam liar—melalui menyelam di palung laut, menunggang kuda di savana terbuka, dan melacak jejak di rimba sunyi.
             </p>
+
+            {/* Authentic Guitar Contemplative Portrait with Fallback */}
+            <div className="rounded-xl overflow-hidden border border-white/15 relative aspect-[16/9] bg-slate-950 my-4 shadow-lg">
+              {!guitarError ? (
+                <img
+                  src="1001627970-82AvF.jpg"
+                  alt="Uncle Zein Contemplative Portrait with Guitar"
+                  className="w-full h-full object-cover object-center filter contrast-105"
+                  onError={() => setGuitarError(true)}
+                  referrerPolicy="no-referrer"
+                />
+              ) : (
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-indigo-950 via-slate-900 to-black text-center">
+                  <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
+                    <span className="text-xl font-bold text-white">UZ</span>
+                  </div>
+                  <span className="text-xs font-mono-code text-blue-400">Contemplative Reflection</span>
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-[11px] font-mono-code text-slate-200">
+                <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
+                  <Camera className="w-3.5 h-3.5 text-blue-400" />
+                  <span>REFLEKSI & KONTEMPLASI // UNCLE ZEIN</span>
+                </span>
+              </div>
+            </div>
 
             <div className="pt-4 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5">
@@ -118,7 +148,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           </div>
         </div>
 
-        {/* PERSONAL PASSIONS GRID (Enhanced Bento Box with Authentic Photo) */}
+        {/* PERSONAL PASSIONS GRID (Enhanced Bento Box with Horseback Riding Photo) */}
         <div className="space-y-8 pt-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div className="space-y-2">
@@ -141,7 +171,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
           {/* Asymmetrical Bento Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {PASSIONS_DATA.map((passion, index) => {
-              const hasPhoto = !!passion.imageSrc;
               const isHorseback = passion.id === 'horseback';
 
               return (
@@ -153,17 +182,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                   }`}
                 >
                   {isHorseback ? (
-                    // Special 2-Column Showcase Layout for Berkuda with Photo (1001610070-ttH5C.jpg)
+                    // Special 2-Column Showcase Layout for Berkuda with Photo and Fallback
                     <div className="grid grid-cols-1 md:grid-cols-12 h-full">
                       {/* Photo Column */}
                       <div className="md:col-span-6 relative aspect-[4/3] md:aspect-auto md:h-full min-h-[260px] overflow-hidden bg-slate-950">
-                        <img
-                          src="1001610070-ttH5C.jpg"
-                          alt="Uncle Zein Berkuda / Equestrian"
-                          className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
-                          referrerPolicy="no-referrer"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#080d18]" />
+                        {!horseError ? (
+                          <img
+                            src="1001610070-ttH5C.jpg"
+                            alt="Uncle Zein Berkuda / Equestrian"
+                            className="w-full h-full object-cover object-top filter contrast-105 group-hover:scale-105 transition-transform duration-700"
+                            onError={() => setHorseError(true)}
+                            referrerPolicy="no-referrer"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 bg-gradient-to-br from-amber-950 via-slate-900 to-black text-center">
+                            <div className="w-16 h-16 rounded-full bg-blue-600/20 border border-blue-500/40 flex items-center justify-center mb-2">
+                              <span className="text-xl font-bold text-white">UZ</span>
+                            </div>
+                            <span className="text-xs font-mono-code text-blue-400">Equestrian Discipline</span>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent md:bg-gradient-to-r md:from-transparent md:to-[#080d18] pointer-events-none" />
                         <div className="absolute top-3.5 left-3.5 z-10 flex items-center gap-1.5 bg-black/70 px-2.5 py-1 rounded-md border border-white/10 text-[11px] font-mono-code text-blue-300 backdrop-blur-sm">
                           <Camera className="w-3.5 h-3.5 text-blue-400" />
                           <span>FIELD PHOTO // EQUESTRIAN</span>
