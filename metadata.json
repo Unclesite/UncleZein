@@ -1,0 +1,6 @@
+{
+  "name": "UNCLE ZEIN — Ultimate Edition",
+  "description": "Ruang eksplorasi pemikiran independen, laboratorium riset terbuka, catatan harian, dan personal passion oleh Uncle Zein.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
