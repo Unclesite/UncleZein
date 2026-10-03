@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Microscope, Layers, FileText, CheckCircle2, HelpCircle, AlertTriangle, ArrowRight, ShieldCheck, Database, Sliders, Dna, BookOpen, Landmark, Sparkles } from 'lucide-react';
+import { Layers, FileText, CheckCircle2, ShieldCheck, Dna, BookOpen, Landmark } from 'lucide-react';
 import { RESEARCH_DATA } from '../data/siteData';
 
 export const ResearchLabSection: React.FC = () => {
   const [selectedLayerIndex, setSelectedLayerIndex] = useState<number>(0);
-  const [activeTab, setActiveTab] = useState<'matrix' | 'sources' | 'tridisciplinary'>('matrix');
+  const [activeTab, setActiveTab] = useState<'matrix' | 'sources'>('matrix');
 
   const selectedLayer = RESEARCH_DATA.fiveLayers[selectedLayerIndex];
 
@@ -44,7 +44,7 @@ export const ResearchLabSection: React.FC = () => {
         </div>
 
         {/* Active Project Highlight Banner: Yesus / Isa Al Masih Punya Ayah Kandung? */}
-        <div className="glass-card rounded-2xl p-8 sm:p-12 border border-blue-500/40 relative overflow-hidden glow-blue space-y-8 bg-gradient-to-br from-[#0c1428] via-[#070b14] to-black">
+        <div className="glass-card rounded-3xl p-8 sm:p-12 border border-blue-500/40 relative overflow-hidden glow-blue space-y-8 bg-gradient-to-br from-[#0c1428] via-[#070b14] to-black">
           {/* Status and Tag Pill */}
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-2 text-xs font-mono-code">

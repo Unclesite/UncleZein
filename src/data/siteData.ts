@@ -1183,18 +1183,9 @@ export const MEDIA_CHANNELS = [
     name: "Instagram",
     handle: "@unclezein",
     role: "Catatan Harian & Visual Lapangan",
-    url: "https://instagram.com",
+    url: "https://instagram.com/unclezein",
     metrics: "250K+ Pengikut Aktif",
     badge: "Daily Visuals & Journal",
     description: "Dokumentasi spearfishing laut dalam, eksplorasi rimba, foto manuskrip kuno, dan esai visual pendek."
-  },
-  {
-    name: "TikTok",
-    handle: "@unclezein.mind",
-    role: "Sintesis Logika & Bedah Cepat",
-    url: "https://tiktok.com",
-    metrics: "500K+ Audiens Generasi Baru",
-    badge: "Short Logic Pills",
-    description: "Kritik retorika, cara mendeteksi logical fallacy dalam 60 detik, dan potongan renungan kritis harian."
   }
 ];
