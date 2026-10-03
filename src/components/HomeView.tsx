@@ -361,7 +361,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <span>WILDERNESS CRAFT & PASSIONS</span>
                 </div>
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display leading-tight">
-                  Koneksi Jiwa, Tenaga, & Kendali Diri di Alam Bebas
+                  Catatan Perjalanan dan Ruang Sunyi
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed font-light">
                   "Menunggu di atas air atau melintasi savana bukan berarti membuang waktu; itu adalah saat di mana pikiranmu berhenti berbicara dan mulai menyimak alam."

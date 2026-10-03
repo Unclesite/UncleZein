@@ -170,7 +170,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
   const renderTableOfContents = (content: string, key: number) => {
     const lines = content
       .split('\n')
-      .filter((l) => l.trim().startsWith('1.') || l.trim().startsWith('2.') || l.trim().startsWith('3.') || l.trim().startsWith('4.') || l.trim().startsWith('5.') || l.trim().startsWith('6.') || l.trim().startsWith('7.') || l.trim().startsWith('8.') || l.trim().startsWith('- '));
+      .filter((l) => /^\s*(\d+\.|-)\s+/.test(l.trim()));
 
     return (
       <div key={key} className={`my-10 rounded-2xl border p-6 sm:p-8 shadow-xl space-y-5 ${themeStyles.card}`}>
@@ -457,9 +457,30 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
 
               // Blockquotes
               if (paragraph.startsWith('> ')) {
+                const quoteLines = paragraph
+                  .split('\n')
+                  .map((l) => l.replace(/^>\s*/, ''))
+                  .join('\n');
+
                 return (
-                  <div key={index} className="p-5 sm:p-6 rounded-2xl bg-blue-950/25 border-l-4 border-blue-500 text-slate-100 font-sans my-6 shadow-md">
-                    <p className="italic leading-relaxed">{paragraph.replace('> ', '')}</p>
+                  <div key={index} className="p-5 sm:p-6 rounded-2xl bg-blue-950/25 border-l-4 border-blue-500 text-slate-100 font-sans my-6 shadow-md space-y-2">
+                    {quoteLines.split('\n').map((qLine, qIdx) => (
+                      <p key={qIdx} className="italic leading-relaxed">
+                        {qLine}
+                      </p>
+                    ))}
+                  </div>
+                );
+              }
+
+              // Code / Diagram Blocks
+              if (paragraph.startsWith('```')) {
+                const codeContent = paragraph.replace(/^```[a-z]*\n?/, '').replace(/\n?```$/, '');
+                return (
+                  <div key={index} className="my-6 rounded-2xl bg-black/60 border border-white/15 p-4 sm:p-6 overflow-x-auto shadow-xl">
+                    <pre className="text-xs sm:text-sm font-mono-code text-blue-300 leading-relaxed tracking-normal">
+                      {codeContent}
+                    </pre>
                   </div>
                 );
               }

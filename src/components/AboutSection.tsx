@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Compass, MapPin, Target, Zap, Anchor, ArrowRight, ShieldCheck, BookOpen, Volume2, Sparkles, Camera, PenTool, Search, Briefcase, ExternalLink, Code2, HelpCircle } from 'lucide-react';
+import { Compass, MapPin, Target, Zap, Anchor, ArrowRight, ShieldCheck, BookOpen, Volume2, Sparkles, Camera, PenTool, Search, Briefcase, ExternalLink, Code2 } from 'lucide-react';
 import { PASSIONS_DATA, Passion, ABOUT_MANIFESTO, ABOUT_LINKS, WHAT_I_DO_DATA, WhatIDoItem } from '../data/siteData';
 
 interface AboutSectionProps {
@@ -153,14 +153,6 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* Editable Placeholders Guide Banner */}
-          <div className="p-4 rounded-xl bg-blue-950/20 border border-blue-500/30 flex items-center gap-3 text-xs text-slate-300 font-mono-code">
-            <HelpCircle className="w-4 h-4 text-blue-400 shrink-0" />
-            <span>
-              <strong>Editable placeholders:</strong> Tautan <em>Business</em>, <em>Travel</em>, dan <em>Creative Projects</em> saat ini berupa placeholder. Ganti nilai pada <code className="text-blue-300 bg-black/40 px-1.5 py-0.5 rounded border border-white/10">ABOUT_LINKS</code> di <code className="text-blue-300 bg-black/40 px-1.5 py-0.5 rounded border border-white/10">src/data/siteData.ts</code> untuk mengarahkannya.
-            </span>
           </div>
         </div>
 
