@@ -20,6 +20,7 @@ import { PassionDetailModal } from './components/PassionDetailModal';
 import { ChapterSampleModal } from './components/ChapterSampleModal';
 import { SearchModal } from './components/SearchModal';
 import { LoginModal } from './components/LoginModal';
+import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { Article, DailyNote, Passion, BookChapter, ARTICLES_DATA, BOOKS_DATA } from './data/siteData';
 import { ShoppingBag } from 'lucide-react';
 
@@ -233,6 +234,8 @@ export default function App() {
           </div>
         </div>
       )}
+      {/* PWA Install Banner */}
+      <PWAInstallBanner />
     </div>
   );
 }

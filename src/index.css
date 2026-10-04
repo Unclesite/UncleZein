@@ -81,3 +81,13 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
+/* Safe area insets for mobile PWA standalone with notch/Dynamic Island */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+

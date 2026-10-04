@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Volume2, VolumeX, Search, Menu, X, UserCheck, Lock } from 'lucide-react';
 import { soundscape } from '../utils/audioSynth';
+import { PWAInstallButton } from './PWAInstallButton';
 
 interface NavbarProps {
   activeTab: string;
@@ -122,6 +123,9 @@ export const Navbar: React.FC<NavbarProps> = ({
             )}
           </button>
 
+          {/* PWA Install Button */}
+          <PWAInstallButton variant="nav" />
+
           {/* MASUK / Member Button */}
           <button
             onClick={onOpenLogin}
@@ -155,6 +159,12 @@ export const Navbar: React.FC<NavbarProps> = ({
               {item.label}
             </button>
           ))}
+
+          {/* Mobile PWA Install Trigger */}
+          <div className="pt-2">
+            <PWAInstallButton variant="drawer" />
+          </div>
+
           <div className="pt-4 border-t border-white/10 flex items-center justify-between">
             <button
               onClick={() => {
