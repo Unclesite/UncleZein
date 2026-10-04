@@ -17,7 +17,7 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showSavedOnly, setShowSavedOnly] = useState(false);
 
-  const categories = ['all', "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
+  const categories = ['all', "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
 
   const filteredArticles = useMemo(() => {
     return ARTICLES_DATA.filter((article) => {
