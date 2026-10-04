@@ -186,7 +186,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                         : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    01. Berkuda
+                    01. Waktu Luang
                   </button>
                   <button
                     type="button"
@@ -197,12 +197,9 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                         : 'bg-white/[0.03] text-slate-400 border-white/10 hover:text-white'
                     }`}
                   >
-                    02. Santai & Membaca
+                    02. Outdoor
                   </button>
                 </div>
-                <span className="text-[10px] font-mono-code text-slate-400 hidden sm:inline">
-                  DOKUMENTASI ASLI
-                </span>
               </div>
 
               {/* Photo Container */}
@@ -249,11 +246,11 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
                   <span className="bg-black/70 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm flex items-center gap-1.5">
                     <Camera className="w-3.5 h-3.5 text-blue-400" />
                     <span>
-                      {activePhoto === 'horse' ? 'UNCLE ZEIN // BERKUDA' : 'UNCLE ZEIN // CATATAN HARIAN'}
+                      {activePhoto === 'horse' ? 'UNCLE ZEIN // WAKTU LUANG' : 'UNCLE ZEIN // OUTDOOR'}
                     </span>
                   </span>
                   <span className="bg-blue-600/80 text-white px-2 py-0.5 rounded text-[10px] font-bold">
-                    {activePhoto === 'horse' ? 'OUTDOOR' : 'JOURNAL'}
+                    {activePhoto === 'horse' ? 'WAKTU LUANG' : 'OUTDOOR'}
                   </span>
                 </div>
               </div>
