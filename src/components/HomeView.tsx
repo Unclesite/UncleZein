@@ -143,14 +143,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                     {/* Gradient Contrast Scrim */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/30 pointer-events-none" />
 
-                    {/* Top Badge */}
-                    <div className="relative z-10 flex justify-between items-center text-[11px] font-mono-code text-blue-300 p-4">
-                      <span className="bg-black/60 px-2.5 py-1 rounded-md border border-white/10 backdrop-blur-sm">
-                        UNCLE ZEIN // BERKUDA
-                      </span>
-                      <span className="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping" />
-                    </div>
-
                     {/* Bottom Metadata Lockup */}
                     <div className="relative z-10 p-4 mt-auto bg-gradient-to-t from-black/90 via-black/50 to-transparent space-y-1.5 backdrop-blur-[2px] rounded-b-lg">
                       <div>
@@ -163,10 +155,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                         <p className="text-[11px] font-mono-code text-blue-400">
                           Est. pertanyaan tanpa akhir
                         </p>
-                      </div>
-                      <div className="border-t border-white/15 pt-2 flex items-center justify-between text-[11px] font-mono-code text-slate-300">
-                        <span>Credo</span>
-                        <span className="text-blue-300 italic">"Bukan Ustaz. Bukan Akademisi."</span>
                       </div>
                     </div>
                   </div>
@@ -199,12 +187,66 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 3. WHAT I DO SECTION (Pillars on Home) */}
+      {/* 3. LATEST THINKING / TULISAN DAN ESAI SECTION */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
           <div className="space-y-1">
             <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-              01 // WHAT I DO
+              01 // TULISAN & ESAI
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
+              Tulisan dan Esai Terbaru
+            </h2>
+          </div>
+
+          <button
+            onClick={() => onNavigate('ideas', '/ideas')}
+            className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer"
+          >
+            <span>View All Ideas</span>
+            <ArrowRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {latestArticles.map((art, idx) => (
+            <div
+              key={art.id}
+              onClick={() => onOpenArticle(art)}
+              className="glass-card rounded-2xl p-6 border border-white/10 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-6"
+            >
+              <div className="space-y-3">
+                <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
+                  <span className="text-blue-400 font-semibold">{art.essayNumber || `0${idx + 1}`}</span>
+                  <span>{art.readTime}</span>
+                </div>
+
+                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors font-display line-clamp-2 leading-snug">
+                  {art.title}
+                </h3>
+
+                <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                  {art.summary}
+                </p>
+              </div>
+
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                <span className="text-slate-400 font-mono-code">{art.category}</span>
+                <span className="text-blue-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                  Baca Esai <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. WHAT I DO SECTION (Pillars on Home) */}
+      <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
+          <div className="space-y-1">
+            <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
+              02 // WHAT I DO
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
               Beberapa Hal yang Dikerjakan
@@ -256,60 +298,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 4. LATEST THINKING SECTION */}
-      <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
-          <div className="space-y-1">
-            <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-              02 // TULISAN TERBARU
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
-              Tulisan dan Esai Terbaru
-            </h2>
-          </div>
-
-          <button
-            onClick={() => onNavigate('ideas', '/ideas')}
-            className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer"
-          >
-            <span>View All Ideas</span>
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {latestArticles.map((art, idx) => (
-            <div
-              key={art.id}
-              onClick={() => onOpenArticle(art)}
-              className="glass-card rounded-2xl p-6 border border-white/10 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-6"
-            >
-              <div className="space-y-3">
-                <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
-                  <span className="text-blue-400 font-semibold">{art.essayNumber || `0${idx + 1}`}</span>
-                  <span>{art.readTime}</span>
-                </div>
-
-                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors font-display line-clamp-2 leading-snug">
-                  {art.title}
-                </h3>
-
-                <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
-                  {art.summary}
-                </p>
-              </div>
-
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
-                <span className="text-slate-400 font-mono-code">{art.category}</span>
-                <span className="text-blue-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Baca Esai <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* 5. PERSONAL PASSIONS & FIELD SPOTLIGHT */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8">
         <div className="rounded-3xl glass-card border border-white/10 overflow-hidden glow-blue bg-gradient-to-br from-[#0b101d] via-[#060911] to-black">
@@ -333,13 +321,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 </div>
               )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/20 lg:bg-gradient-to-r lg:from-transparent lg:via-black/20 lg:to-[#07090e] pointer-events-none" />
-              
-              {/* Top Category Badge */}
-              <div className="absolute top-4 left-4 z-10">
-                <span className="text-[11px] font-mono-code font-bold bg-black/70 text-blue-400 px-3 py-1 rounded-md border border-blue-500/30 backdrop-blur-sm">
-                  JALAN-JALAN & ALAM TERBUKA
-                </span>
-              </div>
 
               {/* Bottom Caption Lockup */}
               <div className="absolute bottom-4 left-4 right-4 z-10 flex items-center justify-between p-3 rounded-xl bg-black/70 border border-white/10 backdrop-blur-md">
@@ -360,22 +341,22 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   <Zap className="w-4 h-4" />
                   <span>KEGIATAN & PERJALANAN</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display leading-tight">
-                  Menikmati Waktu di Alam Bebas
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display leading-tight uppercase">
+                  JALAN, LIHAT, CATAT
                 </h3>
                 <p className="text-sm text-slate-300 leading-relaxed font-light">
-                  "Duduk santai di tepi air atau jalan di alam terbuka bukan buang-buang waktu; itu cara paling enak untuk mengistirahatkan pikiran dan melihat hal baru."
+                  Ke laut, naik gunung, jalan-jalan, dan sesekali napak tilas sejarah lokal.
                 </p>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
                 <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
                   <strong className="text-white block font-mono-code text-blue-400 mb-0.5">KEGIATAN:</strong>
-                  Spearfishing, Jalan-jalan, Berburu, Berkuda, Memancing.
+                  Spearfishing, jalan-jalan, berburu, berkuda, memancing.
                 </div>
                 <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/5 text-xs text-slate-300">
-                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">NILAI:</strong>
-                  Ketenangan, rasa ingin tahu, & menikmati hidup.
+                  <strong className="text-white block font-mono-code text-blue-400 mb-0.5">RITME:</strong>
+                  Ketenangan, rasa ingin tahu, dan menikmati hidup.
                 </div>
               </div>
 
@@ -383,7 +364,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 onClick={() => onNavigate('about', '/about')}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-mono-code font-bold uppercase transition-all shadow-md cursor-pointer"
               >
-                <span>Lihat Cerita & Foto Kegiatan</span>
+                <span>Lihat Catatan</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             </div>
