@@ -237,108 +237,186 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
         </div>
 
         {/* Modal Top Control Bar */}
-        <div className={`flex flex-wrap items-center justify-between px-5 sm:px-8 py-3.5 border-b backdrop-blur-md shrink-0 gap-3 ${themeStyles.header}`}>
-          <button
-            onClick={onClose}
-            className="flex items-center gap-2 text-xs font-semibold text-slate-300 hover:text-white transition-colors cursor-pointer"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span className="hidden sm:inline">Kembali ke Daftar</span>
-          </button>
+        <div className={`px-4 sm:px-8 py-3 border-b backdrop-blur-md shrink-0 space-y-2.5 sm:space-y-0 ${themeStyles.header}`}>
+          <div className="flex items-center justify-between gap-2">
+            {/* Back Button */}
+            <button
+              onClick={onClose}
+              className="flex items-center gap-1.5 py-1.5 px-2.5 -ml-1 text-xs font-semibold text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5 cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 text-blue-400" />
+              <span className="font-mono-code font-bold text-slate-200 text-xs">KEMBALI</span>
+            </button>
 
-          {/* Reading Preferences & Action Strip */}
-          <div className="flex items-center gap-2 sm:gap-3 ml-auto">
-            {/* Theme Selector */}
-            <div className="flex items-center p-1 bg-white/5 rounded-xl border border-white/10 gap-1">
+            {/* Desktop Center: Reading Preferences on sm+ */}
+            <div className="hidden sm:flex items-center gap-3">
+              {/* Theme Selector */}
+              <div className="flex items-center p-1 bg-white/5 rounded-xl border border-white/10 gap-1">
+                <button
+                  onClick={() => setTheme('obsidian')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    theme === 'obsidian' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Tema Obsidian Dark"
+                >
+                  Dark
+                </button>
+                <button
+                  onClick={() => setTheme('sepia')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    theme === 'sepia' ? 'bg-[#b8864e] text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Tema Warm Sepia"
+                >
+                  Sepia
+                </button>
+                <button
+                  onClick={() => setTheme('midnight')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    theme === 'midnight' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Tema Midnight Blue"
+                >
+                  Midnight
+                </button>
+              </div>
+
+              {/* Font Size Selector */}
+              <div className="flex items-center p-1 bg-white/5 rounded-xl border border-white/10 gap-0.5">
+                <button
+                  onClick={() => setFontSize('compact')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    fontSize === 'compact' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Ukuran Font Kompak (15px)"
+                >
+                  A
+                </button>
+                <button
+                  onClick={() => setFontSize('comfortable')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    fontSize === 'comfortable' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Ukuran Font Nyaman (17px)"
+                >
+                  A+
+                </button>
+                <button
+                  onClick={() => setFontSize('spacious')}
+                  className={`px-2.5 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                    fontSize === 'spacious' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
+                  }`}
+                  title="Ukuran Font Besar (19px)"
+                >
+                  A++
+                </button>
+              </div>
+            </div>
+
+            {/* Right: Actions ALWAYS Visible & Prominent */}
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {/* Save Bookmark */}
+              <button
+                onClick={onToggleSave}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border transition-all cursor-pointer text-xs font-mono-code font-semibold ${
+                  isSaved
+                    ? 'bg-blue-600 text-white border-blue-500 shadow-sm'
+                    : 'text-slate-300 border-white/10 hover:text-white bg-white/5 hover:bg-white/10'
+                }`}
+                title={isSaved ? 'Tersimpan di Bookmark' : 'Simpan Bacaan'}
+              >
+                <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-current text-white' : 'text-blue-400'}`} />
+                <span className="hidden xs:inline sm:inline">{isSaved ? 'Tersimpan' : 'Simpan'}</span>
+              </button>
+
+              {/* Share Link */}
+              <button
+                onClick={handleShare}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-slate-300 border border-white/10 hover:text-white bg-white/5 hover:bg-white/10 transition-all cursor-pointer text-xs font-mono-code font-semibold"
+                title="Salin Tautan"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400 font-bold">Tersalin!</span>
+                  </>
+                ) : (
+                  <>
+                    <Share2 className="w-3.5 h-3.5 text-blue-400" />
+                    <span className="hidden xs:inline sm:inline">Bagikan</span>
+                  </>
+                )}
+              </button>
+
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="p-1.5 text-slate-400 hover:text-white transition-colors rounded-xl hover:bg-white/10 cursor-pointer ml-1"
+                title="Tutup Modal"
+                aria-label="Tutup"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+
+          {/* Mobile Reading Controls Sub-Bar (visible on screens < sm) */}
+          <div className="flex sm:hidden items-center justify-between gap-2 pt-2 border-t border-white/10">
+            {/* Mobile Theme Selector */}
+            <div className="flex items-center p-0.5 bg-white/5 rounded-lg border border-white/10 gap-0.5">
               <button
                 onClick={() => setTheme('obsidian')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   theme === 'obsidian' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Tema Obsidian Dark"
               >
                 Dark
               </button>
               <button
                 onClick={() => setTheme('sepia')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   theme === 'sepia' ? 'bg-[#b8864e] text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Tema Warm Sepia (Nyaman untuk Mata)"
               >
                 Sepia
               </button>
               <button
                 onClick={() => setTheme('midnight')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   theme === 'midnight' ? 'bg-indigo-600 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Tema Midnight Blue"
               >
                 Midnight
               </button>
             </div>
 
-            {/* Font Size Selector */}
-            <div className="flex items-center p-1 bg-white/5 rounded-xl border border-white/10 gap-0.5">
+            {/* Mobile Font Size Selector */}
+            <div className="flex items-center p-0.5 bg-white/5 rounded-lg border border-white/10 gap-0.5">
               <button
                 onClick={() => setFontSize('compact')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   fontSize === 'compact' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Ukuran Font Kompak (15px)"
               >
                 A
               </button>
               <button
                 onClick={() => setFontSize('comfortable')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   fontSize === 'comfortable' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Ukuran Font Nyaman (17px)"
               >
                 A+
               </button>
               <button
                 onClick={() => setFontSize('spacious')}
-                className={`px-2 py-1 text-[11px] font-mono-code rounded-lg transition-all cursor-pointer ${
+                className={`px-2.5 py-1 text-[11px] font-mono-code rounded transition-all cursor-pointer ${
                   fontSize === 'spacious' ? 'bg-white/20 text-white font-bold' : 'text-slate-400 hover:text-white'
                 }`}
-                title="Ukuran Font Besar (19px)"
               >
                 A++
               </button>
             </div>
-
-            {/* Save Bookmark */}
-            <button
-              onClick={onToggleSave}
-              className={`p-2 rounded-xl border transition-all cursor-pointer ${
-                isSaved
-                  ? 'bg-blue-600 text-white border-blue-500'
-                  : 'text-slate-400 border-white/10 hover:text-white bg-white/5'
-              }`}
-              title={isSaved ? 'Tersimpan' : 'Simpan Bacaan'}
-            >
-              <Bookmark className={`w-3.5 h-3.5 ${isSaved ? 'fill-current' : ''}`} />
-            </button>
-
-            {/* Share Link */}
-            <button
-              onClick={handleShare}
-              className="p-2 rounded-xl text-slate-400 border border-white/10 hover:text-white bg-white/5 transition-colors cursor-pointer"
-              title="Salin Tautan"
-            >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Share2 className="w-3.5 h-3.5" />}
-            </button>
-
-            {/* Close Button */}
-            <button
-              onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-white transition-colors rounded-xl hover:bg-white/10 cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
           </div>
         </div>
 

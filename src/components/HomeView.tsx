@@ -31,30 +31,30 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const featuredNote = DAILY_NOTES_DATA[0];
 
   return (
-    <div className="space-y-24 pb-20">
+    <div className="space-y-16 sm:space-y-24 pb-20">
       {/* 1. HERO SECTION */}
-      <section className="relative min-h-[85vh] flex flex-col justify-center pt-28 pb-12 overflow-hidden border-b border-white/5">
+      <section className="relative min-h-0 sm:min-h-[80vh] flex flex-col justify-start sm:justify-center pt-8 sm:pt-14 lg:pt-16 pb-10 sm:pb-16 overflow-hidden border-b border-white/5">
         {/* Ambient Subtle Background Gradients */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-blue-600/10 blur-[140px] rounded-full pointer-events-none -z-10" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none -z-10" />
 
-        <div className="max-w-7xl mx-auto px-6 sm:px-8 w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        <div className="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
             {/* Left: Typography, Identity & Signature Taglines */}
-            <div className="lg:col-span-7 space-y-8">
+            <div className="lg:col-span-7 space-y-6 sm:space-y-8">
               {/* Header Badges: Digital Journal + Think. Question. Test. */}
-              <div className="flex flex-wrap items-center gap-3 text-xs font-mono-code">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-xs font-mono-code">
                 <div className="flex items-center gap-2 text-blue-400 bg-blue-950/40 px-3 py-1 rounded-full border border-blue-500/30">
                   <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                  <span className="font-bold tracking-wider uppercase">PERSONAL JOURNAL // UNCLE ZEIN.</span>
+                  <span className="font-bold tracking-wider uppercase text-[11px] sm:text-xs">PERSONAL JOURNAL // UNCLE ZEIN.</span>
                 </div>
-                <div className="text-slate-400 font-semibold tracking-wider">
+                <div className="text-slate-400 font-semibold tracking-wider text-[11px] sm:text-xs">
                   "THINK. QUESTION. TEST."
                 </div>
               </div>
 
               {/* Giant Title */}
-              <h1 className="text-5xl sm:text-7xl xl:text-8xl font-black tracking-tight text-white leading-none font-display uppercase">
+              <h1 className="text-4xl sm:text-7xl xl:text-8xl font-black tracking-tight text-white leading-none font-display uppercase">
                 UNCLE ZEIN<span className="text-blue-500">.</span>
               </h1>
 

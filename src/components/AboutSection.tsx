@@ -60,7 +60,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onSelectPassion, onN
   };
 
   return (
-    <section id="about" className="py-16 relative">
+    <section id="about" className="py-10 sm:py-16 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-24">
         {/* 1. SECTION HEADER & HUMBLE REFLECTIVE MANIFESTO */}
         <div className="space-y-6 max-w-4xl">

@@ -12,7 +12,7 @@ export const BooksSection: React.FC<BooksSectionProps> = ({ onOpenSampleModal, o
   const [selectedChapter, setSelectedChapter] = useState<BookChapter>(BOOKS_DATA.chapters[0]);
 
   return (
-    <section id="books" className="py-24 relative">
+    <section id="books" className="py-10 sm:py-24 relative">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 space-y-16">
         {/* Section Header */}
         <div className="space-y-4 max-w-3xl">

@@ -132,7 +132,7 @@ export default function App() {
       />
 
       {/* Main Dynamic View Area */}
-      <main className="pt-20">
+      <main className="pt-14 sm:pt-20">
         {activeTab === 'home' && (
           <HomeView
             onNavigate={handleNavigate}
