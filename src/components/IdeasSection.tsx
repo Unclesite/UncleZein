@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, BookOpen, Clock, Tag, ArrowRight, Bookmark, Filter, Check, Layers } from 'lucide-react';
+import { Search, BookOpen, Clock, Tag, ArrowRight, Bookmark, Filter, Check, Layers, Share2, Link2, MessageCircle } from 'lucide-react';
 import { ARTICLES_DATA, Article } from '../data/siteData';
 
 interface IdeasSectionProps {
@@ -16,8 +16,56 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [showSavedOnly, setShowSavedOnly] = useState(false);
+  const [copiedArticleId, setCopiedArticleId] = useState<string | null>(null);
 
-  const categories = ['all', "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
+  const categories = ['all', "Sejarah & Qur'an", "Qur'an & History", "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
+
+  const getArticleShareUrl = (article: Article) => {
+    if (typeof window === 'undefined') return `/ideas?article=${encodeURIComponent(article.slug)}`;
+    return `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
+  };
+
+  const handleCopyLink = (e: React.MouseEvent, article: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(article);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        setCopiedArticleId(article.id);
+        setTimeout(() => setCopiedArticleId(null), 2500);
+      }).catch(() => {
+        // fallback
+        prompt('Salin link artikel ini:', shareUrl);
+      });
+    } else {
+      prompt('Salin link artikel ini:', shareUrl);
+    }
+  };
+
+  const handleWhatsAppShare = (e: React.MouseEvent, article: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(article);
+    const message = `${article.title}\n\nBaca artikel selengkapnya di Uncle Zein:\n${shareUrl}`;
+    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleNativeShare = (e: React.MouseEvent, article: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(article);
+    if (navigator.share) {
+      navigator
+        .share({
+          title: article.title,
+          text: article.summary,
+          url: shareUrl,
+        })
+        .catch(() => {
+          handleCopyLink(e, article);
+        });
+      return;
+    }
+    handleCopyLink(e, article);
+  };
 
   const filteredArticles = useMemo(() => {
     return ARTICLES_DATA.filter((article) => {
@@ -178,11 +226,19 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
                         )}
                       </div>
 
-                      <h3
-                        onClick={() => onSelectArticle(article)}
-                        className="text-xl sm:text-2xl lg:text-3xl font-bold text-white group-hover:text-blue-300 transition-colors font-display cursor-pointer leading-snug"
-                      >
-                        {article.title}
+                      <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold font-display leading-snug">
+                        <a
+                          href={getArticleShareUrl(article)}
+                          onClick={(e) => {
+                            if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                              e.preventDefault();
+                              onSelectArticle(article);
+                            }
+                          }}
+                          className="text-white hover:text-blue-300 transition-colors cursor-pointer group-hover:text-blue-300 inline-block"
+                        >
+                          {article.title}
+                        </a>
                       </h3>
 
                       <p className="text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -197,8 +253,33 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
                         </div>
                       )}
 
+                      {/* Explicit Direct Shareable Link Box */}
+                      <div className="pt-2 flex flex-wrap items-center gap-2">
+                        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/50 border border-white/10 text-xs font-mono-code text-slate-300 group-hover:border-blue-500/30 transition-colors max-w-full overflow-hidden">
+                          <Link2 className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                          <span className="text-slate-400 shrink-0 text-[11px]">Link:</span>
+                          <span className="truncate select-all text-blue-300 text-[11px] font-mono">
+                            /ideas?article={article.slug}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={(e) => handleCopyLink(e, article)}
+                            className="ml-1 px-2 py-0.5 rounded bg-blue-600/20 hover:bg-blue-600/30 text-blue-400 hover:text-white text-[11px] font-bold transition-all shrink-0 cursor-pointer"
+                            title="Salin tautan langsung artikel"
+                          >
+                            {copiedArticleId === article.id ? (
+                              <span className="text-emerald-400 font-bold flex items-center gap-1">
+                                <Check className="w-3 h-3" /> Tersalin!
+                              </span>
+                            ) : (
+                              'Salin'
+                            )}
+                          </button>
+                        </div>
+                      </div>
+
                       {/* Tags List (Rendered as quiet text items) */}
-                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400 font-mono-code pt-2">
+                      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400 font-mono-code pt-1">
                         <span>Topik:</span>
                         {article.tags.map((tag, idx) => (
                           <span key={tag}>
@@ -210,26 +291,77 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
                     </div>
 
                     {/* Actions */}
-                    <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-3 shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-white/5">
-                      <button
-                        onClick={() => onToggleSaveArticle(article.id)}
-                        className={`p-2.5 rounded-xl border transition-all cursor-pointer ${
-                          isSaved
-                            ? 'bg-blue-600/20 text-blue-400 border-blue-500/40'
-                            : 'text-slate-400 border-white/10 hover:text-white hover:bg-white/5'
-                        }`}
-                        title={isSaved ? 'Hapus dari daftar bacaan' : 'Simpan untuk dibaca nanti'}
-                      >
-                        <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
-                      </button>
+                    <div className="flex md:flex-col items-center md:items-end justify-between md:justify-start gap-2.5 shrink-0 pt-4 md:pt-0 border-t md:border-t-0 border-white/5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        {/* Direct Copy Link Button */}
+                        <button
+                          onClick={(e) => handleCopyLink(e, article)}
+                          className={`px-3 py-2 rounded-xl border transition-all cursor-pointer flex items-center gap-1.5 text-xs font-mono-code ${
+                            copiedArticleId === article.id
+                              ? 'bg-emerald-950/50 text-emerald-400 border-emerald-500/50 font-bold shadow-[0_0_15px_rgba(16,185,129,0.2)]'
+                              : 'text-slate-300 border-white/10 hover:text-white hover:bg-white/5 hover:border-slate-600'
+                          }`}
+                          title="Salin tautan langsung artikel ini untuk dibagikan"
+                        >
+                          {copiedArticleId === article.id ? (
+                            <>
+                              <Check className="w-4 h-4 text-emerald-400" />
+                              <span className="text-[11px]">Tersalin!</span>
+                            </>
+                          ) : (
+                            <>
+                              <Link2 className="w-4 h-4 text-blue-400" />
+                              <span className="text-[11px]">Salin Link</span>
+                            </>
+                          )}
+                        </button>
 
-                      <button
-                        onClick={() => onSelectArticle(article)}
+                        {/* WhatsApp Share Button */}
+                        <button
+                          onClick={(e) => handleWhatsAppShare(e, article)}
+                          className="px-2.5 py-2 rounded-xl border border-white/10 text-emerald-400 hover:text-emerald-300 hover:bg-emerald-950/20 hover:border-emerald-500/30 transition-all cursor-pointer flex items-center gap-1.5 text-xs font-mono-code"
+                          title="Bagikan langsung ke WhatsApp"
+                        >
+                          <MessageCircle className="w-4 h-4" />
+                          <span className="text-[11px] hidden sm:inline">WA</span>
+                        </button>
+
+                        {/* Native Share Button */}
+                        <button
+                          onClick={(e) => handleNativeShare(e, article)}
+                          className="p-2 rounded-xl border border-white/10 text-slate-400 hover:text-white hover:bg-white/5 transition-all cursor-pointer"
+                          title="Bagikan ke aplikasi lain"
+                        >
+                          <Share2 className="w-4 h-4" />
+                        </button>
+
+                        {/* Save Bookmark */}
+                        <button
+                          onClick={() => onToggleSaveArticle(article.id)}
+                          className={`p-2 rounded-xl border transition-all cursor-pointer ${
+                            isSaved
+                              ? 'bg-blue-600/20 text-blue-400 border-blue-500/40'
+                              : 'text-slate-400 border-white/10 hover:text-white hover:bg-white/5'
+                          }`}
+                          title={isSaved ? 'Hapus dari daftar bacaan' : 'Simpan untuk dibaca nanti'}
+                        >
+                          <Bookmark className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
+                        </button>
+                      </div>
+
+                      <a
+                        href={getArticleShareUrl(article)}
+                        onClick={(e) => {
+                          if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                            e.preventDefault();
+                            onSelectArticle(article);
+                          }
+                        }}
                         className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-blue-600/10 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 text-xs font-semibold transition-all group-hover:shadow-[0_0_20px_rgba(59,130,246,0.3)] cursor-pointer whitespace-nowrap"
                       >
-                        <span>Baca Tuntas (25 Poin)</span>
+                        <span>Baca Tuntas</span>
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
+                      </a>
                     </div>
                   </div>
                 </article>

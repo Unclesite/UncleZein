@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, BookOpen, Compass, ShieldAlert, Sparkles, Layers, Quote, Clock, MapPin, ChevronRight, Zap, PenTool, Search, Briefcase, HelpCircle } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, BookOpen, Compass, ShieldAlert, Sparkles, Layers, Quote, Clock, MapPin, ChevronRight, Zap, PenTool, Search, Briefcase, HelpCircle, Share2, Check, Link2, MessageCircle } from 'lucide-react';
 import { ARTICLES_DATA, DAILY_NOTES_DATA, RESEARCH_DATA, PASSIONS_DATA, SITE_CONFIG, ABOUT_MANIFESTO, WHAT_I_DO_DATA, Article, DailyNote } from '../data/siteData';
 
 interface HomeViewProps {
@@ -15,6 +15,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 }) => {
   const [imageError, setImageError] = React.useState(false);
   const [guitarImageError, setGuitarImageError] = React.useState(false);
+  const [copiedArticleId, setCopiedArticleId] = useState<string | null>(null);
 
   const conceptTags = [
     { name: 'QURAN', count: '14 Esai' },
@@ -27,8 +28,51 @@ export const HomeView: React.FC<HomeViewProps> = ({
     { name: 'HERMENEUTICS', count: '16 Naskah' },
   ];
 
-  const latestArticles = ARTICLES_DATA.slice(0, 3);
+  const latestArticles = ARTICLES_DATA.slice(0, 6);
   const featuredNote = DAILY_NOTES_DATA[0];
+
+  const getArticleShareUrl = (art: Article) => {
+    if (typeof window === 'undefined') return `/ideas?article=${encodeURIComponent(art.slug)}`;
+    return `${window.location.origin}/ideas?article=${encodeURIComponent(art.slug)}`;
+  };
+
+  const handleCopyArticleLink = (e: React.MouseEvent, art: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(art);
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        setCopiedArticleId(art.id);
+        setTimeout(() => setCopiedArticleId(null), 2500);
+      }).catch(() => {
+        prompt('Salin link artikel ini:', shareUrl);
+      });
+    } else {
+      prompt('Salin link artikel ini:', shareUrl);
+    }
+  };
+
+  const handleWhatsAppShare = (e: React.MouseEvent, art: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(art);
+    const message = `${art.title}\n\nBaca selengkapnya di Uncle Zein:\n${shareUrl}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleShareArticle = (e: React.MouseEvent, art: Article) => {
+    e.stopPropagation();
+    const shareUrl = getArticleShareUrl(art);
+    if (navigator.share) {
+      navigator.share({
+        title: art.title,
+        text: art.summary,
+        url: shareUrl,
+      }).catch(() => {
+        handleCopyArticleLink(e, art);
+      });
+      return;
+    }
+    handleCopyArticleLink(e, art);
+  };
 
   return (
     <div className="space-y-16 sm:space-y-24 pb-20">
@@ -187,57 +231,129 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </section>
 
-      {/* 3. LATEST THINKING / TULISAN DAN ESAI SECTION */}
+      {/* 3. LATEST THINKING / TULISAN DAN ESAI SECTION (6 ARTIKEL) */}
       <section className="max-w-7xl mx-auto px-6 sm:px-8 space-y-8">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-4">
           <div className="space-y-1">
-            <div className="text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
-              01 // TULISAN & ESAI
+            <div className="flex items-center gap-2 text-xs font-mono-code text-blue-400 uppercase tracking-wider font-bold">
+              <span>01 // TULISAN & ESAI</span>
+              <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+              <span className="text-slate-400 font-normal">6 Esai Terkini</span>
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white font-display">
               Tulisan dan Esai Terbaru
             </h2>
+            <p className="text-xs sm:text-sm text-slate-400 font-light">
+              Menampilkan 6 tulisan dan catatan pemikiran pilihan terbaru dari Uncle Zein.
+            </p>
           </div>
 
           <button
             onClick={() => onNavigate('ideas', '/ideas')}
-            className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer"
+            className="inline-flex items-center gap-1.5 text-xs font-mono-code font-bold text-blue-400 hover:text-blue-300 transition-colors uppercase cursor-pointer shrink-0"
           >
-            <span>View All Ideas</span>
+            <span>Lihat Semua ({ARTICLES_DATA.length})</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Grid 6 Artikel */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {latestArticles.map((art, idx) => (
             <div
               key={art.id}
               onClick={() => onOpenArticle(art)}
-              className="glass-card rounded-2xl p-6 border border-white/10 hover:border-blue-500/50 transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-6"
+              className="glass-card rounded-2xl p-6 border border-white/10 hover:border-blue-500/50 hover:bg-white/[0.02] transition-all duration-300 group cursor-pointer flex flex-col justify-between space-y-6"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-xs font-mono-code text-slate-400">
                   <span className="text-blue-400 font-semibold">{art.essayNumber || `0${idx + 1}`}</span>
-                  <span>{art.readTime}</span>
+                  <div className="flex items-center gap-2">
+                    <span>{art.readTime}</span>
+                    {/* Direct Copy Link Button */}
+                    <button
+                      onClick={(e) => handleCopyArticleLink(e, art)}
+                      className={`p-1.5 rounded-md border transition-colors ${
+                        copiedArticleId === art.id
+                          ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40'
+                          : 'border-transparent hover:bg-white/10 text-slate-400 hover:text-blue-400'
+                      }`}
+                      title="Salin Link Artikel Ini"
+                    >
+                      {copiedArticleId === art.id ? (
+                        <Check className="w-3.5 h-3.5 text-emerald-400" />
+                      ) : (
+                        <Link2 className="w-3.5 h-3.5" />
+                      )}
+                    </button>
+                    {/* Share Button */}
+                    <button
+                      onClick={(e) => handleShareArticle(e, art)}
+                      className="p-1.5 rounded-md hover:bg-white/10 text-slate-400 hover:text-blue-400 transition-colors"
+                      title="Bagikan Artikel"
+                    >
+                      <Share2 className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-white group-hover:text-blue-300 transition-colors font-display line-clamp-2 leading-snug">
-                  {art.title}
+                <h3 className="text-lg font-bold font-display line-clamp-2 leading-snug">
+                  <a
+                    href={getArticleShareUrl(art)}
+                    onClick={(e) => {
+                      if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                        e.preventDefault();
+                        onOpenArticle(art);
+                      }
+                    }}
+                    className="text-white group-hover:text-blue-300 transition-colors inline-block"
+                  >
+                    {art.title}
+                  </a>
                 </h3>
 
                 <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
                   {art.summary}
                 </p>
+
+                {/* Direct Link Preview Pill */}
+                <div className="pt-1 flex items-center gap-1.5 text-[11px] font-mono-code text-slate-400">
+                  <Link2 className="w-3 h-3 text-blue-400/80 shrink-0" />
+                  <span className="truncate select-all text-slate-400 font-mono text-[10px] hover:text-slate-300 transition-colors">
+                    /ideas?article={art.slug}
+                  </span>
+                </div>
               </div>
 
               <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs">
                 <span className="text-slate-400 font-mono-code">{art.category}</span>
-                <span className="text-blue-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                  Baca Esai <ArrowRight className="w-3.5 h-3.5" />
-                </span>
+                <a
+                  href={getArticleShareUrl(art)}
+                  onClick={(e) => {
+                    if (!e.metaKey && !e.ctrlKey && !e.shiftKey && e.button === 0) {
+                      e.preventDefault();
+                      onOpenArticle(art);
+                    }
+                  }}
+                  className="text-blue-400 font-semibold flex items-center gap-1 group-hover:translate-x-1 transition-transform"
+                >
+                  <span>Baca Esai</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Button to Explore All Ideas */}
+        <div className="text-center pt-2">
+          <button
+            onClick={() => onNavigate('ideas', '/ideas')}
+            className="inline-flex items-center gap-2 px-6 py-3 text-xs font-bold font-mono-code tracking-wider uppercase text-blue-300 hover:text-white bg-blue-950/40 hover:bg-blue-600/30 border border-blue-500/30 rounded-xl transition-all cursor-pointer shadow-sm hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]"
+          >
+            <span>Jelajahi Seluruh Tulisan ({ARTICLES_DATA.length} Naskah)</span>
+            <ArrowRight className="w-4 h-4 text-blue-400" />
+          </button>
         </div>
       </section>
 

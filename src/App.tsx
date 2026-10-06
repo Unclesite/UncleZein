@@ -63,15 +63,82 @@ export default function App() {
     }
   }, [savedArticleIds]);
 
-  // Handle browser back/forward buttons
+  // Handle browser back/forward buttons and initial deep linking for articles
   useEffect(() => {
-    const handlePopState = () => {
-      const path = window.location.pathname.replace(/^\//, '').replace(/\.html$/, '');
-      if (['ideas', 'research', 'books', 'media', 'about', 'contact'].includes(path)) {
-        setActiveTab(path);
-      } else {
-        setActiveTab('home');
+    const syncRouteAndArticle = () => {
+      try {
+        const searchParams = new URLSearchParams(window.location.search);
+        const articleParam = searchParams.get('article') || searchParams.get('id') || searchParams.get('slug');
+        const rawHash = window.location.hash.replace(/^#/, '');
+        const pathParts = window.location.pathname.replace(/^\//, '').split('/');
+
+        let targetSlug = articleParam || '';
+        if (targetSlug) {
+          try {
+            targetSlug = decodeURIComponent(targetSlug);
+          } catch {
+            // ignore
+          }
+        }
+
+        if (!targetSlug && (pathParts[0] === 'ideas' || pathParts[0] === 'article') && pathParts[1]) {
+          try {
+            targetSlug = decodeURIComponent(pathParts[1]);
+          } catch {
+            targetSlug = pathParts[1];
+          }
+        }
+
+        if (!targetSlug && rawHash) {
+          let cleanHash = rawHash;
+          if (cleanHash.startsWith('article-')) {
+            cleanHash = cleanHash.replace('article-', '');
+          } else if (cleanHash.startsWith('article/')) {
+            cleanHash = cleanHash.replace('article/', '');
+          }
+          try {
+            cleanHash = decodeURIComponent(cleanHash);
+          } catch {
+            // ignore
+          }
+          targetSlug = cleanHash;
+        }
+
+        if (targetSlug) {
+          const normalizedTarget = targetSlug.trim().toLowerCase();
+          const found = ARTICLES_DATA.find(
+            (a) =>
+              a.slug.toLowerCase() === normalizedTarget ||
+              a.id.toLowerCase() === normalizedTarget ||
+              a.id.toLowerCase() === `art-${normalizedTarget}` ||
+              a.title.toLowerCase() === normalizedTarget
+          );
+          if (found) {
+            setSelectedArticle(found);
+            setActiveTab('ideas');
+            document.title = `${found.title} — Uncle Zein`;
+            return;
+          }
+        } else {
+          setSelectedArticle(null);
+          document.title = 'Uncle Zein';
+        }
+
+        const rootPath = pathParts[0]?.replace(/\.html$/, '');
+        if (['ideas', 'research', 'books', 'media', 'about', 'contact'].includes(rootPath)) {
+          setActiveTab(rootPath);
+        } else {
+          setActiveTab('home');
+        }
+      } catch {
+        // ignore
       }
+    };
+
+    syncRouteAndArticle();
+
+    const handlePopState = () => {
+      syncRouteAndArticle();
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
@@ -79,12 +146,41 @@ export default function App() {
 
   const handleNavigate = (tab: string, path?: string) => {
     setActiveTab(tab);
+    setSelectedArticle(null);
     try {
       window.history.pushState({}, '', path || `/${tab === 'home' ? '' : tab}`);
+      document.title = 'Uncle Zein';
     } catch {
       // ignore
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleOpenArticle = (article: Article) => {
+    setSelectedArticle(article);
+    try {
+      window.history.pushState(
+        { articleSlug: article.slug },
+        '',
+        `/ideas?article=${encodeURIComponent(article.slug)}`
+      );
+      document.title = `${article.title} — Uncle Zein`;
+    } catch {
+      // ignore
+    }
+  };
+
+  const handleCloseArticle = () => {
+    setSelectedArticle(null);
+    try {
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.has('article')) {
+        window.history.pushState({}, '', `/${activeTab === 'home' ? '' : activeTab}`);
+      }
+      document.title = 'Uncle Zein';
+    } catch {
+      // ignore
+    }
   };
 
   const toggleSaveArticle = (id: string) => {
@@ -96,7 +192,7 @@ export default function App() {
   const handleOpenArticleById = (articleId: string) => {
     const found = ARTICLES_DATA.find((a) => a.id === articleId);
     if (found) {
-      setSelectedArticle(found);
+      handleOpenArticle(found);
     }
   };
 
@@ -136,14 +232,14 @@ export default function App() {
         {activeTab === 'home' && (
           <HomeView
             onNavigate={handleNavigate}
-            onOpenArticle={setSelectedArticle}
+            onOpenArticle={handleOpenArticle}
             onOpenNote={setSelectedNote}
           />
         )}
 
         {activeTab === 'ideas' && (
           <IdeasSection
-            onSelectArticle={setSelectedArticle}
+            onSelectArticle={handleOpenArticle}
             savedArticleIds={savedArticleIds}
             onToggleSaveArticle={toggleSaveArticle}
           />
@@ -187,7 +283,7 @@ export default function App() {
       {/* Modals */}
       <ArticleModal
         article={selectedArticle}
-        onClose={() => setSelectedArticle(null)}
+        onClose={handleCloseArticle}
         isSaved={selectedArticle ? savedArticleIds.includes(selectedArticle.id) : false}
         onToggleSave={() => selectedArticle && toggleSaveArticle(selectedArticle.id)}
       />
@@ -211,7 +307,7 @@ export default function App() {
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        onSelectArticle={setSelectedArticle}
+        onSelectArticle={handleOpenArticle}
         onSelectNote={setSelectedNote}
         onSelectPassion={setSelectedPassion}
         onNavigate={handleNavigate}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { X, Clock, Bookmark, Share2, Check, ArrowLeft, Layers, Sparkles, CheckCircle2, HelpCircle, ShieldAlert, ListOrdered, ChevronRight, Type, Eye, BookOpen } from 'lucide-react';
+import { X, Clock, Bookmark, Share2, Check, ArrowLeft, Layers, Sparkles, CheckCircle2, HelpCircle, ShieldAlert, ListOrdered, ChevronRight, Type, Eye, BookOpen, Link2, MessageCircle } from 'lucide-react';
 import { Article } from '../data/siteData';
 
 interface ArticleModalProps {
@@ -45,11 +45,40 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
   if (!article) return null;
 
   const handleShare = () => {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
+    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
+    if (navigator.share) {
+      navigator.share({
+        title: article.title,
+        text: article.summary,
+        url: articleUrl,
+      }).catch(() => {
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(articleUrl);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 2500);
+        }
+      });
+      return;
     }
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(articleUrl);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    }
+  };
+
+  const handleWhatsAppShare = () => {
+    if (!article) return;
+    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
+    const msg = `${article.title}\n\nBaca tulisan ini di Uncle Zein:\n${articleUrl}`;
+    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+  };
+
+  const handleTwitterShare = () => {
+    if (!article) return;
+    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(articleUrl)}`;
+    window.open(twitterUrl, '_blank', 'noopener,noreferrer');
   };
 
   const getStatusBadge = (status: string) => {
@@ -483,6 +512,33 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
               {article.title}
             </h1>
 
+            {/* Direct Share Link Bar */}
+            <div className="flex items-center justify-between gap-3 p-3 rounded-xl bg-white/[0.03] border border-white/10 text-xs font-mono-code">
+              <div className="flex items-center gap-2 truncate text-slate-400">
+                <span className="text-blue-400 font-semibold shrink-0">LINK ARTIKEL:</span>
+                <span className="truncate select-all text-slate-300">
+                  {typeof window !== 'undefined' ? `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}` : `/ideas?article=${article.slug}`}
+                </span>
+              </div>
+              <button
+                onClick={handleShare}
+                className="shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/20 hover:bg-blue-600 text-blue-300 hover:text-white border border-blue-500/30 transition-all cursor-pointer font-bold"
+                title="Salin tautan artikel ke clipboard"
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-400" />
+                    <span className="text-emerald-400">Tersalin!</span>
+                  </>
+                ) : (
+                  <>
+                    <Share2 className="w-3.5 h-3.5 text-blue-400" />
+                    <span>Salin Link</span>
+                  </>
+                )}
+              </button>
+            </div>
+
             <p className="text-base sm:text-lg text-slate-300 font-light italic border-l-3 border-blue-500 pl-5 py-1.5 leading-relaxed bg-white/[0.01] rounded-r-lg">
               {article.summary}
             </p>
@@ -582,6 +638,38 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
                 );
               }
 
+              // Section Headings like "1. TITIK TOLAK..." or "1.1 Pendahuluan"
+              if (/^\d+(\.\d+)*\.\s+[A-Z\u0600-\u06FF]/.test(paragraph) && !paragraph.includes('\n')) {
+                const headingText = paragraph.trim();
+                const slug = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                return (
+                  <div key={index} id={slug} className="pt-8 pb-2 scroll-mt-20 border-b border-white/10">
+                    <h3 className={`text-xl sm:text-2xl font-bold font-display tracking-tight text-white ${themeStyles.accent}`}>
+                      {headingText}
+                    </h3>
+                  </div>
+                );
+              }
+
+              // Math / Formula calculation block
+              if (paragraph.includes('\\text{') || paragraph.includes('\\overline{')) {
+                return (
+                  <div key={index} className="my-6 p-5 sm:p-6 rounded-2xl bg-blue-950/30 border border-blue-500/30 font-mono-code text-sm sm:text-base text-blue-200 overflow-x-auto shadow-lg space-y-2">
+                    {paragraph.split('\n').map((mLine, mIdx) => {
+                      const cleanMath = mLine
+                        .replace(/\\text\{([^}]+)\}/g, '$1')
+                        .replace(/\\overline\{([^}]+)\}/g, '──────── $1 ────────')
+                        .trim();
+                      return cleanMath ? (
+                        <div key={mIdx} className="font-semibold tracking-wide">
+                          {cleanMath}
+                        </div>
+                      ) : null;
+                    })}
+                  </div>
+                );
+              }
+
               // Numbered Lists
               if (/^\d+\.\s/.test(paragraph)) {
                 const listItems = paragraph.split('\n').filter(Boolean);
@@ -648,6 +736,61 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
               </p>
             </div>
           )}
+
+          {/* Bagikan Tulisan Ini Card */}
+          <div className="max-w-3xl mx-auto p-6 rounded-2xl glass-card border border-white/10 space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h4 className="text-sm font-bold text-white flex items-center gap-2">
+                  <Share2 className="w-4 h-4 text-blue-400" />
+                  <span>Bagikan Tulisan Ini</span>
+                </h4>
+                <p className="text-xs text-slate-400">
+                  Tautan langsung untuk membagikan naskah ini kepada rekan atau media sosial:
+                </p>
+              </div>
+
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleWhatsAppShare}
+                  className="px-3 py-1.5 rounded-xl border border-emerald-500/30 bg-emerald-950/30 hover:bg-emerald-900/40 text-emerald-300 text-xs font-mono-code font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+                  title="Bagikan ke WhatsApp"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  <span>WhatsApp</span>
+                </button>
+
+                <button
+                  onClick={handleTwitterShare}
+                  className="px-3 py-1.5 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 text-slate-200 text-xs font-mono-code font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+                  title="Bagikan ke X / Twitter"
+                >
+                  <span>X / Twitter</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Direct Link Input with One-Click Copy */}
+            <div className="flex items-center gap-2 p-2 rounded-xl bg-black/60 border border-white/10">
+              <Link2 className="w-4 h-4 text-blue-400 shrink-0 ml-2" />
+              <input
+                type="text"
+                readOnly
+                value={`${typeof window !== 'undefined' ? window.location.origin : ''}/ideas?article=${article.slug}`}
+                className="bg-transparent text-xs font-mono-code text-blue-200 select-all w-full focus:outline-none"
+              />
+              <button
+                onClick={handleShare}
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold font-mono-code tracking-wide shrink-0 transition-all cursor-pointer ${
+                  copied
+                    ? 'bg-emerald-600 text-white'
+                    : 'bg-blue-600 hover:bg-blue-500 text-white'
+                }`}
+              >
+                {copied ? 'Tersalin! ✓' : 'Salin Link'}
+              </button>
+            </div>
+          </div>
 
           {/* Bottom Footer Tags & Finished Reading Action */}
           <div className="max-w-3xl mx-auto pt-8 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
