@@ -18,7 +18,7 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
   const [showSavedOnly, setShowSavedOnly] = useState(false);
   const [copiedArticleId, setCopiedArticleId] = useState<string | null>(null);
 
-  const categories = ['all', "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
+  const categories = ['all', "Sejarah & Qur'an", "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
 
   const getArticleShareUrl = (article: Article) => {
     if (typeof window === 'undefined') return `/ideas?article=${encodeURIComponent(article.slug)}`;
