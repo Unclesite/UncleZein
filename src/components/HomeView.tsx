@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ArrowRight, BookOpen, Compass, ShieldAlert, Sparkles, Layers, Quote, Clock, MapPin, ChevronRight, Zap, PenTool, Search, Briefcase, HelpCircle, Share2, Check, Link2, MessageCircle } from 'lucide-react';
 import { ARTICLES_DATA, DAILY_NOTES_DATA, RESEARCH_DATA, PASSIONS_DATA, SITE_CONFIG, ABOUT_MANIFESTO, WHAT_I_DO_DATA, Article, DailyNote } from '../data/siteData';
+import { getArticleShareUrl, createWhatsAppShareUrl } from '../utils/shareUtils';
 
 interface HomeViewProps {
   onNavigate: (tab: string, path?: string) => void;
@@ -31,11 +32,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const latestArticles = ARTICLES_DATA.slice(0, 6);
   const featuredNote = DAILY_NOTES_DATA[0];
 
-  const getArticleShareUrl = (art: Article) => {
-    if (typeof window === 'undefined') return `/ideas?article=${encodeURIComponent(art.slug)}`;
-    return `${window.location.origin}/ideas?article=${encodeURIComponent(art.slug)}`;
-  };
-
   const handleCopyArticleLink = (e: React.MouseEvent, art: Article) => {
     e.stopPropagation();
     const shareUrl = getArticleShareUrl(art);
@@ -53,9 +49,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   const handleWhatsAppShare = (e: React.MouseEvent, art: Article) => {
     e.stopPropagation();
-    const shareUrl = getArticleShareUrl(art);
-    const message = `${art.title}\n\nBaca selengkapnya di Uncle Zein:\n${shareUrl}`;
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`, '_blank', 'noopener,noreferrer');
+    const waUrl = createWhatsAppShareUrl(art);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleShareArticle = (e: React.MouseEvent, art: Article) => {

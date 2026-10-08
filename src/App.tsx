@@ -22,7 +22,8 @@ import { SearchModal } from './components/SearchModal';
 import { LoginModal } from './components/LoginModal';
 import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { Article, DailyNote, Passion, BookChapter, ARTICLES_DATA, BOOKS_DATA } from './data/siteData';
-import { ShoppingBag } from 'lucide-react';
+import { ShoppingBag, AlertCircle, X } from 'lucide-react';
+import { getArticleShareUrl } from './utils/shareUtils';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>(() => {
@@ -44,6 +45,7 @@ export default function App() {
   const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
   const [isLoginOpen, setIsLoginOpen] = useState<boolean>(false);
   const [showOrderToast, setShowOrderToast] = useState<boolean>(false);
+  const [notFoundSlug, setNotFoundSlug] = useState<string | null>(null);
 
   // Saved Articles bookmark state with local storage
   const [savedArticleIds, setSavedArticleIds] = useState<string[]>(() => {
@@ -68,7 +70,23 @@ export default function App() {
     const syncRouteAndArticle = () => {
       try {
         const searchParams = new URLSearchParams(window.location.search);
-        const articleParam = searchParams.get('article') || searchParams.get('id') || searchParams.get('slug');
+        let articleParam =
+          searchParams.get('article') ||
+          searchParams.get('id') ||
+          searchParams.get('slug') ||
+          searchParams.get('p');
+
+        // Check if query params were passed inside hash e.g. /#ideas?article=slug or /#/?article=slug
+        if (!articleParam && window.location.hash.includes('?')) {
+          const hashQuery = window.location.hash.split('?')[1];
+          const hashParams = new URLSearchParams(hashQuery);
+          articleParam =
+            hashParams.get('article') ||
+            hashParams.get('id') ||
+            hashParams.get('slug') ||
+            hashParams.get('p');
+        }
+
         const rawHash = window.location.hash.replace(/^#/, '');
         const pathParts = window.location.pathname.replace(/^\//, '').split('/');
 
@@ -90,37 +108,68 @@ export default function App() {
         }
 
         if (!targetSlug && rawHash) {
-          let cleanHash = rawHash;
+          let cleanHash = rawHash.split('?')[0];
           if (cleanHash.startsWith('article-')) {
             cleanHash = cleanHash.replace('article-', '');
           } else if (cleanHash.startsWith('article/')) {
             cleanHash = cleanHash.replace('article/', '');
+          } else if (cleanHash.startsWith('ideas/')) {
+            cleanHash = cleanHash.replace('ideas/', '');
           }
           try {
             cleanHash = decodeURIComponent(cleanHash);
           } catch {
             // ignore
           }
-          targetSlug = cleanHash;
+          if (cleanHash && cleanHash !== 'ideas' && cleanHash !== 'home' && cleanHash !== 'research') {
+            targetSlug = cleanHash;
+          }
         }
 
         if (targetSlug) {
-          const normalizedTarget = targetSlug.trim().toLowerCase();
-          const found = ARTICLES_DATA.find(
-            (a) =>
-              a.slug.toLowerCase() === normalizedTarget ||
-              a.id.toLowerCase() === normalizedTarget ||
-              a.id.toLowerCase() === `art-${normalizedTarget}` ||
-              a.title.toLowerCase() === normalizedTarget
-          );
+          const cleanTarget = targetSlug.replace(/[./\\_ -]+$/, '').trim();
+          const normalizedTarget = cleanTarget
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/^-+|-+$/g, '');
+
+          let found = ARTICLES_DATA.find((a) => {
+            const aSlugNorm = a.slug.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            const aTitleNorm = a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            return (
+              a.slug.toLowerCase() === cleanTarget.toLowerCase() ||
+              a.id.toLowerCase() === cleanTarget.toLowerCase() ||
+              a.id.toLowerCase() === `art-${cleanTarget.toLowerCase()}` ||
+              aSlugNorm === normalizedTarget ||
+              aTitleNorm === normalizedTarget
+            );
+          });
+
+          // Fallback partial match if URL got truncated
+          if (!found && normalizedTarget.length >= 4) {
+            found = ARTICLES_DATA.find((a) => {
+              const aSlugNorm = a.slug.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+              return aSlugNorm.includes(normalizedTarget) || normalizedTarget.includes(aSlugNorm);
+            });
+          }
+
           if (found) {
             setSelectedArticle(found);
             setActiveTab('ideas');
+            setNotFoundSlug(null);
             document.title = `${found.title} — Uncle Zein`;
+            return;
+          } else {
+            // Slug was provided in link but article not found
+            setNotFoundSlug(cleanTarget);
+            setSelectedArticle(null);
+            setActiveTab('ideas');
+            document.title = 'Uncle Zein — Ideas';
             return;
           }
         } else {
           setSelectedArticle(null);
+          setNotFoundSlug(null);
           document.title = 'Uncle Zein';
         }
 
@@ -147,6 +196,7 @@ export default function App() {
   const handleNavigate = (tab: string, path?: string) => {
     setActiveTab(tab);
     setSelectedArticle(null);
+    setNotFoundSlug(null);
     try {
       window.history.pushState({}, '', path || `/${tab === 'home' ? '' : tab}`);
       document.title = 'Uncle Zein';
@@ -158,6 +208,7 @@ export default function App() {
 
   const handleOpenArticle = (article: Article) => {
     setSelectedArticle(article);
+    setNotFoundSlug(null);
     try {
       window.history.pushState(
         { articleSlug: article.slug },
@@ -174,7 +225,7 @@ export default function App() {
     setSelectedArticle(null);
     try {
       const searchParams = new URLSearchParams(window.location.search);
-      if (searchParams.has('article')) {
+      if (searchParams.has('article') || searchParams.has('slug') || searchParams.has('id')) {
         window.history.pushState({}, '', `/${activeTab === 'home' ? '' : activeTab}`);
       }
       document.title = 'Uncle Zein';
@@ -238,11 +289,35 @@ export default function App() {
         )}
 
         {activeTab === 'ideas' && (
-          <IdeasSection
-            onSelectArticle={handleOpenArticle}
-            savedArticleIds={savedArticleIds}
-            onToggleSaveArticle={toggleSaveArticle}
-          />
+          <>
+            {notFoundSlug && (
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+                <div className="p-4 rounded-xl bg-amber-950/40 border border-amber-500/40 flex items-start justify-between gap-3 text-amber-200 shadow-lg">
+                  <div className="flex items-start gap-3">
+                    <AlertCircle className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
+                    <div>
+                      <p className="text-sm font-semibold text-amber-300">Tautan Artikel Tidak Ditemukan</p>
+                      <p className="text-xs text-amber-200/80 mt-0.5">
+                        Artikel dengan rujukan <span className="font-mono bg-black/40 px-1.5 py-0.5 rounded text-amber-300">"{notFoundSlug}"</span> tidak ditemukan atau telah diperbarui. Silakan pilih dari arsip tulisan yang tersedia berikut:
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => setNotFoundSlug(null)}
+                    className="p-1 rounded-lg hover:bg-white/10 text-amber-300 transition-colors cursor-pointer"
+                    title="Tutup pemberitahuan"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+            <IdeasSection
+              onSelectArticle={handleOpenArticle}
+              savedArticleIds={savedArticleIds}
+              onToggleSaveArticle={toggleSaveArticle}
+            />
+          </>
         )}
 
         {activeTab === 'research' && (

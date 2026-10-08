@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, BookOpen, Clock, Tag, ArrowRight, Bookmark, Filter, Check, Layers, Share2, Link2, MessageCircle } from 'lucide-react';
 import { ARTICLES_DATA, Article } from '../data/siteData';
+import { getArticleShareUrl, createWhatsAppShareUrl } from '../utils/shareUtils';
 
 interface IdeasSectionProps {
   onSelectArticle: (article: Article) => void;
@@ -18,12 +19,7 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
   const [showSavedOnly, setShowSavedOnly] = useState(false);
   const [copiedArticleId, setCopiedArticleId] = useState<string | null>(null);
 
-  const categories = ['all', "Sejarah & Qur'an", "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
-
-  const getArticleShareUrl = (article: Article) => {
-    if (typeof window === 'undefined') return `/ideas?article=${encodeURIComponent(article.slug)}`;
-    return `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
-  };
+  const categories = ['all', "Qur'an & Historical Criticism", "Sejarah & Qur'an", "Qur'an & Linguistics", "Qur'an & Philosophy", "Qur'an & Science", "Qur'an & Society", "Qur'an & Religion", "Qur'an & History", 'Filsafat', 'Sejarah', 'Kritik Teks', 'Pola Pikir', 'Eksistensial'];
 
   const handleCopyLink = (e: React.MouseEvent, article: Article) => {
     e.stopPropagation();
@@ -43,9 +39,7 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
 
   const handleWhatsAppShare = (e: React.MouseEvent, article: Article) => {
     e.stopPropagation();
-    const shareUrl = getArticleShareUrl(article);
-    const message = `${article.title}\n\nBaca artikel selengkapnya di Uncle Zein:\n${shareUrl}`;
-    const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+    const waUrl = createWhatsAppShareUrl(article);
     window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 

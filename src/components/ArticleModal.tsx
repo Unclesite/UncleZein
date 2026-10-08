@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { X, Clock, Bookmark, Share2, Check, ArrowLeft, Layers, Sparkles, CheckCircle2, HelpCircle, ShieldAlert, ListOrdered, ChevronRight, Type, Eye, BookOpen, Link2, MessageCircle } from 'lucide-react';
 import { Article } from '../data/siteData';
+import { getArticleShareUrl, createWhatsAppShareUrl, createTwitterShareUrl } from '../utils/shareUtils';
 
 interface ArticleModalProps {
   article: Article | null;
@@ -45,7 +46,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
   if (!article) return null;
 
   const handleShare = () => {
-    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
+    const articleUrl = getArticleShareUrl(article);
     if (navigator.share) {
       navigator.share({
         title: article.title,
@@ -69,20 +70,18 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
 
   const handleWhatsAppShare = () => {
     if (!article) return;
-    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
-    const msg = `${article.title}\n\nBaca tulisan ini di Uncle Zein:\n${articleUrl}`;
-    window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank', 'noopener,noreferrer');
+    const waUrl = createWhatsAppShareUrl(article);
+    window.open(waUrl, '_blank', 'noopener,noreferrer');
   };
 
   const handleTwitterShare = () => {
     if (!article) return;
-    const articleUrl = `${window.location.origin}/ideas?article=${encodeURIComponent(article.slug)}`;
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(article.title)}&url=${encodeURIComponent(articleUrl)}`;
+    const twitterUrl = createTwitterShareUrl(article);
     window.open(twitterUrl, '_blank', 'noopener,noreferrer');
   };
 
   const getStatusBadge = (status: string) => {
-    switch (status) {
+    switch (status?.toUpperCase()) {
       case 'ESTABLISHED':
         return 'text-emerald-400 bg-emerald-950/40 border-emerald-500/30';
       case 'PROBABLE':
@@ -91,6 +90,8 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
         return 'text-amber-400 bg-amber-950/40 border-amber-500/30';
       case 'RESEARCH QUESTION':
         return 'text-cyan-400 bg-cyan-950/40 border-cyan-500/30';
+      case 'KONTROVERSIAL':
+        return 'text-rose-400 bg-rose-950/40 border-rose-500/30';
       default:
         return 'text-slate-400 bg-slate-900 border-white/10';
     }
@@ -776,7 +777,7 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
               <input
                 type="text"
                 readOnly
-                value={`${typeof window !== 'undefined' ? window.location.origin : ''}/ideas?article=${article.slug}`}
+                value={getArticleShareUrl(article)}
                 className="bg-transparent text-xs font-mono-code text-blue-200 select-all w-full focus:outline-none"
               />
               <button

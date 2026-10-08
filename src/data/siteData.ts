@@ -7,7 +7,7 @@ export interface Article {
   id: string;
   title: string;
   slug: string;
-  category: 'Filsafat' | 'Sejarah' | 'Kritik Teks' | 'Pola Pikir' | 'Eksistensial' | "Qur'an & Religion" | "Qur'an & History" | "Qur'an & Society" | "Qur'an & Science" | "Qur'an & Philosophy" | "Qur'an & Linguistics" | "Sejarah & Qur'an";
+  category: 'Filsafat' | 'Sejarah' | 'Kritik Teks' | 'Pola Pikir' | 'Eksistensial' | "Qur'an & Religion" | "Qur'an & History" | "Qur'an & Society" | "Qur'an & Science" | "Qur'an & Philosophy" | "Qur'an & Linguistics" | "Sejarah & Qur'an" | "Qur'an & Historical Criticism";
   summary: string;
   content: string;
   readTime: string;
@@ -245,6 +245,386 @@ export const PASSIONS_DATA: Passion[] = [
 ];
 
 export const ARTICLES_DATA: Article[] = [
+  {
+    id: "art-isra-miraj-hadis-dzanni-quran-musa-atau-muhammad",
+    title: "Isra Miraj: Ketika Hadis Dzanni Menelan Teks Qath'i Al-Qur'an. Musa atau Muhammad yang Diisrakan?",
+    slug: "isra-miraj-ketika-hadis-dzanni-menelan-teks-qathi-al-quran-musa-atau-muhammad-yang-diisrakan",
+    category: "Qur'an & Historical Criticism",
+    readTime: "24 min",
+    date: "08 Okt 2026",
+    featured: true,
+    essayNumber: "Essay — 11",
+    evidenceLevel: "Kontroversial",
+    evidenceNote: "Klaim ini menantang konsensus mayoritas tafsir arus utama, tetapi memiliki dasar argumentasi linguistik dan epistemologis yang perlu diperiksa secara serius.",
+    field: "Kritik Historis × Intertekstualitas Qur'ani × Hermeneutika Semantik × Kritik Hadis",
+    mainTerm: "Al-Isra (17:1) × Asra / Isri × Lembah Suci Thuwa × Al-Masjidil Aqsa × Hadis Ahad × Eksodus Musa",
+    summary: "Peristiwa Isra Miraj selama berabad-abad telah dikunci oleh tradisi teologi arus utama sebagai mukjizat perjalanan malam fisik Nabi Muhammad dari Makkah menuju Yerusalem. Rekonstruksi kritis berbasis Tafsir al-Qur'an bil Qur'an, semantik bahasa Arab kuno, dan hierarki hukum Islam menunjukkan subjek utama Surat Al-Isra ayat 1 adalah Nabi Musa dalam perjalanan malam (Exodus) memimpin Bani Israel.",
+    tags: ["Qur'an & Historical Criticism", "Al-Isra", "Isra Miraj", "Nabi Musa", "Hadis Ahad", "Epistemologi", "Masjidil Aqsa", "Lembah Thuwa", "Kritik Teks"],
+    content: `Isra Miraj: Ketika Hadis Dzanni Menelan Teks Qath'i Al-Qur'an. Musa atau Muhammad yang Diisrakan?
+
+
+Qur'an & Historical Criticism · Essay
+
+
+Evidence level — Kontroversial — Klaim ini menantang konsensus mayoritas tafsir arus utama, tetapi memiliki dasar argumentasi linguistik dan epistemologis yang perlu diperiksa secara serius.
+
+
+---
+
+
+CATATAN PEMBACAAN
+
+
+Artikel ini adalah pembacaan kritis-historis, bukan klaim teologis final dan bukan fatwa. Ia menawarkan cara membaca Surat Al-Isra ayat 1 melalui lensa intertekstualitas internal Al-Qur'an, analisis semantik bahasa Arab, dan evaluasi hierarki epistemologi hukum Islam. Tujuannya bukan menggantikan satu tafsir dengan tafsir lain, melainkan menunjukkan bahwa teks Al-Qur'an memiliki koherensi internal yang mungkin telah tertutup oleh lapisan tafsir yang dibangun di atasnya selama berabad-abad.
+
+
+Lensa yang dipakai adalah Tafsir al-Qur'an bil Qur'an (intertekstualitas internal), konkordansi linguistik, kritik hadis, analisis semantik diakronik, dan historiografi kenabian. Pembacaan ini tidak menetapkan apa yang "benar" secara teologis. Ia hanya membuka kemungkinan bahwa pertanyaan "siapa subjek Isra dalam QS 17:1?" belum selesai dijawab—dan bahwa jawaban yang selama ini dianggap final mungkin lebih banyak berasal dari konstruksi institusional daripada dari teks itu sendiri.
+
+
+Tingkat bukti artikel ini adalah Kontroversial: ia menantang konsensus mayoritas, tetapi argumennya dapat diperiksa secara linguistik dan epistemologis. Pembaca dipersilakan menilai sendiri.
+
+
+---
+
+
+Abstrak
+
+
+Peristiwa Isra Miraj selama berabad-abad telah dikunci oleh tradisi teologi arus utama sebagai mukjizat perjalanan malam fisik Nabi Muhammad dari Makkah menuju Yerusalem, dilanjutkan dengan kenaikan ke langit ketujuh menggunakan makhluk mitologis bernama Buraq. Namun, rekonstruksi kritis berbasis metodologi Tafsir al-Qur'an bil Qur'an (intertekstualitas internal), analisis semantik bahasa Arab kuno, dan evaluasi hierarki hukum Islam menunjukkan adanya anakronisme sejarah yang parah dalam penafsiran konvensional tersebut. Artikel ini membedah secara komprehensif bahwa subjek utama Surat Al-Isra ayat 1 bukanlah Nabi Muhammad, melainkan Nabi Musa dalam perjalanan malam (Exodus) memimpin Bani Israel. Dengan menyingkirkan bias hadis ahad yang berstatus dzanni (dugaan), tulisan ini mengembalikan struktur sastra, geografi spiritual, dan koherensi teologis Al-Qur'an pada tempatnya yang presisi.
+
+
+Sebelum kita masuk ke analisis, ada satu hal yang perlu disadari. Selama berabad-abad, penafsiran Al-Qur'an tidak pernah benar-benar "bebas." Ia selalu berjalan dalam koridor yang dibentuk oleh kekuasaan—kekuasaan politik, kekuasaan institusi keagamaan, dan kekuasaan narasi yang telah mapan. Ketika sebuah tafsir menjadi arus utama, ia bukan hanya menjadi "tafsir yang paling benar"—ia menjadi tafsir yang paling kuat secara sosial. Dan tafsir yang paling kuat secara sosial sering kali menutup kemungkinan pembacaan lain—bukan karena pembacaan lain itu salah, tetapi karena pembacaan lain itu dianggap "aneh," "menyimpang," atau "tidak sesuai dengan kesepakatan ulama." Artikel ini adalah upaya untuk membuka kembali apa yang telah ditutup—bukan untuk menggantikan satu dogma dengan dogma lain, tetapi untuk memastikan bahwa teks itu sendiri tetap bisa berbicara.
+
+
+---
+
+
+1. Pengantar: Kekacauan Logika dan Patahan Narasi Tradisional
+
+
+Dalam studi sastra dan strukturalisme teks, sebuah narasi yang agung dinilai dari keutuhan, kesinambungan, dan keselarasan antar-bagian (nazham). Namun, jika kita menelaah penafsiran arus utama terhadap babak awal Surat Al-Isra, kita akan dihadapkan pada sebuah lompatan logika dan patahan narasi yang sangat ekstrem.
+
+
+Perhatikan bagaimana tradisi konvensional memperlakukan dua ayat pertama Surat Al-Isra:
+
+
+· Ayat 1: Ditafsirkan secara mutlak sebagai perjalanan malam Nabi Muhammad dari Makkah ke Palestina, naik ke langit, hingga runtuhnya keimanan sebagian sahabat dan pemberian gelar As-Siddiq kepada Abu Bakar.
+· Ayat 2: Teks mendadak berbunyi: "Dan Kami berikan kepada Musa Kitab (Taurat) dan Kami jadikan kitab itu petunjuk bagi Bani Israel..."
+
+
+Secara estetika sastra kuno, transisi dari ayat 1 ke ayat 2 dalam tafsir tradisional terasa sangat janggal. Mengapa sebuah kitab suci yang maha rapi harus melompat secara drastis dari mukjizat pribadi seorang nabi di abad ke-7 Masehi langsung menuju hukum Taurat dan sejarah Bani Israel ribuan tahun sebelumnya tanpa ada jembatan naratif?
+
+
+Jawabannya sederhana: jembatan naratif itu sebenarnya ada dan sangat kokoh, namun sengaja diruntuhkan oleh konstruksi tafsir belakangan yang memaksakan teks Al-Qur'an agar tunduk pada riwayat-riwayat eksternal. Jika kita mengembalikan identitas "hamba" pada ayat pertama kepada Nabi Musa, maka Surat Al-Isra dari ayat 1, 2, hingga ayat-ayat berikutnya berubah menjadi satu bentangan kronik sejarah teologis yang utuh, mengalir, dan tanpa cacat estetika.
+
+
+Untuk memahami mengapa ini penting, kita perlu melihat bagaimana Al-Qur'an bekerja sebagai teks. Al-Qur'an bukan kumpulan ayat yang berdiri sendiri-sendiri. Ia adalah teks yang memiliki struktur—struktur yang sering kali lebih ketat daripada yang dibayangkan oleh pembaca modern. Setiap surah memiliki tema, setiap ayat memiliki fungsi, dan setiap transisi memiliki alasan. Ketika transisi terasa janggal, itu bisa berarti dua hal: pertama, teksnya memang janggal—dan itu tidak mungkin, karena Al-Qur'an mengklaim dirinya sebagai kitab yang sempurna. Kedua, kita yang salah membaca—dan itu mungkin, karena kita telah diajari membaca dengan cara tertentu.
+
+
+Artikel ini berangkat dari kemungkinan kedua. Ia berangkat dari asumsi bahwa jika transisi antara ayat 1 dan ayat 2 terasa janggal, maka mungkin kita yang salah membaca ayat 1—bukan ayat 2 yang salah, dan bukan transisinya yang salah.
+
+
+---
+
+
+2. Epistemologi Hukum: Mengapa Hadis Ahad Tidak Bisa Menjadi Dasar Sejarah Kenabian
+
+
+Sebelum melangkah lebih jauh ke dalam teks, kita harus membereskan fondasi berpikir (epistemik). Penafsiran konvensional mengenai Isra Miraj—termasuk detail keberadaan makhluk Buraq, perjalanan menembus tujuh lapis langit fisik, kisah murtadnya para sahabat karena syok, hingga klaim asal-usul gelar Abu Bakar—seluruhnya bersandar pada Hadis Ahad (hadis yang diriwayatkan oleh satu atau beberapa jalur individu, bukan massa yang masif).
+
+
+Dalam kaidah Ushul Fiqih dan ilmu kalam, kedudukan hadis ahad secara mutlak dikategorikan sebagai Dzanni al-Wurud (bersifat dugaan atau memiliki probabilitas kebenaran yang tidak mencapai 100%). Para ulama otoritatif terdahulu sepakat bahwa:
+
+
+1. Perkara akidah dan fakta sejarah gaib yang fundamental tidak boleh dibangun di atas dalil yang bersifat dzon (asumsi/dugaan).
+2. Manusia yang hidup di abad modern tidak hadir di tempat kejadian perkara pada abad ke-7 Masehi. Oleh karena itu, menerima sebuah klaim kosmologis ekstrem—seperti menembus ruang angkasa secara fisik dengan hewan bersayap—hanya berdasarkan kabar burung atau transmisi individu (dzon) adalah sebuah kecacatan metodologis.
+
+
+Al-Qur'an sendiri berulang kali mengecam orang-orang yang beragama dengan menyembah dugaan. Dalam QS. Yunus: 36 ditegaskan: "Dan kebanyakan mereka tidak mengikuti kecuali dugaan. Sesungguhnya dugaan itu tidak sedikit pun berguna untuk mencapai kebenaran." Oleh karena itu, dalam rekonstruksi ini, kita secara sadar menyingkirkan seluruh anasir dzon dari hadis-hadis sekunder dan membatasi diri hanya pada teks Al-Qur'an yang berstatus Qath'i (pasti secara otentisitas).
+
+
+Namun, ada satu hal yang perlu ditekankan: menyingkirkan hadis ahad dari pembangunan akidah bukan berarti menolak seluruh hadis. Hadis tetap memiliki fungsi dalam ranah praktik (furu'), dalam ranah sejarah sosial, dan dalam ranah konteks pewahyuan. Yang ditolak adalah penggunaan hadis ahad untuk membangun klaim tentang hakikat realitas—tentang apa yang terjadi, tentang apa yang ada, tentang bagaimana alam semesta bekerja. Karena klaim tentang hakikat realitas membutuhkan kepastian, dan kepastian hanya datang dari sumber yang pasti: Al-Qur'an dan hadis mutawatir.
+
+
+Dalam kerangka ini, pertanyaannya bukan "apakah Isra Miraj terjadi?" Pertanyaan yang lebih tepat adalah: "apa yang dikatakan Al-Qur'an tentang Isra Miraj—dan apa yang tidak dikatakannya?" Dan untuk menjawab pertanyaan itu, kita harus membaca teks—bukan membaca tafsir, bukan membaca hadis, bukan membaca cerita rakyat. Hanya teks.
+
+
+---
+
+
+3. Bukti Linguistik-Statistik: Monopoli Kata Asra untuk Misi Musa
+
+
+Al-Qur'an memiliki kecerdasan linguistik yang luar biasa di mana kata-kata tertentu bertindak sebagai "kode sandi" atau literary device bagi tokoh tertentu. Ketika kita melakukan pelacakan kata (konkordansi) terhadap akar kata kerja Asra (أَسْرَى) atau bentuk perintahnya Isri (إِسْرِ) yang berarti "memperjalankan atau berjalan di waktu malam", kita menemukan sebuah fakta statistik yang tidak terbantahkan: kata ini secara mutlak dikunci untuk kisah Nabi Musa dan pelariannya di malam hari.
+
+
+Perhatikan paralelisme tekstual di bawah ini:
+
+
+· QS. Thaha (20:77): 
+  Arabic: وَلَقَدْ أَوْحَيْنَا إِلَىٰ مُوسَىٰ أَنْ أَسْرِ بِعِبَادِي
+  Arti: "Dan sungguh, telah Kami wahyukan kepada Musa: Berjalanlah pada malam hari bersama hamba-hamba-Ku..."
+· QS. Asy-Syu'ara (26:52): 
+  Arabic: وَأَوْحَيْنَا إِلَىٰ مُوسَىٰ أَنْ أَسْرِ بِعِبَادِي إِنَّكُم مُّتَّبَعُونَ
+  Arti: "Dan Kami wahyukan kepada Musa: Berjalanlah pada malam hari bersama hamba-hamba-Ku, sesungguhnya kamu akan dikejar."
+· QS. Ad-Dukhan (44:23): 
+  Arabic: فَأَسْرِ بِعِبَادِي لَيْلًا إِنَّكُم مُّتَّبَعُونَ
+  Arti: "Maka berjalanlah pada malam hari bersama hamba-hamba-Ku pada malam hari (lailan), sesungguhnya kamu akan dikejar."
+
+
+Sekarang, mari kita bandingkan dengan struktur kalimat pada QS. Al-Isra (17:1):
+Arabic: سُبْحَانَ الَّذِي أَسْرَىٰ بِعَبْدِهِ لَيْلًا
+Arti: "Maha Suci Allah yang telah memperjalankan hamba-Nya pada suatu malam (lailan)..."
+
+
+Formula pembentuk kalimatnya identik secara matematis: Asra + Hamba (Abdi/Ibadi) + Waktu Malam (Lailan). Secara konsistensi internal teks Al-Qur'an, tidak ada satu pun ayat lain yang menggunakan kata kerja Asra untuk aktivitas malam Nabi Muhammad. Kode bahasa ini secara sadar menuntun ingatan pembaca bahwa entitas yang sedang dibicarakan di ayat pertama Al-Isra adalah sang petualang malam terbesar dalam sejarah Bani Israel, yaitu Nabi Musa.
+
+
+Untuk memahami mengapa ini penting, kita perlu melihat bagaimana Al-Qur'an menggunakan bahasa. Al-Qur'an bukan teks yang menggunakan kata-kata secara sembarangan. Setiap kata dipilih dengan alasan—dan setiap kata membawa serta jaringan makna yang telah dibangun di seluruh teks. Ketika kata Asra digunakan, ia tidak muncul dalam ruang hampa. Ia muncul dalam jaringan ayat-ayat yang telah menggunakan kata yang sama—dan jaringan itu menunjuk pada satu tokoh: Musa.
+
+
+Jika Al-Qur'an ingin berbicara tentang perjalanan malam Nabi Muhammad, ia bisa menggunakan kata yang berbeda—kata yang tidak terikat pada Musa. Tetapi ia memilih Asra—kata yang justru paling terikat pada Musa. Ini bukan kebetulan. Ini adalah kode—dan kode itu hanya bisa dibaca oleh mereka yang membaca Al-Qur'an secara keseluruhan, bukan secara terpisah-pisah.
+
+
+---
+
+
+4. Bantahan Geografis: Mengapa Tempat Suci Tidak Boleh Dikunci Mati
+
+
+Kekeliruan fatal berikutnya dari para mufasir tradisional adalah memperlakukan istilah Al-Masjidil Haram dan Al-Masjidil Aqsa seolah-olah keduanya adalah nama bangunan mati dengan koordinat geografi statis. Secara semantik bahasa Arab kuno, kedua istilah ini adalah frasa deskriptif (kata benda yang disifati), bukan nama diri (proper noun seperti Makkah atau Yatsrib).
+
+
+A. Hakikat Al-Masjidil Haram (Tempat Sujud yang Sakral)
+
+
+Kata Masjid secara harfiah berasal dari akar kata sajada, yang berarti "tempat melakukan sujud/ibadah", bukan bangunan fisik dengan kubah dan menara. Sedangkan kata Haram bermakna sesuatu yang diisolasi, disucikan, atau memiliki status hukum sakral yang melarang adanya profanitas.
+
+
+Status kesakralan (hurmah) tanah atau tempat ibadah tidak pernah dimonopoli oleh kota Makkah. Al-Qur'an sendiri mencatat dengan sangat tajam bahwa tempat di mana Musa pertama kali bersujud dan menerima wahyu adalah sebuah tanah yang sakral. Perhatikan QS. Thaha: 12:
+
+
+"Sesungguhnya Aku inilah Tuhanmu, maka tanggalkanlah kedua sandalmu; sesungguhnya kamu berada di lembah yang suci (al-wādil-muqaddas), Thuwa."
+
+
+Kata Muqaddas (suci/kudus) dan Haram (sakral) adalah sinonim teologis yang setara. Perintah untuk melepaskan sandal adalah deklarasi hukum bahwa lembah Thuwa di kaki Gunung Sinai tersebut telah diubah statusnya menjadi wilayah terisolasi yang sakral. Ketika Musa bersujud di lembah suci tersebut, tempat itu adalah "Tempat Sujud yang Sakral" (Masjidil Haram) bagi Musa dan sejarah awal kerasulannya. Tidak ada kewajiban bahasa sedikit pun yang mengharuskan kata Masjidil Haram di ayat pertama Al-Isra merujuk pada Ka'bah di Makkah.
+
+
+Untuk memahami ini, kita perlu membedakan antara fungsi dan bentuk. Ka'bah adalah bangunan—ia memiliki bentuk fisik, ukuran, dan koordinat. Tetapi "Masjidil Haram" bukanlah bangunan—ia adalah status. Status ini bisa melekat pada tempat mana pun yang dijadikan tempat sujud kepada Tuhan Yang Esa. Di Makkah, status itu melekat pada Ka'bah. Di Sinai, status itu melekat pada Lembah Thuwa. Di mana pun Musa bersujud, di situ ada "Masjidil Haram"—tempat sujud yang sakral.
+
+
+B. Hakikat Al-Masjidil Aqsa (Tempat Sujud yang Terjauh)
+
+
+Kata Aqsa adalah bentuk isim tafdhil (superlatif) dalam bahasa Arab yang berarti "paling ujung" atau "terjauh". Jarak bersifat relatif. Semboyan "terjauh" hanya absah jika memiliki titik mula.
+
+
+Jika titik mulanya (Masjidil Haram) adalah Lembah Suci Sinai tempat Musa menerima wahyu awal, maka Masjidil Aqsa adalah tempat sujud yang berada di ujung terjauh dari rute perjalanan malamnya. Ke mana rute pengembaraan malam Musa dan Bani Israel menuju? Mereka bergerak menembus padang gurun menuju Tanah Kanaan (Palestina/Baitul Maqdis kuno).
+
+
+Bagi kafilah Musa yang merangkak dari wilayah Mesir dan Sinai, kompleks peribadatan kuno milik para leluhur mereka (Ibrahim, Ishak, dan Yaqub) di Kanaan adalah batas terluar atau "Tempat Sujud yang Paling Ujung/Terjauh" (Al-Masjidil Aqsa).
+
+
+Mengunci kata Al-Masjidil Aqsa sebagai nama sebuah bangunan batu spesifik di Yerusalem pada saat ayat ini turun adalah sebuah anakronisme sejarah yang konyol. Mengapa? Karena bangunan fisik Masjid Al-Aqsa yang ada di Yerusalem saat ini belum pernah ada ketika Nabi Muhammad hidup; bangunan itu baru didirikan berpuluh-puluh tahun kemudian oleh Khalifah Abdul Malik bin Marwan dari Dinasti Umayyah demi kepentingan geopolitik wilayah Syam. Al-Qur'an tidak mungkin berbicara tentang sebuah nama bangunan fisik masa depan yang belum lahir, melainkan sedang berbicara tentang konsep geografis-spiritual yang fungsional pada masa eksodus Musa.
+
+
+Ini adalah poin yang sangat penting—dan sering diabaikan oleh mereka yang membaca Al-Qur'an tanpa memperhatikan konteks sejarahnya. Ketika Al-Qur'an diturunkan, tidak ada bangunan bernama "Masjid Al-Aqsa" di Yerusalem. Yang ada adalah reruntuhan Bait Suci yang telah dihancurkan oleh Romawi pada tahun 70 M—dan di atas reruntuhan itu, Romawi membangun kuil Jupiter. Jadi, ketika Al-Qur'an menyebut "Al-Masjidil Aqsa," ia tidak mungkin merujuk pada bangunan yang belum ada. Ia merujuk pada tempat—pada lokasi yang secara fungsional adalah "tempat sujud terjauh" bagi Musa.
+
+
+---
+
+
+5. Sinkronisasi Karakteristik: Tanah yang Diberkahi dan Tanda-Tanda Besar
+
+
+Al-Qur'an memberikan dua indikator penting di dalam ayat 1 Surat Al-Isra untuk mengidentifikasi ke mana ujung perjalanan malam tersebut:
+
+
+1. Tempat terjauh itu memiliki karakteristik: "alladzii baaraknaa haulahu" (yang telah Kami berkahi sekelilingnya).
+2. Tujuan perjalanannya adalah: "linuriyahu min ayatina" (agar Kami perlihatkan kepadanya sebagian dari tanda-tanda Kami).
+
+
+Mari kita uji kedua kalimat indikator ini menggunakan mesin pencari internal Al-Qur'an:
+
+
+A. Di Mana "Tanah yang Diberkahi"?
+
+
+Di manakah wilayah geografi yang secara konsisten diberi label "diberkahi sekelilingnya" oleh Al-Qur'an saat menceritakan perpindahan para nabi? Jawabannya secara mutlak adalah Tanah Kanaan/Palestina/Syam, tempat di mana Musa memimpin umatnya kembali.
+
+
+Perhatikan QS. Al-Anbiya: 71 mengenai migrasi Nabi Ibrahim: "Dan Kami selamatkan dia (Ibrahim) dan Luth ke tanah yang telah Kami berkahi untuk seluruh alam."
+Begitu pula saat Al-Qur'an menceritakan warisan wilayah bagi Bani Israel pasca-eksodus Musa dalam QS. Al-A'raf: 137: "Dan Kami wariskan kepada kaum yang tertindas itu, bumi bagian timur dan bagian baratnya yang telah Kami berkahi."
+
+
+Perhatikan pola ini. Al-Qur'an menggunakan frasa "yang telah Kami berkahi" (barakna) secara konsisten untuk merujuk pada satu wilayah geografis tertentu—wilayah Syam, wilayah Kanaan, wilayah yang menjadi tujuan perjalanan para nabi. Frasa ini bukan frasa sembarangan. Ia adalah penanda geografis—cara Al-Qur'an menunjuk pada tanah yang menjadi pusat sejarah kenabian.
+
+
+B. Kepada Siapa "Tanda-Tanda Kebesaran" Diperlihatkan?
+
+
+Frasa "agar Kami perlihatkan kepadanya tanda-tanda Kami" sering kali diklaim oleh mufasir tradisional sebagai momen Nabi Muhammad melihat surga dan neraka di langit ke-7. Namun, teks Al-Qur'an justru mencatat bahwa figur yang secara spesifik diberikan pengalaman visual melihat "tanda-tanda besar" Allah (Ayatina al-Kubra) di sebuah tempat suci adalah Nabi Musa.
+
+
+· QS. Thaha (20:23): Tepat ketika Musa berada di lembah suci sebelum memulai misinya, Allah memamerkan mukjizat tongkat dan tangan bercahaya lalu berfirman: "...daripada yang demikian itu agar Kami perlihatkan kepadamu sebagian dari tanda-tanda kebesaran Kami yang sangat besar (min āyātināl-kubrā)."
+· QS. An-Nazi'at (79:20): "Lalu dia (Musa) memperlihatkan kepadanya (Firaun) tanda-tanda yang besar (al-āyatal-kubrā)."
+
+
+Rangkaian pembuktian ini mengunci kesimpulan bahwa kalimat di ujung ayat 1 Surat Al-Isra adalah deskripsi teologis yang sangat presisi mengenai mandat visual yang diberikan kepada Nabi Musa sepanjang rute eksodusnya dari Sinai menuju Kanaan.
+
+
+Ini adalah pola yang muncul berulang kali dalam Al-Qur'an: Allah memperlihatkan tanda-tanda besar kepada Musa. Bukan kepada Muhammad. Bukan kepada Ibrahim. Bukan kepada Isa. Tetapi kepada Musa—dan kepada Musa secara spesifik dalam konteks eksodusnya. Ketika Al-Isra ayat 1 menggunakan frasa "linuriyahu min ayatina"—"agar Kami perlihatkan kepadanya sebagian dari tanda-tanda Kami"—maka frasa itu masuk ke dalam pola yang sudah mapan: pola Musa.
+
+
+---
+
+
+6. Absurditas Narasi Miraj: Ketika Allah Digambarkan Tidak Tahu Kondisi Umat Muhammad
+
+
+Sekarang kita masuk ke bagian yang paling telak dalam meruntuhkan bangunan mitologi Isra Miraj—yaitu narasi tawar-menawar shalat yang terdapat dalam hadis-hadis ahad. Narasi ini bukan hanya tidak memiliki dasar dalam Al-Qur'an, tetapi juga mengandung kekeliruan teologis yang sangat serius—kekeliruan yang seharusnya membuat kita bertanya: bagaimana mungkin narasi seperti ini dianggap sebagai bagian dari akidah?
+
+
+Mari kita baca narasi itu sebagaimana dikisahkan dalam hadis-hadis ahad. Dalam perjalanan Miraj—menurut riwayat yang populer—Nabi Muhammad naik ke langit ketujuh dan bertemu Allah. Di sana, Allah mewajibkan lima puluh shalat sehari semalam. Nabi Muhammad menerima perintah itu. Tetapi ketika ia turun dan bertemu Nabi Musa, Musa bertanya: "Apa yang diwajibkan Tuhanmu atas umatmu?" Nabi menjawab: "Lima puluh shalat." Musa berkata: "Kembalilah kepada Tuhanmu dan mintalah keringanan, karena umatmu tidak akan sanggup." Nabi pun kembali kepada Allah—dan Allah mengurangi sepuluh shalat. Nabi turun lagi, bertemu Musa lagi, dan Musa menyuruhnya kembali lagi. Demikian seterusnya, berulang-ulang, sampai akhirnya tersisa lima shalat sehari semalam. Musa masih menyuruhnya kembali, tetapi Nabi menjawab: "Aku sudah malu kepada Tuhanku."
+
+
+Sekarang mari kita periksa narasi ini dengan nalar yang jernih. Ada beberapa kekeliruan yang mencolok.
+
+
+Pertama, narasi ini menggambarkan Allah sebagai sosok yang tidak mengetahui kondisi umat manusia. Ia menetapkan lima puluh shalat—sebuah beban yang mustahil ditanggung manusia—seolah-olah Ia tidak tahu bahwa manusia memiliki keterbatasan. Siapa yang lebih tahu kondisi manusia: Allah yang menciptakan manusia, atau Musa yang hanya seorang nabi? Narasi ini secara implisit mengatakan bahwa Musa lebih tahu daripada Allah tentang kemampuan manusia. Itu adalah kekeliruan teologis yang sangat serius.
+
+
+Kedua, narasi ini menggambarkan Allah sebagai sosok yang bisa dilobi—yang keputusan-Nya bisa berubah karena permintaan Nabi Muhammad. Padahal Al-Qur'an mengatakan: "Keputusan Allah tidak dapat diubah" (QS 13:41). Jika keputusan Allah bisa berubah karena lobi, maka Allah bukanlah Allah yang maha tahu dan maha bijaksana. Ia seperti raja yang bisa dipengaruhi.
+
+
+Ketiga, narasi ini menggambarkan Nabi Muhammad sebagai perantara antara Musa dan Allah—seolah-olah Musa adalah pihak yang lebih tahu, dan Nabi Muhammad adalah pelaksana perintah Musa. Ini menempatkan Musa dalam posisi yang lebih tinggi daripada Nabi Muhammad—padahal dalam tradisi Islam, Nabi Muhammad adalah nabi terakhir dan paling utama.
+
+
+Keempat, narasi ini menggambarkan shalat sebagai komoditas yang bisa ditawar—seperti harga di pasar. Lima puluh, empat puluh, tiga puluh, dua puluh, sepuluh, lima. Apa memang seharusnya 5? Seolah waktu sudah dimark-up habis-habisan. Ini adalah gambaran yang tidak layak untuk ibadah. Ibadah bukanlah komoditas. Ia adalah hubungan antara hamba dan Tuhan. Menggambarkannya sebagai objek tawar-menawar adalah degradasi makna ibadah.
+
+
+Kelima, narasi ini menggambarkan peristiwa Miraj—yang konon terjadi dalam satu malam—sebagai peristiwa yang penuh dengan turun-naik. Nabi naik ke langit, turun ke langit keenam untuk bertemu Musa, naik lagi ke langit ketujuh, turun lagi, naik lagi—berkali-kali. Ini adalah gambaran yang absurd. Jika Nabi benar-benar berada di hadirat Allah, mengapa ia harus turun untuk berkonsultasi dengan Musa? Apakah Musa lebih dekat kepada Allah daripada Nabi yang sedang berada di hadirat-Nya?
+
+
+Narasi tawar-menawar shalat ini—jika kita baca dengan jujur—adalah narasi yang merendahkan Allah. Ia menggambarkan Allah sebagai sosok yang tidak tahu, yang bisa dilobi, yang keputusan-Nya berubah-ubah. Ia menggambarkan Musa sebagai sosok yang lebih tahu daripada Allah. Dan ia menggambarkan Nabi Muhammad sebagai pelaksana perintah Musa—bukan sebagai nabi yang menerima wahyu langsung dari Allah.
+
+
+Jika narasi ini adalah narasi yang benar, maka ia adalah narasi yang menempatkan Musa lebih tinggi daripada Allah. Jika narasi ini adalah narasi yang salah, maka ia harus dibuang dari akidah. Dan berdasarkan kritik epistemologis di bab 2—bahwa hadis ahad tidak bisa dijadikan dasar akidah—maka narasi ini harus dibuang. Ia bukan hanya lemah secara sanad. Ia bukan hanya lemah secara epistemologis. Ia cacat secara teologis.
+
+
+---
+
+
+6B. Tradisi Shalat Tiga Waktu: Ketika Narasi Lima Puluh Kali Tidak Ditemukan di Mana Pun
+
+
+Ada satu bukti yang paling telak untuk meruntuhkan narasi tawar-menawar shalat—dan bukti itu bukan datang dari kritik teologis, melainkan dari perbandingan lintas tradisi. Jika benar bahwa Allah pada awalnya mewajibkan lima puluh shalat—dan bahwa angka itu kemudian dinegosiasikan turun menjadi lima—maka kita seharusnya menemukan jejak tradisi lima puluh shalat di suatu tempat dalam sejarah agama. Kita seharusnya menemukan komunitas yang masih mempraktikkan shalat lima puluh kali, atau setidaknya komunitas yang memiliki tradisi yang mengingat angka lima puluh. Tetapi apa yang kita temukan?
+
+
+Kita justru menemukan tiga waktu shalat—di mana-mana. Dalam tradisi Yahudi, terdapat tiga waktu doa yang utama: Shacharit (pagi), Minchah (sore), dan Maariv (malam). Tradisi ini sudah ada sejak masa Bait Suci Kedua—dan menurut sebagian sumber, sudah ada sejak masa para leluhur. Nabi Daniel disebut dalam Alkitab berdoa tiga kali sehari (Daniel 6:10). Pemazmur menyebut "pagi, siang, dan malam" (Mazmur 55:17). Jadi, tradisi Yahudi—tradisi yang menjadi akar dari tradisi Musa—memiliki tiga waktu doa, bukan lima puluh, bukan lima, tetapi tiga.
+
+
+Dalam tradisi Kristen Ortodoks—terutama Ortodoks Etiopia dan beberapa tradisi Ortodoks Timur—terdapat tradisi doa tujuh waktu yang dikenal sebagai Agpeya—tetapi inti dari tradisi itu adalah tiga waktu utama: pagi, siang, dan malam. Dalam tradisi Katolik, terdapat tradisi Liturgia Horarum—doa harian yang terbagi dalam beberapa waktu—tetapi lagi-lagi intinya adalah tiga: pagi (Lauds), siang (Sext), dan malam (Vespers). Dalam tradisi Etiopia—yang merupakan salah satu tradisi Kristen tertua di dunia—terdapat tradisi Tselota Rabbānīyah—doa rabbani—yang juga berpusat pada tiga waktu.
+
+
+Dalam tradisi Islam Syiah—yang memiliki tradisi fiqih yang berbeda dari Sunni—shalat juga dapat dilakukan dalam tiga waktu: subuh, zuhur-ashar digabung, dan maghrib-isya digabung. Dalam tradisi Sunni—yang secara formal memiliki lima waktu—juga terdapat praktik jamak (menggabungkan dua shalat) ketika dalam perjalanan—yang secara efektif menghasilkan tiga waktu: subuh, zuhur-ashar, dan maghrib-isya.
+
+
+Jadi, di mana-mana—baik dalam tradisi Yahudi, Kristen, maupun Islam—kita menemukan tiga sebagai angka yang paling fundamental untuk waktu doa. Angka tiga adalah angka yang muncul berulang kali: tiga waktu doa, tiga kali sehari, tiga sebagai ritme dasar kehidupan spiritual. Tetapi lima puluh? Tidak ada. Tidak ada satu pun tradisi—Yahudi, Kristen, atau bahkan Islam—yang memiliki tradisi lima puluh shalat. Tidak ada satu pun komunitas yang pernah mempraktikkan lima puluh kali doa sehari. Tidak ada satu pun teks suci—di luar hadis ahad—yang menyebut angka lima puluh.
+
+
+Mengapa? Karena angka lima puluh bukanlah angka yang datang dari tradisi. Ia adalah angka yang datang dari narasi—narasi yang dibangun untuk menciptakan drama, untuk menciptakan ketegangan, untuk menciptakan cerita. Narasi tawar-menawar shalat—dengan angka lima puluh yang diturunkan menjadi lima—adalah narasi yang dibuat-buat. Ia dibuat untuk menunjukkan betapa pentingnya shalat—betapa beratnya perintah itu—dan betapa besar jasa Nabi Muhammad yang telah "melobi" Allah untuk meringankan umatnya.
+
+
+Tetapi jika kita membaca narasi itu dengan jujur—dan membandingkannya dengan tradisi yang sebenarnya—kita akan melihat bahwa narasi itu tidak cocok dengan apa pun. Ia tidak cocok dengan tradisi Yahudi—yang memiliki tiga waktu doa. Ia tidak cocok dengan tradisi Kristen—yang memiliki tiga waktu doa. Ia tidak cocok dengan tradisi Islam yang paling awal—yang, menurut sebagian sumber, juga memiliki tiga waktu doa sebelum akhirnya dibakukan menjadi lima. Ia hanya cocok dengan dirinya sendiri—dengan drama yang dibangun di dalamnya.
+
+
+Ada satu kemungkinan yang menarik: mungkin angka tiga adalah angka yang sebenarnya—dan angka lima adalah angka yang kemudian dibakukan oleh tradisi. Dalam Al-Qur'an, kata "shalat" tidak selalu dikaitkan dengan angka. Ada ayat-ayat yang menyebut shalat secara umum—tanpa menyebut jumlah. Ada ayat-ayat yang menyebut waktu-waktu shalat—seperti "pagi dan petang" (QS 30:17-18), "sebelum terbit matahari dan sebelum terbenam" (QS 20:130), "pada waktu pagi dan waktu petang" (QS 33:42). Ayat-ayat ini menyebut dua waktu atau tiga waktu—bukan lima. Tetapi hadis-hadis ahad kemudian menetapkan lima—dan menciptakan narasi tawar-menawar untuk menjelaskan mengapa lima, bukan lima puluh.
+
+
+Narasi itu—jika kita baca dengan mata yang terbuka—adalah narasi yang memutar balik urutan. Dalam narasi itu, Allah pada awalnya menetapkan lima puluh—lalu dikurangi oleh lobi Nabi. Tetapi dalam tradisi yang sebenarnya, doa adalah tiga waktu—sejak zaman Musa, sejak zaman Daniel, sejak zaman Yesus. Jika ada yang "dikurangi," maka yang dikurangi bukanlah lima puluh menjadi lima—melainkan tiga menjadi lima, atau tiga tetap tiga tetapi kemudian ditambah. Dalam tradisi Yahudi, doa tiga waktu adalah standar. Dalam tradisi Kristen, doa tiga waktu adalah standar. Dalam tradisi Islam—jika kita membaca Al-Qur'an tanpa hadis—doa dua atau tiga waktu adalah standar. Lalu dari mana datangnya lima?
+
+
+Lima datang dari hadis. Lima datang dari narasi. Lima datang dari konstruksi yang dibangun di atas teks—bukan dari teks itu sendiri. Dan narasi tawar-menawar itu—dengan angka lima puluh—adalah narasi yang dibuat untuk menjelaskan mengapa lima, bukan tiga. Ia adalah narasi yang membenarkan praktik lima waktu dengan menciptakan cerita tentang lima puluh yang diturunkan. Tetapi jika kita membaca teks dengan jujur—dan membandingkannya dengan tradisi yang sebenarnya—kita akan melihat bahwa narasi itu tidak memiliki dasar. Ia adalah konstruksi. Ia adalah drama. Ia adalah mitologi yang dibangun di atas teks—bukan teks itu sendiri.
+
+
+Maka pertanyaannya: mengapa kita mempercayai narasi yang tidak memiliki dasar dalam tradisi mana pun? Mengapa kita mempercayai narasi yang menggambarkan Allah sebagai sosok yang tidak tahu, yang bisa dilobi, yang keputusan-Nya berubah-ubah? Mengapa kita mempercayai narasi yang menempatkan Musa lebih tinggi daripada Allah? Jawabannya mungkin sederhana: karena kita telah diajari untuk mempercayainya. Kita telah diajari bahwa narasi itu adalah bagian dari iman. Kita telah diajari bahwa mempertanyakannya adalah dosa. Dan kita telah diajari bahwa iman berarti menerima tanpa bertanya.
+
+
+Tetapi Al-Qur'an tidak mengajarkan itu. Al-Qur'an mengajarkan untuk berpikir, untuk merenung, untuk bertanya. Al-Qur'an mengajarkan untuk tidak mengikuti dugaan. Dan jika kita benar-benar mengikuti ajaran Al-Qur'an—bukan ajaran yang dibangun di atasnya—maka kita akan sampai pada kesimpulan yang sama: narasi tawar-menawar shalat adalah narasi yang cacat. Ia cacat secara teologis. Ia cacat secara historis. Dan ia cacat secara linguistik. Ia adalah narasi yang tidak layak untuk dijadikan bagian dari akidah.
+
+
+---
+
+
+7. Buraq: Makhluk Mitologis yang Tidak Pernah Disebut Al-Qur'an
+
+
+Sekarang mari kita bicara tentang Buraq. Buraq adalah makhluk bersayap yang—menurut hadis-hadis ahad—menjadi kendaraan Nabi Muhammad dalam perjalanan Isra Miraj. Ia digambarkan sebagai hewan berwarna putih, lebih besar dari keledai tetapi lebih kecil dari bagal, dengan sayap di kedua sisi tubuhnya, dan setiap langkahnya mencapai sejauh mata memandang.
+
+
+Pertanyaan pertama yang harus kita ajukan: apakah Buraq pernah disebut dalam Al-Qur'an? Jawabannya: tidak. Tidak ada satu pun ayat dalam Al-Qur'an yang menyebut kata "Buraq." Tidak ada satu pun ayat yang menggambarkan kendaraan Nabi Muhammad dalam perjalanan malam. Al-Qur'an hanya mengatakan: "Maha Suci Allah yang telah memperjalankan hamba-Nya pada suatu malam..." Tidak ada Buraq. Tidak ada sayap. Tidak ada langkah yang mencapai sejauh mata memandang.
+
+
+Pertanyaan kedua: dari mana Buraq berasal? Buraq—seperti banyak makhluk mitologis lainnya—berasal dari tradisi pra-Islam. Ia adalah makhluk yang muncul dalam literatur Arab pra-Islam, dalam cerita-cerita rakyat, dan dalam mitologi yang beredar di kalangan masyarakat Arabia. Ketika Islam datang, makhluk-makhluk mitologis ini tidak serta-merta hilang. Mereka bertahan—dan sebagian dari mereka masuk ke dalam hadis-hadis yang diriwayatkan secara ahad.
+
+
+Pertanyaan ketiga: apakah Buraq adalah bagian dari akidah? Jika Buraq tidak disebut dalam Al-Qur'an, dan jika hadis-hadis yang menyebutnya adalah hadis ahad, maka Buraq bukan bagian dari akidah. Ia adalah cerita rakyat. Ia adalah mitologi. Ia adalah bagian dari budaya—bukan bagian dari agama. Dan jika kita mempercayai Buraq sebagai bagian dari akidah, kita sedang memasukkan mitologi ke dalam agama.
+
+
+Ada satu hal yang perlu dicatat: dalam banyak tradisi agama, makhluk mitologis sering kali muncul sebagai kendaraan para dewa atau para nabi. Dalam tradisi Yunani, Hermes memiliki sandal bersayap. Dalam tradisi Hindu, Garuda adalah kendaraan Wisnu. Dalam tradisi Yahudi, kerub adalah makhluk bersayap yang menjaga tabut perjanjian. Dalam tradisi Islam, Buraq adalah kendaraan Nabi Muhammad. Pola ini menunjukkan bahwa Buraq bukanlah sesuatu yang unik—ia adalah bagian dari pola yang lebih besar, pola di mana manusia membayangkan makhluk-makhluk bersayap sebagai perantara antara dunia manusia dan dunia ilahi.
+
+
+Tetapi Al-Qur'an tidak bekerja dengan pola itu. Al-Qur'an tidak menggambarkan perjalanan Nabi Muhammad dengan makhluk bersayap. Al-Qur'an hanya mengatakan: "Maha Suci Allah yang telah memperjalankan hamba-Nya pada suatu malam..." Tidak ada Buraq. Tidak ada sayap. Tidak ada mitologi. Hanya pernyataan tentang kekuasaan Allah.
+
+
+---
+
+
+8. Kemurtadan Sahabat: Berita Besar yang Tidak Pernah Diriwayatkan Secara Mutawatir
+
+
+Sekarang kita masuk ke bagian yang paling aneh—dan yang paling telak dalam meruntuhkan narasi Isra Miraj. Menurut hadis-hadis ahad, ketika Nabi Muhammad menceritakan peristiwa Isra Miraj kepada penduduk Makkah, sebagian sahabat murtad—keluar dari Islam. Mereka tidak percaya bahwa Nabi benar-benar melakukan perjalanan malam ke Yerusalem dan naik ke langit. Mereka menganggap cerita itu tidak masuk akal. Dan menurut riwayat, Abu Bakar—yang kemudian mendapat gelar As-Siddiq—adalah satu-satunya yang langsung percaya tanpa ragu.
+
+
+Sekarang mari kita periksa narasi ini dengan nalar yang jernih.
+
+
+Pertama, jika benar bahwa sebagian sahabat murtad karena peristiwa Isra Miraj, maka peristiwa itu adalah peristiwa besar—peristiwa yang mengguncang komunitas Muslim awal. Peristiwa yang menyebabkan orang keluar dari agama adalah peristiwa yang harus dicatat, harus diriwayatkan, harus menjadi perhatian banyak orang. Tetapi mengapa peristiwa sebesar itu hanya diriwayatkan oleh satu atau dua jalur—oleh hadis ahad? Mengapa tidak ada riwayat mutawatir yang menceritakan kemurtadan sahabat? Mengapa tidak ada catatan sejarah yang mencatat nama-nama sahabat yang murtad?
+
+
+Kedua, jika benar bahwa Abu Bakar mendapat gelar As-Siddiq karena ia langsung percaya pada Isra Miraj, maka gelar itu adalah gelar yang sangat penting—gelar yang menunjukkan keimanan yang luar biasa. Tetapi mengapa gelar itu hanya disebut dalam hadis ahad? Mengapa tidak ada riwayat mutawatir yang menceritakan momen pemberian gelar itu? Mengapa tidak ada catatan sejarah yang mencatat peristiwa pemberian gelar itu?
+
+
+Ketiga, jika benar bahwa peristiwa Isra Miraj menyebabkan kemurtadan sahabat, maka peristiwa itu adalah peristiwa yang memalukan—peristiwa yang menunjukkan bahwa komunitas Muslim awal rapuh, bahwa iman mereka mudah goyah. Mengapa peristiwa memalukan itu justru diriwayatkan secara ahad—seolah-olah ia adalah peristiwa yang tidak penting? Bukankah peristiwa yang memalukan biasanya disembunyikan, bukan disebarkan? Mengapa dalam kasus ini, peristiwa yang memalukan justru disebarkan—tetapi hanya melalui jalur yang lemah?
+
+
+Keempat, ada satu tokoh yang menarik dalam narasi ini: Ibnu Ishaq. Ibnu Ishaq adalah penulis Sirah—biografi Nabi Muhammad yang paling awal dan paling berpengaruh. Dalam Sirah-nya, Ibnu Ishaq menceritakan peristiwa Isra Miraj—termasuk detail Buraq, langit ketujuh, dan tawar-menawar shalat. Tetapi Ibnu Ishaq adalah seorang sejarawan—bukan muhaddits (ahli hadis). Ia tidak memiliki kriteria ketat dalam menyeleksi riwayat. Ia mengumpulkan apa saja yang ia dengar—tanpa memeriksa sanad, tanpa memeriksa keotentikan. Dan justru dari Ibnu Ishaq inilah narasi Isra Miraj yang detail itu masuk ke dalam literatur Islam.
+
+
+Kelima, jika benar bahwa peristiwa Isra Miraj adalah peristiwa besar—yang menyebabkan kemurtadan sahabat, yang menyebabkan pemberian gelar As-Siddiq, yang menyebabkan perubahan arah kiblat dari Yerusalem ke Makkah—maka peristiwa itu harus diriwayatkan secara mutawatir. Peristiwa yang melibatkan seluruh komunitas—yang menyebabkan perubahan dalam praktik ibadah, yang menyebabkan perubahan dalam orientasi spiritual—adalah peristiwa yang tidak mungkin hanya diriwayatkan oleh satu atau dua orang. Ia harus diriwayatkan oleh banyak orang—oleh seluruh komunitas. Tetapi mengapa dalam kasus Isra Miraj, kita hanya memiliki riwayat ahad? Mengapa tidak ada riwayat mutawatir yang menceritakan peristiwa itu?
+
+
+Jawabannya mungkin sederhana: karena peristiwa itu tidak pernah terjadi seperti yang diceritakan dalam hadis-hadis ahad. Mungkin yang terjadi adalah sesuatu yang lebih sederhana—sesuatu yang tidak menyebabkan kemurtadan, tidak menyebabkan pemberian gelar, tidak menyebabkan perubahan arah kiblat. Mungkin yang terjadi adalah perjalanan malam Nabi Musa—sebagaimana yang dikatakan oleh teks Al-Qur'an. Dan mungkin narasi tentang Isra Miraj Nabi Muhammad adalah konstruksi belakangan—yang dibangun di atas teks Al-Qur'an, tetapi dengan tokoh yang berbeda.
+
+
+---
+
+
+9. Penutup: Membuka Kemungkinan Baru
+
+
+Kita tidak perlu memilih antara pembacaan tradisional dan pembacaan kritis. Kita dapat membaca dengan dua mata. Satu mata melihat tradisi: Isra Miraj sebagai peristiwa yang telah diimani oleh jutaan umat Islam selama berabad-abad, yang telah menjadi bagian dari identitas keagamaan, yang telah menginspirasi puisi, seni, dan ibadah. Mata lain melihat teks: Surat Al-Isra sebagai teks yang memiliki struktur, koherensi, dan jaringan makna yang mungkin belum sepenuhnya dijelajahi.
+
+
+Dengan dua mata itu, Al-Qur'an tidak kehilangan keagungannya. Ia justru menjadi lebih kaya. Karena di balik setiap kata, ada sejarah. Di balik setiap sejarah, ada pengalaman. Di balik setiap pengalaman, ada misteri. Dan di balik setiap misteri, ada realitas yang selalu lebih besar daripada kata-kata yang kita gunakan untuk menggambarkannya.
+
+
+Artikel ini tidak mengklaim bahwa pembacaan tradisional salah. Ia hanya mengklaim bahwa pembacaan tradisional bukanlah satu-satunya pembacaan—dan bahwa teks Al-Qur'an, sebagai teks yang hidup, selalu membuka kemungkinan untuk dibaca ulang. Karena pada akhirnya, pertanyaan tentang Isra Miraj bukan hanya pertanyaan tentang apa yang terjadi pada abad ke-7 Masehi. Ia adalah pertanyaan tentang bagaimana kita membaca teks suci—dan bagaimana kita memperlakukan warisan intelektual yang kita terima dari generasi sebelumnya.
+
+
+Dan pertanyaan-pertanyaan itu tidak pernah selesai. Mereka selalu terbuka. Selalu menunggu untuk diajukan kembali.`
+  },
   {
     id: "art-309-tahun-al-kahfi-dari-edict-of-milan-ke-yatsrib",
     title: "309 Tahun Al-Kahfi: Dari Edict of Milan ke Yatsrib",
