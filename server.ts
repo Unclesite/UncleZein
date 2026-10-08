@@ -68,19 +68,26 @@ app.get('*', (req, res) => {
 
       const found = ARTICLES_DATA.find((a) => {
         const normSlug = a.slug.toLowerCase().replace(/[./\\_ -]+/g, '-');
+        const matchAlias = a.aliases?.some((al) => {
+          const normAl = al.toLowerCase().replace(/[./\\_ -]+/g, '-');
+          return normAl === cleanParam || normAl.includes(cleanParam) || cleanParam.includes(normAl);
+        });
         return (
           normSlug === cleanParam ||
           a.id.toLowerCase() === cleanParam ||
           a.id.toLowerCase() === `art-${cleanParam}` ||
           normSlug.includes(cleanParam) ||
-          cleanParam.includes(normSlug)
+          cleanParam.includes(normSlug) ||
+          Boolean(matchAlias)
         );
       });
 
       if (found) {
         const pageTitle = `${escapeHtml(found.title)} — Uncle Zein`;
         const pageDesc = escapeHtml(found.summary);
-        const articleUrl = `https://ais-pre-buggbr34rwo4y5yq3ih2zv-962865382168.asia-east1.run.app/ideas?article=${encodeURIComponent(found.slug)}`;
+        const host = req.get('host') || 'ais-dev-buggbr34rwo4y5yq3ih2zv-962865382168.asia-east1.run.app';
+        const protocol = req.protocol === 'http' && !host.includes('localhost') ? 'https' : req.protocol;
+        const articleUrl = `${protocol}://${host}/ideas?article=${encodeURIComponent(found.slug)}`;
 
         // Replace metadata for WhatsApp, Facebook, Twitter link previews
         html = html

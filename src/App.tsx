@@ -136,12 +136,18 @@ export default function App() {
           let found = ARTICLES_DATA.find((a) => {
             const aSlugNorm = a.slug.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
             const aTitleNorm = a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+            const matchAlias = a.aliases?.some(
+              (al) =>
+                al.toLowerCase() === cleanTarget.toLowerCase() ||
+                al.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') === normalizedTarget
+            );
             return (
               a.slug.toLowerCase() === cleanTarget.toLowerCase() ||
               a.id.toLowerCase() === cleanTarget.toLowerCase() ||
               a.id.toLowerCase() === `art-${cleanTarget.toLowerCase()}` ||
               aSlugNorm === normalizedTarget ||
-              aTitleNorm === normalizedTarget
+              aTitleNorm === normalizedTarget ||
+              Boolean(matchAlias)
             );
           });
 

@@ -7,6 +7,7 @@ export interface Article {
   id: string;
   title: string;
   slug: string;
+  aliases?: string[];
   category: 'Filsafat' | 'Sejarah' | 'Kritik Teks' | 'Pola Pikir' | 'Eksistensial' | "Qur'an & Religion" | "Qur'an & History" | "Qur'an & Society" | "Qur'an & Science" | "Qur'an & Philosophy" | "Qur'an & Linguistics" | "Sejarah & Qur'an" | "Qur'an & Historical Criticism";
   summary: string;
   content: string;
@@ -249,6 +250,13 @@ export const ARTICLES_DATA: Article[] = [
     id: "art-isra-miraj-hadis-dzanni-quran-musa-atau-muhammad",
     title: "Isra Miraj: Ketika Hadis Dzanni Menelan Teks Qath'i Al-Qur'an. Musa atau Muhammad yang Diisrakan?",
     slug: "isra-miraj-ketika-hadis-dzanni-menelan-teks-qathi-al-quran-musa-atau-muhammad-yang-diisrakan",
+    aliases: [
+      "dekonstruksi-radikal-atas-sejarah-kenabian-dan-kritik-epistemologi-hadis-ahad",
+      "dekonstruksi-radikal-sejarah-kenabian-kritik-hadis-ahad",
+      "art-dekonstruksi-radikal-sejarah-kenabian-kritik-hadis-ahad",
+      "isra-miraj",
+      "isra-miraj-musa-atau-muhammad"
+    ],
     category: "Qur'an & Historical Criticism",
     readTime: "24 min",
     date: "08 Okt 2026",

@@ -1,33 +1,23 @@
 import { Article } from '../data/siteData';
 
-// Public Shared App URL deployed on Cloud Run / AI Studio
-export const PUBLIC_APP_URL = 'https://ais-pre-buggbr34rwo4y5yq3ih2zv-962865382168.asia-east1.run.app';
+// Live App URL for this AI Studio instance
+export const LIVE_APP_URL = 'https://ais-dev-buggbr34rwo4y5yq3ih2zv-962865382168.asia-east1.run.app';
 
 /**
- * Returns the public, globally accessible base URL.
- * Automatically converts internal AI Studio dev URLs ('ais-dev-') or localhost
- * to the publicly accessible Shared App URL ('ais-pre-') so links opened from
- * WhatsApp, Telegram, Twitter, etc. work seamlessly without requiring login or throwing 404.
+ * Returns the active, live base URL.
+ * Uses window.location.origin directly whenever available so that whatever domain
+ * the user is currently on (dev URL, custom domain, or shared app URL), the links
+ * point to the actual working website that exists and loads.
  */
 export const getPublicBaseUrl = (): string => {
-  if (typeof window === 'undefined') {
-    return PUBLIC_APP_URL;
+  if (typeof window !== 'undefined' && window.location && window.location.origin) {
+    const { origin, hostname } = window.location;
+    // If not local host and has a valid origin, use it directly
+    if (origin && origin !== 'null' && !origin.startsWith('file:') && hostname !== 'localhost' && hostname !== '127.0.0.1') {
+      return origin;
+    }
   }
-
-  const { hostname, origin } = window.location;
-
-  // AI Studio internal development preview -> rewrite to public shared URL
-  if (hostname.includes('ais-dev-')) {
-    return origin.replace('ais-dev-', 'ais-pre-');
-  }
-
-  // Local development -> use public production URL so sharing to WhatsApp works
-  if (hostname === 'localhost' || hostname === '127.0.0.1' || hostname === '0.0.0.0') {
-    return PUBLIC_APP_URL;
-  }
-
-  // Already on public URL or custom domain
-  return origin;
+  return LIVE_APP_URL;
 };
 
 /**
