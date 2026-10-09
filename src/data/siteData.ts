@@ -245,7 +245,10 @@ export const PASSIONS_DATA: Passion[] = [
   }
 ];
 
+import { ARTICLE_BIBEL_QURAN } from './articles/articleBibelQuran.ts';
+
 export const ARTICLES_DATA: Article[] = [
+  ARTICLE_BIBEL_QURAN,
   {
     id: "art-isra-miraj-hadis-dzanni-quran-musa-atau-muhammad",
     title: "Isra Miraj: Ketika Hadis Dzanni Menelan Teks Qath'i Al-Qur'an. Musa atau Muhammad yang Diisrakan?",
