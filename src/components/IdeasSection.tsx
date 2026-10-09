@@ -184,7 +184,8 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
               return (
                 <article
                   key={article.id}
-                  className={`glass-card rounded-2xl p-6 sm:p-8 border transition-all duration-300 group relative ${
+                  onClick={() => onSelectArticle(article)}
+                  className={`glass-card rounded-2xl p-6 sm:p-8 border transition-all duration-300 group relative cursor-pointer ${
                     article.featured ? 'border-blue-500/40 glow-blue bg-blue-950/[0.07]' : 'border-white/10 hover:border-blue-500/40'
                   }`}
                 >
@@ -331,7 +332,10 @@ export const IdeasSection: React.FC<IdeasSectionProps> = ({
 
                         {/* Save Bookmark */}
                         <button
-                          onClick={() => onToggleSaveArticle(article.id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onToggleSaveArticle(article.id);
+                          }}
                           className={`p-2 rounded-xl border transition-all cursor-pointer ${
                             isSaved
                               ? 'bg-blue-600/20 text-blue-400 border-blue-500/40'

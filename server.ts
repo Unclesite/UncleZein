@@ -66,21 +66,34 @@ app.get('*', (req, res) => {
         .replace(/[./\\_ -]+/g, '-')
         .replace(/^-+|-+$/g, '');
 
-      const found = ARTICLES_DATA.find((a) => {
+      let found = ARTICLES_DATA.find((a) => {
         const normSlug = a.slug.toLowerCase().replace(/[./\\_ -]+/g, '-');
+        const normTitle = a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
         const matchAlias = a.aliases?.some((al) => {
           const normAl = al.toLowerCase().replace(/[./\\_ -]+/g, '-');
           return normAl === cleanParam || normAl.includes(cleanParam) || cleanParam.includes(normAl);
         });
         return (
           normSlug === cleanParam ||
+          normTitle === cleanParam ||
           a.id.toLowerCase() === cleanParam ||
           a.id.toLowerCase() === `art-${cleanParam}` ||
           normSlug.includes(cleanParam) ||
           cleanParam.includes(normSlug) ||
+          normTitle.includes(cleanParam) ||
           Boolean(matchAlias)
         );
       });
+
+      if (!found && cleanParam.length >= 3) {
+        const searchWords = cleanParam.split('-').filter((w) => w.length >= 3);
+        if (searchWords.length > 0) {
+          found = ARTICLES_DATA.find((a) => {
+            const combined = `${a.slug} ${a.title} ${(a.aliases || []).join(' ')}`.toLowerCase();
+            return searchWords.every((w) => combined.includes(w));
+          });
+        }
+      }
 
       if (found) {
         const pageTitle = `${escapeHtml(found.title)} — Uncle Zein`;

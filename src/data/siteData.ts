@@ -246,9 +246,10 @@ export const PASSIONS_DATA: Passion[] = [
 ];
 
 import { ARTICLE_BIBEL_QURAN } from './articles/articleBibelQuran.ts';
+import { ARTICLE_YAM_SUPH } from './articles/articleYamSuph.ts';
 
 export const ARTICLES_DATA: Article[] = [
-  ARTICLE_BIBEL_QURAN,
+  ARTICLE_YAM_SUPH,
   {
     id: "art-isra-miraj-hadis-dzanni-quran-musa-atau-muhammad",
     title: "Isra Miraj: Ketika Hadis Dzanni Menelan Teks Qath'i Al-Qur'an. Musa atau Muhammad yang Diisrakan?",
@@ -257,8 +258,15 @@ export const ARTICLES_DATA: Article[] = [
       "dekonstruksi-radikal-atas-sejarah-kenabian-dan-kritik-epistemologi-hadis-ahad",
       "dekonstruksi-radikal-sejarah-kenabian-kritik-hadis-ahad",
       "art-dekonstruksi-radikal-sejarah-kenabian-kritik-hadis-ahad",
+      "dekonstruksi-radikal-atas-sejarah",
+      "dekonstruksi-radikal",
+      "dekonstruksi",
       "isra-miraj",
-      "isra-miraj-musa-atau-muhammad"
+      "isra-miraj-musa-atau-muhammad",
+      "musa-atau-muhammad",
+      "musa-atau-muhammad-yang-diisrakan",
+      "isra-miraj-ketika-hadis-dzanni-menelan-teks-qath-i-al-qur-an",
+      "hadis-dzanni-menelan-teks-qathi-al-quran"
     ],
     category: "Qur'an & Historical Criticism",
     readTime: "24 min",
@@ -636,6 +644,7 @@ Artikel ini tidak mengklaim bahwa pembacaan tradisional salah. Ia hanya mengklai
 
 Dan pertanyaan-pertanyaan itu tidak pernah selesai. Mereka selalu terbuka. Selalu menunggu untuk diajukan kembali.`
   },
+  ARTICLE_BIBEL_QURAN,
   {
     id: "art-309-tahun-al-kahfi-dari-edict-of-milan-ke-yatsrib",
     title: "309 Tahun Al-Kahfi: Dari Edict of Milan ke Yatsrib",

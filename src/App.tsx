@@ -151,12 +151,34 @@ export default function App() {
             );
           });
 
-          // Fallback partial match if URL got truncated
-          if (!found && normalizedTarget.length >= 4) {
+          // Fallback partial match if URL got truncated or contains keywords
+          if (!found && normalizedTarget.length >= 3) {
             found = ARTICLES_DATA.find((a) => {
               const aSlugNorm = a.slug.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-              return aSlugNorm.includes(normalizedTarget) || normalizedTarget.includes(aSlugNorm);
+              const aTitleNorm = a.title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+              const matchAlias = a.aliases?.some((al) => {
+                const normAl = al.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+                return normAl.includes(normalizedTarget) || normalizedTarget.includes(normAl);
+              });
+              return (
+                aSlugNorm.includes(normalizedTarget) ||
+                normalizedTarget.includes(aSlugNorm) ||
+                aTitleNorm.includes(normalizedTarget) ||
+                normalizedTarget.includes(aTitleNorm) ||
+                Boolean(matchAlias)
+              );
             });
+          }
+
+          // Fallback multi-word token matching if user copied partial title or keywords
+          if (!found && normalizedTarget.length >= 3) {
+            const searchWords = normalizedTarget.split('-').filter((w) => w.length >= 3);
+            if (searchWords.length > 0) {
+              found = ARTICLES_DATA.find((a) => {
+                const combined = `${a.slug} ${a.title} ${(a.aliases || []).join(' ')}`.toLowerCase();
+                return searchWords.every((w) => combined.includes(w));
+              });
+            }
           }
 
           if (found) {
