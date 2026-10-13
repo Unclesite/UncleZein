@@ -248,8 +248,10 @@ export const PASSIONS_DATA: Passion[] = [
 import { ARTICLE_BIBEL_QURAN } from './articles/articleBibelQuran.ts';
 import { ARTICLE_YAM_SUPH } from './articles/articleYamSuph.ts';
 import { ARTICLE_AL_FIL } from './articles/articleAlFil.ts';
+import { ARTICLE_AL_MAUN } from './articles/articleAlMaun.ts';
 
 export const ARTICLES_DATA: Article[] = [
+  ARTICLE_AL_MAUN,
   ARTICLE_AL_FIL,
   ARTICLE_YAM_SUPH,
   {
