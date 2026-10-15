@@ -620,6 +620,21 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
                 );
               }
 
+              // ASCII Timeline / Flowchart Diagrams
+              if (paragraph.includes('--->') || paragraph.includes('----->') || paragraph.includes('---->')) {
+                return (
+                  <div key={index} className="my-8 rounded-2xl bg-black/75 border border-blue-500/30 p-5 sm:p-7 overflow-x-auto shadow-2xl">
+                    <div className="flex items-center gap-2 text-[10px] font-mono-code text-blue-400 font-bold uppercase tracking-widest mb-3">
+                      <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                      <span>DIAGRAM ALUR LINIMASA SEJARAH</span>
+                    </div>
+                    <pre className="text-xs sm:text-sm font-mono-code text-cyan-200 leading-relaxed whitespace-pre font-semibold">
+                      {paragraph.trim()}
+                    </pre>
+                  </div>
+                );
+              }
+
               // Horizontal Divider
               if (paragraph.startsWith('---')) {
                 return <hr key={index} className="border-white/10 my-10" />;
@@ -639,8 +654,12 @@ export const ArticleModal: React.FC<ArticleModalProps> = ({
                 );
               }
 
-              // Section Headings like "1. TITIK TOLAK..." or "1.1 Pendahuluan"
-              if (/^\d+(\.\d+)*\.\s+[A-Z\u0600-\u06FF]/.test(paragraph) && !paragraph.includes('\n')) {
+              // Section Headings: Arabic numbers (1., 1.1), Roman numerals (I., II., IX.), or All-Caps sections (CATATAN PEMBACAAN)
+              if (
+                (/^(\d+(\.\d+)*|[IVXLCDM]+)\.\s+[A-Z\u0600-\u06FF]/.test(paragraph.trim()) ||
+                  (/^[A-Z0-9\s—–:]{4,55}$/.test(paragraph.trim()) && !paragraph.startsWith('http') && !paragraph.includes('http') && !paragraph.includes('·'))) &&
+                !paragraph.includes('\n')
+              ) {
                 const headingText = paragraph.trim();
                 const slug = headingText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                 return (

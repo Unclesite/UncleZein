@@ -251,9 +251,11 @@ import { ARTICLE_AL_FIL } from './articles/articleAlFil.ts';
 import { ARTICLE_AL_MAUN } from './articles/articleAlMaun.ts';
 import { ARTICLE_SHALAT_SOSIAL } from './articles/articleShalatSosial.ts';
 import { ARTICLE_DEKRIPSI_AL_KAHFI } from './articles/articleDekripsiAlKahfi.ts';
+import { ARTICLE_NAZARETH_BENGKEL_KAYU } from './articles/articleNazarethBengkelKayu.ts';
 
 export const ARTICLES_DATA: Article[] = [
   ARTICLE_DEKRIPSI_AL_KAHFI,
+  ARTICLE_NAZARETH_BENGKEL_KAYU,
   ARTICLE_SHALAT_SOSIAL,
   ARTICLE_AL_MAUN,
   ARTICLE_AL_FIL,
