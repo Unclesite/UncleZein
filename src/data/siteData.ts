@@ -252,8 +252,16 @@ import { ARTICLE_AL_MAUN } from './articles/articleAlMaun.ts';
 import { ARTICLE_SHALAT_SOSIAL } from './articles/articleShalatSosial.ts';
 import { ARTICLE_DEKRIPSI_AL_KAHFI } from './articles/articleDekripsiAlKahfi.ts';
 import { ARTICLE_NAZARETH_BENGKEL_KAYU } from './articles/articleNazarethBengkelKayu.ts';
+import { ARTICLE_NEUROSAINS_KDRT } from './articles/articleNeurosainsKDRT.ts';
+import { ARTICLE_TRAUMA_PEREMPUAN } from './articles/articleTraumaPerempuan.ts';
+import { ARTICLE_MEMUTUS_TITIK_TEMU } from './articles/articleMemutusTitikTemu.ts';
+import { ARTICLE_CEKCOK_MAUT } from './articles/articleCekcokMaut.ts';
 
 export const ARTICLES_DATA: Article[] = [
+  ARTICLE_CEKCOK_MAUT,
+  ARTICLE_MEMUTUS_TITIK_TEMU,
+  ARTICLE_TRAUMA_PEREMPUAN,
+  ARTICLE_NEUROSAINS_KDRT,
   ARTICLE_DEKRIPSI_AL_KAHFI,
   ARTICLE_NAZARETH_BENGKEL_KAYU,
   ARTICLE_SHALAT_SOSIAL,
