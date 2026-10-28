@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uncle Zein</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background: #07090e;
+        color: #e2e8f0;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .loader {
+        text-align: center;
+        padding: 2rem;
+      }
+      .spinner {
+        width: 36px;
+        height: 36px;
+        border: 3px solid rgba(59, 130, 246, 0.2);
+        border-top-color: #3b82f6;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: 0 auto 16px;
+      }
+      .text {
+        font-size: 14px;
+        color: #94a3b8;
+        letter-spacing: 0.05em;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+    <script>
+      // Single Page Application (SPA) Fallback
+      // When a direct link (such as from Instagram, WhatsApp, or Twitter) hits a static 404
+      (function() {
+        var path = window.location.pathname;
+        var search = window.location.search;
+        var hash = window.location.hash;
+        var fullTarget = path + search + hash;
+
+        // If path is not root, forward the full path to root with redirect query param
+        if (path && path !== '/' && path !== '/index.html' && path !== '/404.html') {
+          window.location.replace('/?redirect=' + encodeURIComponent(fullTarget));
+        } else {
+          window.location.replace('/');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="loader">
+      <div class="spinner"></div>
+      <div class="text">Memuat artikel Uncle Zein...</div>
+    </div>
+  </body>
+</html>

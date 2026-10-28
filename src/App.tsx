@@ -69,7 +69,27 @@ export default function App() {
   useEffect(() => {
     const syncRouteAndArticle = () => {
       try {
-        const searchParams = new URLSearchParams(window.location.search);
+        let currentSearch = window.location.search;
+        let currentPath = window.location.pathname;
+        let currentHash = window.location.hash;
+
+        // Check if redirected from 404.html (e.g. from Instagram in-app browser on static host)
+        const initialParams = new URLSearchParams(currentSearch);
+        const redirectParam = initialParams.get('redirect');
+        if (redirectParam) {
+          try {
+            const decodedRedirect = decodeURIComponent(redirectParam);
+            window.history.replaceState(null, '', decodedRedirect);
+            const redirectUrl = new URL(decodedRedirect, window.location.origin);
+            currentSearch = redirectUrl.search;
+            currentPath = redirectUrl.pathname;
+            currentHash = redirectUrl.hash;
+          } catch {
+            // ignore
+          }
+        }
+
+        const searchParams = new URLSearchParams(currentSearch);
         let articleParam =
           searchParams.get('article') ||
           searchParams.get('id') ||
@@ -77,8 +97,8 @@ export default function App() {
           searchParams.get('p');
 
         // Check if query params were passed inside hash e.g. /#ideas?article=slug or /#/?article=slug
-        if (!articleParam && window.location.hash.includes('?')) {
-          const hashQuery = window.location.hash.split('?')[1];
+        if (!articleParam && currentHash.includes('?')) {
+          const hashQuery = currentHash.split('?')[1];
           const hashParams = new URLSearchParams(hashQuery);
           articleParam =
             hashParams.get('article') ||
@@ -87,10 +107,14 @@ export default function App() {
             hashParams.get('p');
         }
 
-        const rawHash = window.location.hash.replace(/^#/, '');
-        const pathParts = window.location.pathname.replace(/^\//, '').split('/');
+        const rawHash = currentHash.replace(/^#/, '');
+        const pathParts = currentPath.replace(/^\//, '').split('/');
 
-        let targetSlug = articleParam || '';
+        let targetSlug =
+          articleParam ||
+          (typeof window !== 'undefined'
+            ? (window as unknown as { __PRELOADED_ARTICLE_SLUG__?: string }).__PRELOADED_ARTICLE_SLUG__ || ''
+            : '');
         if (targetSlug) {
           try {
             targetSlug = decodeURIComponent(targetSlug);
@@ -201,7 +225,11 @@ export default function App() {
           document.title = 'Uncle Zein';
         }
 
-        const rootPath = pathParts[0]?.replace(/\.html$/, '');
+        const preloadedTab =
+          typeof window !== 'undefined'
+            ? (window as unknown as { __INITIAL_TAB__?: string }).__INITIAL_TAB__
+            : undefined;
+        const rootPath = preloadedTab || pathParts[0]?.replace(/\.html$/, '');
         if (['ideas', 'research', 'books', 'media', 'about', 'contact'].includes(rootPath)) {
           setActiveTab(rootPath);
         } else {

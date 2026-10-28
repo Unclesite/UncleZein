@@ -1,0 +1,37 @@
+# ----------------------------------------------------------------------
+# Apache & LiteSpeed (Hostinger, cPanel, CyberPanel) SPA Rewrite Rules
+# For Uncle Zein (https://unclezein.com)
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 1. Force HTTPS
+  RewriteCond %{HTTPS} off
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # 2. Don't rewrite real physical files or existing directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # 3. Explicitly rewrite main section routes
+  RewriteRule ^(ideas|article|research|books|media|about|contact)(/.*)?$ /index.html [L,QSA]
+
+  # 4. Fallback all remaining clean URLs to index.html while preserving query parameters
+  RewriteRule ^ index.html [L,QSA]
+</IfModule>
+
+# Prevent Hostinger default 404 page by routing 404 to index.html
+ErrorDocument 404 /index.html
+
+# Prevent Directory Browsing
+Options -Indexes
+
+# Security & CORS Headers for Assets
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
