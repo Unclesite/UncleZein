@@ -256,8 +256,10 @@ import { ARTICLE_NEUROSAINS_KDRT } from './articles/articleNeurosainsKDRT.ts';
 import { ARTICLE_TRAUMA_PEREMPUAN } from './articles/articleTraumaPerempuan.ts';
 import { ARTICLE_MEMUTUS_TITIK_TEMU } from './articles/articleMemutusTitikTemu.ts';
 import { ARTICLE_CEKCOK_MAUT } from './articles/articleCekcokMaut.ts';
+import { ARTICLE_AGNOTISME_AKHLAK } from './articles/articleAgnotismeAkhlak.ts';
 
 export const ARTICLES_DATA: Article[] = [
+  ARTICLE_AGNOTISME_AKHLAK,
   ARTICLE_CEKCOK_MAUT,
   ARTICLE_MEMUTUS_TITIK_TEMU,
   ARTICLE_TRAUMA_PEREMPUAN,
